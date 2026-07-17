@@ -39,7 +39,7 @@ export default function ProductCard({
 
 
     return (
-        <div className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duraion-300 hover:translate-y-1 hover:shadow-xl">
+        <div className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
 
             <Link href={`/products/${slug}`}>
                 <div className="relative h-64 overflow-hidden bg-gray-100">
@@ -152,7 +152,10 @@ export default function ProductCard({
                         });
                     }}
                     className="flex w-full items-center justify-center gap-2 rounded-xl bg-green-700 py-3 font-semibold text-white transition hover:bg-green-800"
-                />
+                >
+                    <ShoppingCart size={18} />
+                    Add to Cart
+                </button>
 
             </div>
         </div>
