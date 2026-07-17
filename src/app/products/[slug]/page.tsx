@@ -4,6 +4,8 @@ import ProductInfo from "@/components/product/ProductInfo";
 import ProductActions from "@/components/product/ProductActions";
 import ProductDelivery from "@/components/product/ProductDelivery";
 import RelatedProducts from "@/components/product/RelatedProducts";
+import Breadcrumb from "@/components/ui/Breadcrumb";
+
 
 
 interface ProductPageProps {
@@ -33,6 +35,28 @@ export default async function ProductPage({
     }
     return (
         <main className="mx-auto max-w-7xl px-6 py-10">
+
+            <Breadcrumb 
+                items = {[
+                    {
+                        label: "Home",
+                        href: "/",
+                    },
+                    {
+                        label: "Shop",
+                        href: "/shop",
+                    },
+                    {
+                        label: product.category,
+                        href: `/shop?category=${product.category}`
+                    },
+                    {
+                        label: product.name
+                    },
+                ]}
+            />
+
+            
             <div className="grid gap-10 lg:grid-cols-2">
                 
                 <ProductGallery

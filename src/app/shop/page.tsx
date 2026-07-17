@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { products } from "@/data/products";
+import { useSearchParams } from "next/navigation";
 import ProductCard from "@/components/product/ProductCard";
 import ProductSearch from "@/components/search/ProductSearch";
 import searchProducts from "@/utils/searchProducts";
 import CategoryFilter from "@/components/shop/CategoryFilter";
 import SortProducts from "@/components/shop/SortProducts";
-import { useSearchParams } from "next/navigation";
+import Breadcrumb from "@/components/ui/Breadcrumb";
+
 
 
 
@@ -49,6 +51,18 @@ export default function ShopPage() {
 
     return (
         <main className="mx-auto max-w-7xl px-6 py-10">
+
+            <Breadcrumb 
+                items = {[
+                    {
+                        label: "Home",
+                        href: "/"
+                    },
+                    {
+                        label: "Shop",
+                    },
+                ]}
+            />
 
             {/*Heading*/}
 
