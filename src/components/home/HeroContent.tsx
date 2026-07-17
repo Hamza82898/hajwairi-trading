@@ -10,7 +10,7 @@ export default function HeroContent() {
                 Fresh Fruits & Daily Grocery
             </span>
 
-            <h1 className="text-5x1 font-extrabold leading-tight text-gray-900">
+            <h1 className="text-5xl font-extrabold leading-tight text-gray-900">
                 Freshness Delivered <br /> Across Bahrain
             </h1>
 

@@ -5,7 +5,7 @@ import { featuredProducts } from "@/utils/featuredProducts";
 export default function FeaturedProducts() {
     return (
         <section className="py-20">
-            <div className="mx-auto max-w-7x1 px-6">
+            <div className="mx-auto max-w-7xl px-6">
                 <SectionTitle 
                     title = "Featured Products"
                     subtitle = "Fresh products specially selected for our customers."

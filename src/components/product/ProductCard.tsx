@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-// import { useCartStore } from "@/store/cartStore";
+import { useCartStore } from "@/store/cartStore";
 import { Heart, ShoppingCart, Star, CheckCircle2, } from "lucide-react"
 
 
@@ -31,7 +31,7 @@ export default function ProductCard({
     rating,
     inStock,
 }: ProductCardProps) {
-    // const { addToCart } = useCartStore();
+    const { addToCart } = useCartStore();
 
     const discount = Math.round(
         ((oldPrice - newPrice) / oldPrice) * 100
@@ -140,10 +140,19 @@ export default function ProductCard({
 
                 {/*Button*/}
 
-                <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-green-700 py-3 font-semibold text-white transition hover:bg-green-800">
-                    <ShoppingCart size={18} />
-                    Add to Cart
-                </button>
+                <button 
+                    onClick={(e) => {
+                        e.preventDefault();
+
+                        addToCart({
+                            id,
+                            name,
+                            image,
+                            price: newPrice,
+                        });
+                    }}
+                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-green-700 py-3 font-semibold text-white transition hover:bg-green-800"
+                />
 
             </div>
         </div>

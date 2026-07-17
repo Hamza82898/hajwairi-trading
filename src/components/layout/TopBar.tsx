@@ -1,7 +1,7 @@
 export default function TopBar() {
     return (
         <div className="bg-green-700 text-white">
-            <div className="mx-auto flex max-w-7x1 items-center justify-between px-6 py-2 text-sm">
+            <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 text-sm">
 
                 <p>
                     🚚 Free Delivery on Selected Areas
