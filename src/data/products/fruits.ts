@@ -1,0 +1,293 @@
+import { Product } from "@/types/product";
+
+export const fruits: Product[] = [
+    {
+        id: 1,
+        slug: "pakistani-chaunsa-mango",
+        name: "Pakistani Chaunsa Mango",
+        description: 
+            "World-famous Pakistani Chaunsa Mango known for its sweetness, juicy texture and premium quality.",
+        category: "Fruits",
+        brand: "Hajwairi Trading",
+        origin: "Pakistan",
+        images: [
+            "/products/fruits/chaunsa-mango.png",
+            "/products/fruits/chaunsa-mango.png",
+            "/products/fruits/chaunsa-mango.png",
+            "/products/fruits/chaunsa-mango.png",
+        ],
+        oldPrice: 7.50,
+        newPrice: 6.30,
+        unit: "4 KG",
+        rating: 5,
+        reviews: 124,
+        inStock: true,
+        stock: 100,
+        badge: "BEST SELLER",
+        featured: true,
+        discount: 16,
+        tags: [
+            "Fresh",
+            "Sweet",
+            "Premium",
+            "Pakistan"
+        ],       
+    },
+
+    {
+        id: 2,
+        slug: "sindhri-mango",
+        name: "Sindhri Mango",
+        description: 
+            "Premium quality Pakistani Sindhri Mango with naturally sweet taste and rich aroma. Freshly imported for Bahrain customers.",
+        category: "Fruits",
+        brand: "Hajwairi Trading",
+        origin: "Pakistan",
+        images: [
+            "/products/fruits/sindhri-mango.png",
+            "/products/fruits/sindhri-mango.png",
+            "/products/fruits/sindhri-mango.png",
+            "/products/fruits/sindhri-mango.png",
+        ],
+        oldPrice: 7.50,
+        newPrice: 6.30,
+        unit: "4 KG",
+        rating: 5,
+        reviews: 142,
+        inStock: true,
+        stock: 80,
+        badge: "NEW",
+        featured: true,
+        discount: 16,
+        tags: [
+            "Fresh",
+            "Premium",
+            "Pakistan",
+            "Sweet"
+        ],
+    },
+
+    {
+        id: 3,
+        slug: "anwar-ratole-mango",
+        name: "Anwar Ratole Mango",
+        description: 
+            "Authentic Pakistani Anwar Ratole Mango with exceptional sweetness and rich flavor.",
+        category: "Fruits",
+        brand: "Hajwairi Trading",
+        origin: "Pakistan",
+        images: [
+            "/products/fruits/anwar-ratole-mango.png",
+            "/products/fruits/anwar-ratole-mango.png",
+            "/products/fruits/anwar-ratole-mango.png",
+            "/products/fruits/anwar-ratole-mango.png",
+        ],
+        oldPrice: 8.00,
+        newPrice: 6.80,
+        unit: "4 KG",
+        rating: 5,
+        reviews: 118,
+        inStock: true,
+        stock: 70,
+        badge: "PREMIUM",
+        featured: true,
+        discount: 15,
+        tags: [
+            "Fresh",
+            "Premium",
+            "Pakistan"
+        ],       
+    },
+
+    {
+        id: 4,
+        slug: "fresh-jamun",
+        name: "Fresh Jamun",
+        description: 
+            "Fresh Pakistani Jamun carefully selected for premium taste and quality.",
+        category: "Fruits",
+        brand: "Hajwairi Trading",
+        origin: "Pakistan",
+        images: [
+            "/products/fruits/jamun.png",
+            "/products/fruits/jamun.png",
+            "/products/fruits/jamun.png",
+            "/products/fruits/jamun.png",
+        ],
+        oldPrice: 3.50,
+        newPrice: 3.00,
+        unit: "1 KG",
+        rating: 5,
+        reviews: 94,
+        inStock: true,
+        stock: 60,
+        badge: "FRESH",
+        featured: true,
+        discount: 14,
+        tags: [
+            "Fresh",
+            "Healthy",
+            "Pakistan"
+        ],
+    },
+
+    {
+        id: 5,
+        slug: "fresh-falsa",
+        name: "Fresh Falsa",
+        description: 
+            "Delicious and refreshing Pakistani Falsa with natural freshness and premium quality.",
+        category: "Fruits",
+        brand: "Hajwairi Trading",
+        origin: "Pakistan",
+        images: [
+            "/products/fruits/falsa.png",
+            "/products/fruits/falsa.png",
+            "/products/fruits/falsa.png",
+            "/products/fruits/falsa.png",
+        ],
+        oldPrice: 3.50,
+        newPrice: 3.00,
+        unit: "1 KG",
+        rating: 5,
+        reviews: 76,
+        inStock: true,
+        stock: 50,
+        badge: "FRESH",
+        featured: false,
+        discount: 14,
+        tags: [
+            "Fresh",
+            "Healthy",
+            "Pakistan"
+        ],
+    },
+
+    {
+        id: 6,
+        slug: "cut-sugarcane",
+        name: "Cut Sugarcane",
+        description: 
+            "Freshly cut Pakistani Sugarcane, hygienically packed and ready to enjoy.",
+        category: "Fruits",
+        brand: "Hajwairi Trading",
+        origin: "Pakistan",
+        images: [
+            "/products/fruits/cut-sugarcane.png",
+            "/products/fruits/cut-sugarcane.png",
+            "/products/fruits/cut-sugarcane.png",
+            "/products/fruits/cut-sugarcane.png",
+        ],
+        oldPrice: 2.50,
+        newPrice: 3.00,
+        unit: "2 KG",
+        rating: 5,
+        reviews: 58,
+        inStock: true,
+        stock: 45,
+        badge: "READY TO EAT",
+        featured: false,
+        discount: 20,
+        tags: [
+            "Fresh",
+            "Natural",
+            "Pakistan"
+        ],
+    },
+
+    {
+        id: 7,
+        slug: "fresh-peach",
+        name: "Fresh Peach",
+        description: 
+            "Sweet and juicy Pakistani Peaches, freshly imported with premium quality.",
+        category: "Fruits",
+        brand: "Hajwairi Trading",
+        origin: "Pakistan",
+        images: [
+            "/products/fruits/peach.png",
+            "/products/fruits/peach.png",
+            "/products/fruits/peach.png",
+            "/products/fruits/peach.png",
+        ],
+        oldPrice: 4.00,
+        newPrice: 3.50,
+        unit: "1 KG",
+        rating: 5,
+        reviews: 82,
+        inStock: true,
+        stock: 45,
+        badge: "SWEET",
+        featured: true,
+        discount: 13,
+        tags: [
+            "Fresh",
+            "Sweet",
+            "Pakistan"
+        ],
+    },
+
+    {
+        id: 8,
+        slug: "fresh-melon",
+        name: "Fresh Melon",
+        description: 
+            "Sweet and juicy Pakistani Melon, carefully selected for freshness and premium taste.",
+        category: "Fruits",
+        brand: "Hajwairi Trading",
+        origin: "Pakistan",
+        images: [
+            "/products/fruits/melon.png",
+            "/products/fruits/melon.png",
+            "/products/fruits/melon.png",
+            "/products/fruits/melon.png",
+        ],
+        oldPrice: 4.50,
+        newPrice: 3.90,
+        unit: "5 KG",
+        rating: 5,
+        reviews: 91,
+        inStock: true,
+        stock: 40,
+        badge: "FARM FRESH",
+        featured: false,
+        discount: 13,
+        tags: [
+            "Fresh",
+            "Sweet",
+            "Pakistan"
+        ],
+    },
+
+    {
+        id: 9,
+        slug: "fresh-apricot",
+        name: "Fresh Apricot",
+        description: 
+            "Premium quality Pakistani Apricots with a naturally sweet taste and rich nutrition.",
+        category: "Fruits",
+        brand: "Hajwairi Trading",
+        origin: "Pakistan",
+        images: [
+            "/products/fruits/apricot.png",
+            "/products/fruits/apricot.png",
+            "/products/fruits/apricot.png",
+            "/products/fruits/apricot.png",
+        ],
+        oldPrice: 4.50,
+        newPrice: 3.80,
+        unit: "1 KG",
+        rating: 5,
+        reviews: 63,
+        inStock: true,
+        stock: 35,
+        badge: "IMPORTED",
+        featured: false,
+        discount: 20,
+        tags: [
+            "Fresh",
+            "Healthy",
+            "Pakistan"
+        ],
+    },
+];

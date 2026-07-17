@@ -1,6 +1,6 @@
 import ProductCard from "@/components/product/ProductCard";
-import { featuredProducts } from "@/constants/products";
 import SectionTitle from "@/components/ui/SectionTitle";
+import { featuredProducts } from "@/utils/featuredProducts";
 
 export default function FeaturedProducts() {
     return (
@@ -18,7 +18,7 @@ export default function FeaturedProducts() {
                             id={product.id}
                             slug = {product.slug}
                             name = {product.name}
-                            image = {product.image}
+                            image = {product.images[0]}
                             oldPrice = {product.oldPrice}
                             newPrice = {product.newPrice}
                             badge = {product.badge}

@@ -1,12 +1,13 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { products } from "@/data/products";
 import ProductCard from "@/components/product/ProductCard";
 import ProductSearch from "@/components/search/ProductSearch";
 import searchProducts from "@/utils/searchProducts";
 import CategoryFilter from "@/components/shop/CategoryFilter";
 import SortProducts from "@/components/shop/SortProducts";
+import { useSearchParams } from "next/navigation";
 
 
 
@@ -14,6 +15,15 @@ export default function ShopPage() {
     const [query, setQuery] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
     const [sortBy, setSortBy] = useState("default");
+    const searchParams = useSearchParams();
+
+    useEffect(() => {
+        const category = searchParams.get("category");
+
+        if (category) {
+            setSelectedCategory(category);
+        }
+    }, [searchParams]);
 
     const filteredProducts = searchProducts(products, query).filter(
         (product) =>
