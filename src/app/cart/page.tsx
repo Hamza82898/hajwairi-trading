@@ -1,39 +1,31 @@
 "use client"
 
-import Link from "next/link";
-import { ShoppingCart } from "lucide-react";
+
+
 import { useCartStore } from "@/store/cartStore";
+import EmptyCard from "@/components/cart/EmptyCart";
+import CartItem from "@/components/cart/CartItem";
+import CartSummary from "@/components/cart/CartSummary";
+
 
 export default function CartPage() {
     const cart = useCartStore((state) => state.cart);
 
+    const subtotal = cart.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0
+    );
+
+    const delivery = subtotal > 20 ? 0 : 1.5;
+
     if (cart.length === 0) {
         return (
-            <main className="mx-auto flex max-w-5xl flex-col items-center py-24">
-
-                <ShoppingCart 
-                    size={80}
-                    className="text-gray-300"
-                />
-
-                <h1 className="mt-6 text-3xl font-bold">
-                    Your Cart is Empty
-                </h1>
-
-                <p className="mt-3 text-gray-500">
-                    Add some fresh product to your cart.
-                </p>
-
-                <Link
-                    href = "/shop"
-                    className="mt-8 rounded-xl bg-green-700 px-8 py-4 font-semibold text-white transition hover:bg-green-800"
-                >
-                    Continue Shopping
-                </Link>
-
+            <main className="mx-auto max-w-7xl px-6 py-10">
+                <EmptyCard />
             </main>
         );
     }
+
 
     return (
         <main className="mx-auto max-w-7xl px-6 py-10">
@@ -41,9 +33,35 @@ export default function CartPage() {
                 Shopping Cart
             </h1>
 
-            <p>
-                Cart UI will be build in the next step
-            </p>
+            <div className="grid gap-8 lg:grid-cols-3">
+
+                {/*Left Side*/}
+
+                <div className="space-y-6 lg:col-span-2">
+
+                    {cart.map((item) => (
+                        <CartItem 
+                            key = {item.id}
+                            id = {item.id}
+                            name = {item.name}
+                            image = {item.image}
+                            price = {item.price}
+                            quantity = {item.quantity}
+                        />
+                    ))}
+
+                </div>
+
+                {/*Right Side*/}
+
+                <div>
+                    <CartSummary 
+                        subtotal={subtotal}
+                        delivery={delivery}
+                    />
+                </div>
+
+            </div>
 
         </main>
     );

@@ -1,26 +1,23 @@
 "use client";
 
-import { useState } from "react";
 import { Minus, Plus } from "lucide-react";
 
-export default function QuantitySelector() {
-    const [quantity, setQuantity] = useState(1);
+interface QuantitySelectorProps {
+    quantity: number;
+    onDecrease: () => void;
+    onIncrease: () => void;
+}
 
-    const decrease = () => {
-        if (quantity > 1) {
-            setQuantity(quantity - 1);
-        }
-    };
-
-    const increase = () => {
-        setQuantity(quantity + 1);
-    };
-
+export default function QuantitySelector({
+    quantity,
+    onDecrease,
+    onIncrease,
+}: QuantitySelectorProps) {
     return (
         <div className="mt-8 flex w-fit items-center overflow-hidden rounded-xl border">
 
-            <button 
-                onClick={decrease}
+            <button
+                onClick={onDecrease}
                 className="p-3 transition hover:bg-gray-100"
             >
                 <Minus size={18} />
@@ -30,8 +27,8 @@ export default function QuantitySelector() {
                 {quantity}
             </span>
 
-            <button 
-                onClick={increase}
+            <button
+                onClick={onIncrease}
                 className="p-3 transition hover:bg-gray-100"
             >
                 <Plus size={18} />
