@@ -1,0 +1,82 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  slug      String   @unique
+  image     String?
+  products  Product[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id          Int       @id @default(autoincrement())
+  name        String
+  slug        String    @unique
+  description String
+  image       String
+  oldPrice    Float
+  newPrice    Float
+  unit        String
+  stock       Int
+  featured    Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  categoryId  Int
+  category    Category  @relation(fields: [categoryId], references: [id])
+
+  orderItems  OrderItem[]
+}
+
+model Customer {
+  id        Int @id   @default(autoincrement())
+  fullName  String
+  phone     String    @unique
+  area      String
+  address   String
+  landmark  String?
+  orders    Order[]
+  createdAt DateTime  @default(now())
+}
+
+model Order {
+  id            Int           @id @default(autoincrement())
+  total         Float
+  delivery      Float
+  paymentMethod String
+  status        String        @default("Pending")
+  createdAt     DateTime      @default(now())
+
+  customerId    Int
+  customer      Customer      @relation(fields: [customerId], references: [id])
+
+  items         OrderItem[]
+}
+
+model OrderItem {
+  id        Int @id @default(autoincrement())
+  quantity  Int
+  price     Float
+
+  orderId   Int
+  order     Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+
+  productId Int
+  product   Product @relation(fields: [productId], references: [id])
+}
