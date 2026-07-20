@@ -1,4 +1,4 @@
-import { products } from "@/data/products";
+import { getProductBySlug, getProducts, getRelatedProducts } from "@/lib/products";
 import ProductGallery from "@/components/product/ProductGallery";
 import ProductInfo from "@/components/product/ProductInfo";
 import ProductActions from "@/components/product/ProductActions";
@@ -19,9 +19,7 @@ export default async function ProductPage({
 }: ProductPageProps) {
     const { slug } = await params;
 
-    const product = products.find(
-        (item) => item.slug === slug
-    );
+    const product = await getProductBySlug(slug);
 
     if (!product) {
         return (
@@ -33,6 +31,12 @@ export default async function ProductPage({
             </main>
         );
     }
+
+    const relatedProducts = await getRelatedProducts(
+        product.categoryId,
+        product.id
+    );
+
     return (
         <main className="mx-auto max-w-7xl px-6 py-10">
 
@@ -47,8 +51,8 @@ export default async function ProductPage({
                         href: "/shop",
                     },
                     {
-                        label: product.category,
-                        href: `/shop?category=${product.category}`
+                        label: product.category.name,
+                        href: `/shop?category=${product.category.slug}`
                     },
                     {
                         label: product.name
@@ -60,11 +64,9 @@ export default async function ProductPage({
             <div className="grid gap-10 lg:grid-cols-2">
                 
                 <ProductGallery
-                    images={product.images}
+                    images={product.images.map((img) => img.url)}
                     name={product.name}
                 />
-
-                
 
                 <div>
                     <ProductInfo product={product} />
@@ -74,7 +76,7 @@ export default async function ProductPage({
                     <ProductActions 
                         id = {product.id}
                         name = {product.name}
-                        image = {product.images[0]}
+                        image = {product.images[0]?.url ?? "/placeholder.png"}
                         price = {product.newPrice}
                     />
                     <ProductDelivery />
@@ -82,10 +84,7 @@ export default async function ProductPage({
                 </div>    
             </div>
 
-            <RelatedProducts 
-                currentProduct={product}
-                products={products}
-            />
+            <RelatedProducts products={relatedProducts} />
 
         </main>
     );

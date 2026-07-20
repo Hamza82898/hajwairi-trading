@@ -3,11 +3,17 @@
 import { categories } from "@/data/categories";
 
 interface CategoryFilterProps {
+    categories: {
+        id: number;
+        name: string;
+        slug: string;
+    }[];
     selected: string;
     onSelect: (category: string) => void;
 }
 
 export default function CategoryFilter({
+    categories,
     selected,
     onSelect,
 }: CategoryFilterProps) {
@@ -32,9 +38,9 @@ export default function CategoryFilter({
 
                 <button
                     key = {category.id}
-                    onClick = {() => onSelect(category.name)}
+                    onClick = {() => onSelect(category.slug)}
                     className={`mb-3 block w-full rounded-lg px-4 py-2 text-left transition ${
-                        selected === category.name
+                        selected === category.slug
                         ? "bg-green-700 text-white"
                         : "hover:bg-gray-100"
                     }`}

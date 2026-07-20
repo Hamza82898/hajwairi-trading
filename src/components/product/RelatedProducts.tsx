@@ -1,23 +1,20 @@
-import { futimesSync } from "fs";
+
 import ProductCard from "./ProductCard";
-import { Product } from "@/types/product";
+import { Product, Category, ProductImage } from "@prisma/client";
+
+type ProductWithRelations = Product & {
+    category: Category;
+    images: ProductImage[];
+};
 
 interface RelatedProductsProps {
-    currentProduct: Product;
-    products: Product[];
+    products: ProductWithRelations[];
 }
 
 export default function RelatedProducts({
-    currentProduct,
     products,
 }: RelatedProductsProps) {
-    const relatedProducts = products
-        .filter(
-            (product) =>
-                product.category === currentProduct.category &&
-            product.id !== currentProduct.id
-        )
-        .slice(0, 4);
+    const relatedProducts = products;
     
     if (relatedProducts.length === 0) {
         return null;
@@ -37,10 +34,10 @@ export default function RelatedProducts({
                         id = {product.id}
                         slug = {product.slug}
                         name = {product.name}
-                        image = {product.images[0]}
+                        image = {product.images[0]?.url ?? "/placeholder.png"}
                         oldPrice = {product.oldPrice}
                         newPrice = {product.newPrice}
-                        badge = {product.badge}
+                        badge = {product.badge ?? ""}
                         unit = {product.unit}
                         rating = {product.rating}
                         inStock = {product.inStock}

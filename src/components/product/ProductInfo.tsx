@@ -1,9 +1,14 @@
 import { Star, CheckCircle2 } from "lucide-react";
-import { Product } from "@/types/product";
+// import { Product } from "@/types/product";
+import { Product, Category, ProductImage } from "@prisma/client";
 
+type ProductWithRelations = Product & {
+    category: Category;
+    images: ProductImage[]
+};
 
 interface ProductInfoProps {
-    product: Product;
+    product: ProductWithRelations;
 }
 
 export default function ProductInfo({ product }: ProductInfoProps) {
@@ -33,7 +38,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
             </div>
 
             <p className="mt-4 text-gray-600">
-                <strong>Category:</strong> {product.category}
+                <strong>Category:</strong> {product.category.name}
             </p>
 
             <p className="mt-2 text-gray-600">
