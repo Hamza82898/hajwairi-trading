@@ -1,6 +1,12 @@
 import { notFound } from "next/navigation";
 import { getCategories, getProductById } from "@/lib/product/queries";
 import ProductForm from "@/components/admin/products/ProductForm";
+import ImageUploader from "@/components/admin/products/ImageUploader";
+import ProductImageGallery from "@/components/admin/products/ProductImageGallery";
+import { getProductImages } from "@/lib/product/image-queries";
+
+
+
 
 interface Props {
     params: Promise<{
@@ -21,6 +27,8 @@ export default async function EditProductPage({
 
     const categories = await getCategories();
 
+    const images = await getProductImages(product.id);
+
     return (
         <main>
             <div className="mb-8">
@@ -33,6 +41,18 @@ export default async function EditProductPage({
                 categories={categories}
                 product={product}
             />
+
+            <div className="mt-10">
+                <h2 className="mb-4 text-2xl font-semibold">
+                    Product Images
+                </h2>
+
+                <ImageUploader productId={product.id} />
+
+                <div className="mt-8">
+                    <ProductImageGallery images={images} />
+                </div>
+            </div>
         </main>
     );
 }
