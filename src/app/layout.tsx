@@ -1,5 +1,6 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import AuthSessionProvider from "@/components/providers/SessionProvider";
 
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
@@ -22,12 +23,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="{geist.className}">
-        <Navbar />
+      <body>
+        <AuthSessionProvider>
+          <Navbar />
 
-        {children}
+          {children}
 
-        <Footer />        
+          <Footer />        
+        </AuthSessionProvider>
       </body>
     </html>
   );

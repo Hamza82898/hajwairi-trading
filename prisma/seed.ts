@@ -1,4 +1,5 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Role } from "@prisma/client";
+import { hashPassword } from "@/lib/password";
 
 
 
@@ -6,6 +7,9 @@ const prisma = new PrismaClient();
 
 async function main() {
     console.log("🌱 Seeding Database...");
+
+    const adminPassword = await hashPassword("Admin@123")
+
 
     //Delete old data
     await prisma.productImage.deleteMany();
@@ -96,6 +100,21 @@ async function main() {
         },
     });
 
+    await prisma.user.upsert({
+        where: {
+            email: "admin@hajwairi.com",
+        },
+        update: {
+            name: "Administrator",
+        },
+        create: {
+            name: "Administrator",
+            email: "admin@hajwairi.com",
+            password: adminPassword,
+            role: Role.ADMIN,
+        },
+    });
+
     await prisma.productImage.createMany({
         data: [
             {
@@ -106,7 +125,12 @@ async function main() {
         ],
     });
 
-    console.log("✅ Database Seeded Successfully.")
+    console.log("✅ Database Seeded Successfully.");
+    console.log("================================");
+    console.log("Admin Login");
+    console.log("Email: admin@hajwairi.com");
+    console.log("Password: Admin@123")
+    console.log("================================");
 }
 
 main()
