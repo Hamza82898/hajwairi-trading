@@ -50,7 +50,10 @@ export default async function EditProductPage({
                 <ImageUploader productId={product.id} />
 
                 <div className="mt-8">
-                    <ProductImageGallery images={images} />
+                    <ProductImageGallery 
+                        productId={product.id}
+                        images={images} 
+                    />
                 </div>
             </div>
         </main>
