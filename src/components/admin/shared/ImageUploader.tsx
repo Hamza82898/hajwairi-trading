@@ -5,12 +5,14 @@ import imageCompression from "browser-image-compression";
 
 
 interface Props {
-    productId: number;
+    entityId: number;
+    type: "product" | "category";
     onUploaded?: () => void;
 }
 
 export default function ImageUploader({
-    productId,
+    entityId,
+    type,
     onUploaded,
 }: Props) {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -64,6 +66,11 @@ export default function ImageUploader({
         setProgress(0);
         setTotalFiles(files.length);
 
+        const endpoint =
+            type === "product"
+                ? "/api/product-image"
+                : "/api/category-image";
+
         try {
             await Promise.all(
                 files.map(async (file) => {
@@ -82,13 +89,13 @@ export default function ImageUploader({
                         throw new Error(data.message);
                     }
 
-                    await fetch("/api/product-image", {
+                    await fetch(endpoint, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
-                            productId,
+                            id: entityId,
                             imageUrl: data.url,
                         }),
                     });

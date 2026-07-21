@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getCategories, getProductById } from "@/lib/product/queries";
 import ProductForm from "@/components/admin/products/ProductForm";
-import ImageUploader from "@/components/admin/products/ImageUploader";
+import ImageUploader from "@/components/admin/shared/ImageUploader";
 import ProductImageGallery from "@/components/admin/products/ProductImageGallery";
 import { getProductImages } from "@/lib/product/image-queries";
 
@@ -47,7 +47,11 @@ export default async function EditProductPage({
                     Product Images
                 </h2>
 
-                <ImageUploader productId={product.id} />
+                <ImageUploader
+                    entityId = {product.id}
+                    type="product"
+                    
+                />
 
                 <div className="mt-8">
                     <ProductImageGallery 
