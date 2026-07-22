@@ -62,14 +62,19 @@ export default function ImageUploader({
     }
 
     async function upload(files: File[]) {
+        console.log("UPLOAD STARTED")
+        console.log(files);
+
+        console.log("Entity ID:", entityId);
+        console.log("Type:", type);
+        
         setUploading(true);
         setProgress(0);
         setTotalFiles(files.length);
 
-        const endpoint =
-            type === "product"
-                ? "/api/product-image"
-                : "/api/category-image";
+        
+
+        
 
         try {
             await Promise.all(
@@ -89,16 +94,30 @@ export default function ImageUploader({
                         throw new Error(data.message);
                     }
 
-                    await fetch(endpoint, {
+                    console.log("Sending to API:", {
+                        id: entityId,
+                        type,
+                        imageUrl: data.url,
+                    });
+
+                    const saveResponse = await fetch("/api/image", {
                         method: "POST",
-                        headers: {
+                        headers:{
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
                             id: entityId,
+                            type,
                             imageUrl: data.url,
                         }),
                     });
+
+                    const saveData = await saveResponse.json();
+                    console.log("API Response:", saveData);
+
+                    if (!saveResponse.ok || !saveData.success) {
+                        throw new Error(saveData.message ?? "Failed to save image.");
+                    }
                     setProgress((prev) => prev + 1);
             })
         );
@@ -201,6 +220,9 @@ export default function ImageUploader({
                             <img 
                                 src={URL.createObjectURL(file)}
                                 alt=""
+                                onError={(e) => {
+                                    console.log("IMAGE ERROR", e);
+                                }}
                                 className="mb-3 aspect-square w-full rounded-lg object-cover"
                             />
 
@@ -214,6 +236,7 @@ export default function ImageUploader({
 
                             <button
                                 type="button"
+                                disabled={uploading}
                                 onClick={() => 
                                     setSelectedFiles((prev) =>
                                         prev.filter((_, i) => i !== index)
