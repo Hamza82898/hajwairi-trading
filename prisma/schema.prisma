@@ -13,15 +13,16 @@ datasource db {
 }
 
 model Category {
-  id        Int      @id @default(autoincrement())
-  name      String   @unique
-  slug      String   @unique
-  image     String?
-  products  Product[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  isActive  Boolean  @default(true)
-  sortOrder Int      @default(0)
+  id                  Int      @id @default(autoincrement())
+  name                String   @unique
+  slug                String   @unique
+  image               String?
+  cloudinaryPublicId  String?
+  products            Product[]
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  isActive            Boolean  @default(true)
+  sortOrder           Int      @default(0)
 }
 
 model Product {
@@ -68,10 +69,12 @@ model Customer {
 
 model Order {
   id            Int           @id @default(autoincrement())
+  orderNumber   String        @unique
+
   total         Float
   delivery      Float
   paymentMethod String
-  status        String        @default("Pending")
+  status        OrderStatus   @default(PENDING)
   createdAt     DateTime      @default(now())
 
   customerId    Int
@@ -116,4 +119,13 @@ model User {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
 }

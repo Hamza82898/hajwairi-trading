@@ -1,16 +1,21 @@
 import { prisma } from "@/lib/prisma"; 
+import cloudinary from "@/lib/cloudinary";
 import { success } from "zod";
+
+
 
 interface SaveMediaInput {
     id: number;
     type: "product" | "category";
     imageUrl: string;
+    publicId?: string;
 }
 
 export async function saveMedia({
     id,
     type,
     imageUrl,
+    publicId,
 }: SaveMediaInput) {
 
     console.log("LIB MEDIA")
@@ -43,20 +48,35 @@ export async function saveMedia({
         }
 
         case "category": {
+            const category = await prisma.category.findUnique({
+                where: {
+                    id,
+                },
+            });
 
-            console.log("Updating Category:", id);
-            console.log("Image:", imageUrl);
+            if (!category) {
+                throw new Error("Category not found.");
+            }
 
-            const updated = await prisma.category.update({
+            // Delete previous Cloudinary image
+            if (category.cloudinaryPublicId) {
+                try {
+                    await cloudinary.uploader.destroy(category.cloudinaryPublicId);
+                } catch (error) {
+                    console.error("Cloudinary delete failed:", error);
+                }
+            }
+
+            await prisma.category.update({
                 where: {
                     id,
                 },
                 data: {
                     image: imageUrl,
+                    cloudinaryPublicId: publicId,
                 },
             });
 
-            console.log(updated);
             return {
                 success: true,
             };

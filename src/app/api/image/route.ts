@@ -13,9 +13,10 @@ export async function POST(request: NextRequest) {
             id,
             type,
             imageUrl,
+            publicId,
         } = body;
 
-        if (!id || !type || !imageUrl) {
+        if (!id || !type || !imageUrl || (type === "category" && !publicId)) {
             return NextResponse.json(
                 {
                     success: false,
@@ -46,6 +47,7 @@ export async function POST(request: NextRequest) {
             id: Number(id),
             type,
             imageUrl,
+            publicId,
         });
         console.log("SAVE MEDIA RESULT:", result);
         return NextResponse.json(result);

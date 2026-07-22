@@ -2,20 +2,27 @@
 
 import { DragEvent, useRef, useState } from "react";
 import imageCompression from "browser-image-compression";
+import { useRouter } from "next/navigation";
+
 
 
 interface Props {
     entityId: number;
     type: "product" | "category";
     onUploaded?: () => void;
+
+    multiple?: boolean;
 }
 
 export default function ImageUploader({
     entityId,
     type,
     onUploaded,
+    multiple = true,
 }: Props) {
     const inputRef = useRef<HTMLInputElement>(null);
+
+    const router = useRouter();
 
     const [uploading, setUploading] = useState(false);
     const [dragging, setDragging] = useState(false);
@@ -26,6 +33,8 @@ export default function ImageUploader({
 
     const [error, setError] = useState("");
 
+    const [success, setSuccess] = useState("");
+
     function validateFiles(files: File[]) {
         const allowedTypes = [
             "image/jpeg",
@@ -33,8 +42,14 @@ export default function ImageUploader({
             "image/webp"
         ];
 
-        if (files.length > 10) {
-            return "Maximum 10 images allowed.";
+        if (multiple) {
+            if (files.length > 10) {
+                return "Maximum 10 images allowed.";
+            }
+        } else {
+            if (files.length > 1) {
+                return "Only one image is allowed."
+            }
         }
 
         for (const file of files) {
@@ -62,6 +77,9 @@ export default function ImageUploader({
     }
 
     async function upload(files: File[]) {
+        setError("");
+        setSuccess("");
+        
         console.log("UPLOAD STARTED")
         console.log(files);
 
@@ -109,6 +127,7 @@ export default function ImageUploader({
                             id: entityId,
                             type,
                             imageUrl: data.url,
+                            publicId: data.publicId,
                         }),
                     });
 
@@ -122,12 +141,15 @@ export default function ImageUploader({
             })
         );
             setSelectedFiles([]);
-            onUploaded?.();
             setError("");
+            setSuccess("Image uploaded successfully.");
 
             if (inputRef.current) {
                 inputRef.current.value = "";
             }
+
+            onUploaded?.();
+            router.refresh();
         } catch (error) {
             console.error(error);
             
@@ -179,7 +201,7 @@ export default function ImageUploader({
                 hidden
                 type="file"
                 accept="image/*"
-                multiple
+                multiple={multiple}
                 onChange={async (e) => {
                     const files = Array.from(e.target.files ?? []);
                     const validation = validateFiles(files);
@@ -202,6 +224,12 @@ export default function ImageUploader({
                 {error && (
                     <div className="mt-3 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
                         {error}
+                    </div>
+                )}
+
+                {success && (
+                    <div className="mt-3 rounded-lg border border-green-200 bg-green-50 p-3 text-sm text-green-700">
+                        {success}
                     </div>
                 )}
 
