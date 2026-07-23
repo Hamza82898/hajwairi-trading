@@ -1,7 +1,13 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
-import DashboardCard from "@/components/admin/DashboardCard";
+import {
+    getDashboardStats,
+    getLatestOrders,
+    getLatestCustomers,
+} from "@/lib/dashboard/queries";
+import StatsCards from "@/components/admin/dashboard/StatsCards";
+import LatestOrders from "@/components/admin/dashboard/LatestOrders";
+import LatestCustomers from "@/components/admin/dashboard/LatestCustomers";
 
 export default async function AdminPage() {
     const session = await auth();
@@ -10,55 +16,32 @@ export default async function AdminPage() {
         redirect("/login");
     }
 
-    const [
-        products,
-        categories,
-        customers,
-        orders,
-    ] = await Promise.all([
-        prisma.product.count(),
-        prisma.category.count(),
-        prisma.customer.count(),
-        prisma.order.count(),
-    ]);
+    const stats = await getDashboardStats();
+    const latestOrders = await getLatestOrders();
+    const latestCustomers = await getLatestCustomers();
 
     return (
-        <div>
-            <h1 className="mb-8 text-4xl font-bold">
-                Dashboard
-            </h1>
+        <main className="space-y-8">
+            <div>
+                <h1 className="text-4xl font-bold">
+                    Dashboard
+                </h1>
 
-            <p className="mb-10 text-gray-600">
-                Welcome back,
-                <strong>{session.user?.name}</strong>
-            </p>
+                <p className="mt-2 text-gray-600">
+                    Welcome back,{""}
+                    <strong>{session.user?.name}</strong>
+                </p>
+            </div>
 
-            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            <StatsCards stats={stats} />
 
-                <DashboardCard 
-                    title="Products"
-                    value={products}
-                />
+            <div className="grid gap-8 lg:grid-cols-2">
+                <LatestOrders orders={latestOrders} />
 
-                <DashboardCard 
-                    title="Categories"
-                    value={categories}
-                    color="bg-blue-600"
-                />
-
-                <DashboardCard 
-                    title="Customers"
-                    value={customers}
-                    color="bg-orange-600"
-                />
-
-                <DashboardCard 
-                    title="Orders"
-                    value={orders}
-                    color="bg-purple-600"
-                />
+                <LatestCustomers customers={latestCustomers} />
 
             </div>
-        </div>
+
+        </main>
     );
 }

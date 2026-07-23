@@ -7,6 +7,8 @@ import { useFormContext } from "react-hook-form";
 import { CheckoutFormData } from "@/lib/validations/checkout";
 import { useCheckoutStore } from "@/store/checkoutStore";
 import { useCartStore } from "@/store/cartStore"
+import { placeOrder } from "@/actions/order";
+import { PlaceOrderInput } from "@/types/order";
 
 
 export default function OrderSummary() {
@@ -38,28 +40,42 @@ export default function OrderSummary() {
 
     const total = subtotal + delivery;
 
-    const placeOrder = async (
+    const submitOrder = async (
         values: CheckoutFormData
     ) => {
         setLoading(true);
-        setCheckoutData(values);
+        try {
+            setCheckoutData(values);
 
-        console.log("Order Data", {
-            customer: values,
-            cart,
-            subtotal,
-            delivery,
-            total,
-        });
+            const orderData: PlaceOrderInput = {
+                customer: values,
 
-        await new Promise((resolve) => 
-            setTimeout(resolve, 1500)
-        );
+                cart: cart.map((item) => ({
+                    productId: item.id,
+                    quantity: item.quantity,
+                    price: item.price,
+                })),
+            };
 
-        clearCart();
-        clearCheckout();
-        router.push("/checkout/success");
+            const result = await placeOrder(orderData);
+
+            if (!result.success) {
+                alert(result.message);
+                return;
+            }
+
+            clearCart();
+            clearCheckout();
+
+            router.push("/checkout/success");
+        } catch (error) {
+            console.error(error);
+            alert("Something went wrong while placeing your order.");
+        } finally {
+            setLoading(false);
+        }
     };
+        
 
     return (
         <div className="sticky top-28 rounded-2xl border bg-white p-6 shadow-sm">
@@ -121,14 +137,13 @@ export default function OrderSummary() {
             </div>
 
             <button 
-                onClick={handleSubmit(placeOrder)}
+                type="button"
+                onClick={handleSubmit(submitOrder)}
                 disabled={loading || cart.length === 0}
                 className="mt-8 w-full rounded-xl bg-green-700 py-4 font-semibold text-white transition hover:bg-green-800"
             >
                 {loading ? "Placing Order..." : "Place Order"}
             </button>
-
-            
 
         </div>
     );

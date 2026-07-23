@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { Prisma, OrderStatus } from "@prisma/client";
+import DeleteOrderButton from "./DeleteOrderButton";
 
 
 type OrderWithRelations = Prisma.OrderGetPayload<{
@@ -134,13 +135,17 @@ export default function OrdersTable({
                             </td>
 
                             <td className="px-5 py-4">
-                                <div className="flex justify-end gap-3">
+                                <div className="flex justify-end gap-2">
                                     <Link
                                         href={`/admin/orders/${order.id}`}
-                                        className="rounded bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700"
+                                        className="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
                                     >
                                         View
                                     </Link>
+                                    {(order.status === "PENDING" ||
+                                        order.status === "CANCELLED") && (
+                                            <DeleteOrderButton orderId={order.id} /> 
+                                    )}
                                 </div>
                             </td>
 

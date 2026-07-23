@@ -76,7 +76,7 @@ export default function ShippingForm() {
                     {...register("area")}
                     className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
                 >
-                    <option>Select Area</option>
+                    <option value="">Select Area</option>
                     <option>Manama</option>
                     <option>Muharraq</option>
                     <option>Riffa</option>

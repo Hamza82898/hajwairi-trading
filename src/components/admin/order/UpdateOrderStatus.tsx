@@ -4,6 +4,9 @@ import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { OrderStatus, Prisma } from "@prisma/client";
 import { updateOrderStatus } from "@/actions/order";
+import DeleteOrderButton from "./DeleteOrderButton";
+
+
 
 type OrderWithRelations = Prisma.OrderGetPayload<{
     include: {
@@ -35,6 +38,7 @@ export default function UpdateOrderStatus({
     const [pending, startTransition] = useTransition();
 
     const [message, setMessage] = useState("");
+    const [success, setSuccess] = useState(false);
 
     async function handleUpdate() {
         startTransition(async () => {
@@ -44,10 +48,12 @@ export default function UpdateOrderStatus({
             );
 
             if (result.success) {
-                setMessage("Order status updated successfully.");
+                setSuccess(true);
+                setMessage(result.message);
 
                 router.refresh();
             } else {
+                setSuccess(false);
                 setMessage(result.message);
             }
         });
@@ -60,7 +66,13 @@ export default function UpdateOrderStatus({
             </h2>
 
             {message && (
-                <div className="mb-5 rounded-lg bg-green-100 p-3 text-sm text-green-700">
+                <div 
+                    className={`mb-5 rounded-lg p-3 text-sm $> ${
+                        success
+                            ? "bg-green-100 text-green-700"
+                            : "bg-red-100 text-red-700"
+                    }`}
+                >
                     {message}
                 </div>
             )}
@@ -92,6 +104,17 @@ export default function UpdateOrderStatus({
                     : "Update Status"
                 }
             </button>
+
+            {(order.status === OrderStatus.PENDING ||
+                order.status === OrderStatus.CANCELLED) && (
+                    <div className="mt-6 border-t pt-6">
+                        <h3 className="mb-3 text-sm font-semibold text-red-600">
+                            Danger Zone
+                        </h3>
+
+                        <DeleteOrderButton orderId={order.id} />
+                    </div>
+            )}
         </div>
     );
 }

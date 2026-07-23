@@ -3,6 +3,7 @@ import { z } from "zod";
 export const checkoutSchema = z.object({
     fullName: z
         .string()
+        .trim()
         .min(3, "Full name must be at least 3 characters"),
 
     phone: z
@@ -12,9 +13,25 @@ export const checkoutSchema = z.object({
             "Enter a valid Bahrain phone number"
         ),
 
-    area: z
-        .string()
-        .min(1, "Please select a delivery area"),
+    area: z.enum(
+        [
+            "Manama",
+            "Muharraq",
+            "Riffa",
+            "Isa Town",
+            "Hamad Town",
+            "Saar",
+            "Budaiya",
+            "Juffair",
+            "Amwaj",
+            "Sanad",
+        ],
+        {
+            message: "Please select a valid delivery area",
+        }
+    ),
+
+        
 
     address: z
         .string()
