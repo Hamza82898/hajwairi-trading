@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCartStore } from "@/store/cartStore";
-import { Heart, ShoppingCart, Star, CheckCircle2, } from "lucide-react"
+import { Heart, ShoppingCart, Star, CheckCircle2, Award } from "lucide-react"
 
 
 interface ProductCardProps {
@@ -33,62 +33,101 @@ export default function ProductCard({
 }: ProductCardProps) {
     const { addToCart } = useCartStore();
 
-    const discount = Math.round(
-        ((oldPrice - newPrice) / oldPrice) * 100
-    );
+    const discount = 
+        oldPrice > 0
+            ? Math.round(((oldPrice - newPrice) / oldPrice) * 100)
+            : 0;
 
 
     return (
-        <div className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+        <div className="group relative overflow-hidden rounded-[28px] border border-gray-100 bg-white shadow-md transition-all duration-500 hover:-translate-y-3 hover:border-green-200 hover:shadow-2xl">
 
             <Link href={`/products/${slug}`}>
-                <div className="relative h-64 overflow-hidden bg-gray-100">
+                <div className="relative h-[340px] overflow-hidden rounded-t-[28px] bg-gradient-to-br from-[#f5fff7] via-white to-[#fff8ef]">
 
                     <Image 
                         src = {image}
                         alt = {name}
                         fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="object-contain p-5 transition-all duration-700 group-hover:scale-105"
                         sizes="(max-width:768px)100vw,25vw"
                     />
 
-                    {/*Badge*/}
-
-                    <span className="absolute left-3 top-3 rounded-full bg-orange-500 px-3 py-1 text-xs font-semibold text-white">
-                        {badge}
-                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
 
                     {/*Discount*/}
 
-                    <span className="absolute left-3 bottom-3 rounded-full bg-green-700 px-3 py-1 text-xs font-semibold text-white">
-                        {discount}% OFF
-                    </span>
+                    {discount > 0 && (
+                        <div className="absolute left-5 top-5 rounded-full bg-red-500 px-5 py-2 text-sm font-bold text-white shadow-xl">
+                            {discount}% OFF
+                        </div>
+                    )}
 
+                    {/*Badge*/}
+
+                    {badge && (
+                        <div className="absolute left-5 top-16 rounded-full bg-green-900 px-4 py-1.5 text-xs font-semibold text-white shadow-lg">
+                            {badge}
+                        </div>
+                    )}
+
+                    {discount >= 20 && (
+                        <div className="absolute -right-10 top-6 rotate-45 bg-orange-500 px-10 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-lg">
+                            BEST SELLER
+                        </div>
+
+                    )}
+
+                    
                     {/*Wishlist*/}
 
-                    <button className="absolute right-3 top-3 rounded-full bg-white p-2 shadow-md transition hover:bg-red-500 hover:text-white">
+                    <button 
+                        type="button"
+                        aria-label="Add to wishlist"
+                        className="absolute right-5 top-5 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-xl transition-all duration-300 hover:scale-110 hover:bg-red-500 hover:text-white"
+                    >
                         <Heart size={18} />
+                    </button>
+
+                    
+
+                    <button
+                        type="button"
+                        aria-label="Quick view"
+                        className="absolute right-5 top-[78px] flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-xl transition-all duration-300 hover:scale-110 hover:bg-green-900 hover:text-white"
+                    >
+                        👁
                     </button>
                 </div>    
             </Link>
 
-            <div className="space-y-3 p-5">
+            <div className="space-y-4 p-6">
 
                 <Link href={`/products/${slug}`}>
-                    <h3 className="line-clamp-2 text-lg font-semibold transition hover:text-green-700">
+                    <h3 className="line-clamp-2 text-xl font-bold leading-7 text-gray-900 transition-all duration-300 group-hover:text-green-900">
                         {name}
                     </h3>
                 </Link>
 
-                <p className="text-sm text-gray-500">
-                    Pack Size: {unit}
-                </p>
+                <div className="inline-flex rounded-full bg-green-50 px-3 py-1 text-sm font-medium text-green-900">
+                    {unit}
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                    <span className="inlin-flex items-center gap-1 rounded-full bg-yellow-50 px-3 py-1 text-xs font-semibold text-yellow-700">
+                        <Award size={14} />
+                        Premium Quality
+                    </span>
+                    <span className="rounded-full bg-orange-50 px-3 py-1 text-xs font-semibold text-orange-700">
+                        Fresh Arrival
+                    </span>
+                </div>
 
                 {/*Rating*/}
 
-                <div className="flex items-center gap-1">
+                <div className="flex items-center justify-between border-b border-gray-100 pb-4">
 
-                    {Array.from({ length: rating}).map((_, index) => (
+                    {Array.from({ length: Math.round(rating)}).map((_, index) => (
                         <Star 
                             key = {index}
                             size = {16}
@@ -96,51 +135,55 @@ export default function ProductCard({
                         />
                     ))}
 
-                    <span className="ml-2 text-sm text-gray-500">
-                        ({rating}.0)
+                    <span className="rounded-full bg-yellow-50 px-3 py-1 text-sm font-semibold text-yellow-700">
+                        {rating.toFixed(1)}
                     </span>
                 </div>
 
                 {/*Stock*/}
 
-                <div className="flex items-center gap-2 text-sm">
+                <div className="flex items-center justify-between">
 
-                    <CheckCircle2 
-                        size = {18}
-                        className={
+                    <div
+                        className={`inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold ${
                             inStock
-                                ? "text-green-700"
-                                : "text-red-600"   
-                        }
-                    />
-
-                    <span 
-                        className={
-                            inStock
-                                ? "text-green-700"
-                                : "text-red-600"   
-                        }
+                                ? "bg-green-100 text-green-800"
+                                : "bg-red-100 text-red-700" 
+                        }`}
                     >
+                        <CheckCircle2 size={16} />
+
                         {inStock ? "In Stock" : "Out of Stock"}
-                    </span>
+                    </div>
+
+                    <div className="rounded-full bg-green-50 px-3 py-2 text-xs font-semibold text-green-900">
+                        🚚 Free Delivery
+                    </div>
                 </div>
 
                 {/*Price*/}
 
-                <div className="flex items-end gap-2">
+                <div className="flex items-center justify-between">
+                    <div>
 
-                    <span className="text-2xl font-bold text-green-700">
-                        {newPrice.toFixed(2)} BD
-                    </span>
+                        <p className="text-4xl font-black tracking-tight text-green-900">
+                            BD {newPrice.toFixed(2)}
+                        </p>
 
-                    <span className="text-sm text-gray-400 line-through">
-                        {oldPrice.toFixed(2)} BD
-                    </span>
+                        <p className="text-sm text-gray-400 line-through">
+                            BD {oldPrice.toFixed(2)}
+                        </p>
+                    </div>
+                    <div className="rounded-full bg-orange-100 px-3 py-1 text-xs font-bold text-orange-700">
+                        Save {(oldPrice - newPrice).toFixed(2)} BD
+                    </div>
                 </div>
+                
 
                 {/*Button*/}
 
                 <button 
+                    type="button"
                     onClick={(e) => {
                         e.preventDefault();
 
@@ -151,11 +194,21 @@ export default function ProductCard({
                             price: newPrice,
                         });
                     }}
-                    className="flex w-full items-center justify-center gap-2 rounded-xl bg-green-700 py-3 font-semibold text-white transition hover:bg-green-800"
+                    className="group/cart mt-2 flex w-full items-center justify-center gap-3 rounded-full bg-green-900 py-4 text-base font-bold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-green-800 hover:shadow-2xl"
                 >
-                    <ShoppingCart size={18} />
+                    <ShoppingCart 
+                        size={20} 
+                        className="transition-all duration-300 group-hover/cart:translate-x-1 group-hover/cart:scale-110"    
+                    />
                     Add to Cart
                 </button>
+
+                <div className="flex items-center justify-between border-t pt-4 text-xs text-gray-500">
+                    <span>🌿 Farm Fresh</span>
+                    <span>🚚 Fast Delivery</span>
+                    <span>🇧🇭 Bahrain</span>
+                </div>
+                <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-transparent transition-all duration-500 group-hover:ring-green-200" />
 
             </div>
         </div>

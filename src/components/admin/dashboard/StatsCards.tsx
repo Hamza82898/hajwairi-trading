@@ -5,8 +5,8 @@ import {
     Users,
     Package,
     FolderTree,
+    TrendingUp,
 } from "lucide-react";
-import { title } from "process";
 
 interface Props {
     stats: {
@@ -25,37 +25,43 @@ export default function StatsCards({ stats }: Props) {
             title: "Revenue",
             value: `BD ${stats.totalRevenue.toFixed(2)}`,
             icon: DollarSign,
-            color: "bg-green-600",
+            gradient: "from-green-500 to-green-700",
+            badge: "+12%",
         },
         {
             title: "Orders",
             value: stats.totalOrders,
             icon: ShoppingCart,
-            color: "bg-blue-600",
+            gradient: "from-blue-500 to-blue-700",
+            badge: "+8%",
         },
         {
             title: "Pending",
             value: stats.pendingOrders,
             icon: Clock3,
-            color: "bg-yellow-500"
+            gradient: "from-yellow-400 to-yellow-600",
+            badge: "Live"
         },
         {
             title: "Customers",
             value: stats.totalCustomers,
             icon: Users,
-            color: "bg-purple-600",
+            gradient: "from-purple-500 to-purple-700",
+            badge: "+5%",
         },
         {
             title: "Products",
             value: stats.totalProducts,
             icon: Package,
-            color: "bg-orange-600",
+            gradient: "from-orange-500 to-orange-700",
+            badge: "Stock"
         },
         {
             title: "Categories",
             value: stats.totalCategories,
             icon: FolderTree,
-            color: "bg-pink-600",
+            gradient: "from-pink-500 to-pink-700",
+            badge: "Active",
         },
     ];
 
@@ -67,25 +73,45 @@ export default function StatsCards({ stats }: Props) {
                 return (
                     <div
                         key={card.title}
-                        className="rounded-2xl border bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+                        className="group overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
                     >
-                        <div className="flex items-center justify-between">
-                            <div>
-                                <p className="text-sm font-medium text-gray-500">
-                                    {card.title}
-                                </p>
+                        <div 
+                            className={`h-2 bg-gradient-to-r ${card.gradient}`} 
+                        />
+                        <div className="p-6">
+                            <div className="flex items-start justify-between">
+                                <div>
+                                    <p className="text-sm font-medium uppercase tracking-wide text-gray-500">
+                                        {card.title}
+                                    </p>
 
-                                <h2 className="mt-2 text-3xl font-bold">
-                                    {card.value}
-                                </h2>
+                                    <h2 className="mt-3 text-4xl font-extrabold text-gray-900">
+                                        {card.value}
+                                    </h2>
+                                </div>
+
+                                <div
+                                    className={`bg-gradient-to-br ${card.gradient} rounded-2xl p-4 text-white shadow-lg transition-transform duration-300 group-hover:scale-110`}
+                                >
+                                    <Icon size={30} />
+                                </div>
                             </div>
 
-                            <div
-                                className={`${card.color} rounded-xl p-4 text-white`}
-                            >
-                                <Icon size={28} />
+                            <div className="mt-8 flex items-center justify-between">
+                                <div className="flex items-center gap-2 text-green-600">
+                                    <TrendingUp size={18} />
+
+                                    <span className="text-sm font-semibold">
+                                        {card.badge}
+                                    </span>
+                                </div>
+
+                                <span className="text-xs text-gray-400">
+                                    Updated just now
+                                </span>
                             </div>
                         </div>
+                        
                     </div>
                 );
             })}

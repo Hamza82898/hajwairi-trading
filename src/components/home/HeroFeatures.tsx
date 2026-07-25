@@ -1,32 +1,51 @@
+import {
+    BadgeCheck,
+    Truck,
+    Leaf,
+} from "lucide-react";
+
+const features = [
+    {
+        icon: BadgeCheck,
+        title: "Premium Quality",
+    },
+    {
+        icon: Truck,
+        title: "Same Day Delivery",
+    },
+    {
+        icon: Leaf,
+        title: "Fresh Everyday",
+    },
+];
+
 export default function HeroFeatures() {
     return (
-        <div className="mt-8 flex flex-wrap gap-6">
-            <div className="flex items-center gap-2">
+        <div className="flex flex-wrap gap-6">
 
-                <span>⭐</span>
+            {features.map((feature) => {
+                const Icon = feature.icon;
 
-                <span className="font-medium">
-                    Premium Quality
-                </span>
+                return (
+                    <div
+                        key={feature.title}
+                        className="flex items-center gap-3 rounded-full bg-white px-5 py-3 shadow-sm"
+                    >
+                        <div className="rounded-full bg-green-100 p-2">
 
-            </div>
+                            <Icon 
+                                size={18}
+                                className="text-green-900"
+                            />
 
-            <div className="flex items-center gap-2">
-                <span>🚚</span>
-                <span className="font-medium">
-                    Fast Delivery
-                </span>
+                        </div>
 
-            </div>
-
-            <div className="flex items-center gap-2">
-                <span>🥭</span>
-                
-                <span className="font-medium">
-                    Fresh Everyday
-                </span>
-
-            </div>
+                        <span className="font-medium text-gray-700">
+                            {feature.title}
+                        </span>
+                    </div>
+                );
+            })}
 
         </div>
     );

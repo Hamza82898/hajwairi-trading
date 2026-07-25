@@ -1,30 +1,49 @@
-import { Button } from "@/components/ui"
 import HeroButtons from "./HeroButtons";
 import HeroFeatures from "./HeroFeatures";
+import HeroBadge from "./HeroBadge";
+import HeroStats from "./HeroStats";
+
 
 export default function HeroContent() {
     return (
-        <div className="space-y-6">
+        <div className="space-y-8">
+
             
-            <span className="rounded-full bg-green-100 px-4 py-2 text-sm font-medium text-green-700">
-                Fresh Fruits & Daily Grocery
-            </span>
+            <HeroBadge />
+            {/*Heading*/}
+            <div className="space-y-5">
+                <h1 className="text-5xl font-black leading-tight text-gray-900 lg:text-7xl ">
+                    Fresh
 
-            <h1 className="text-5xl font-extrabold leading-tight text-gray-900">
-                Freshness Delivered <br /> Across Bahrain
-            </h1>
+                    <span className="block text-green-900">
+                        Groceries
+                    </span>
 
-            <p className="max-w-xl text-lg text-gray-600">
-                Shop premium quality fruits, vegetables, snacks, beverages and grocery
-                from Hajwairi Trading Co. W.L.L. with fast and reliable delivery.
-            </p>
+                    <span className="block">
+                        Delivered
+                        <span className="ml-3 text-orange-500">
+                            Across Bahrain
+                        </span>
+                    </span>
+                </h1>
 
-            <div className="flex gap-4">
-                <HeroButtons />
-                <HeroFeatures />
+                <p className="max-w-2xl text-lg leading-8 text-gray-600">
+
+                    Discover premium Pakistani fruits, fresh vegetables,
+                    beverages, snacks and daily grocery essentials from
+                    Hajwairi Trading Co. W.L.L. with fast, reliable delivery
+                    across Bahrain.
+
+                </p>
 
             </div>
 
+            <HeroButtons />
+
+            <HeroFeatures />
+
+            <HeroStats />            
+            
         </div>
     );
 }

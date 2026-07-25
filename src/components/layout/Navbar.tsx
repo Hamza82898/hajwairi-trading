@@ -1,10 +1,12 @@
-"use client"
+"use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { ShoppingCart } from "lucide-react";
+import {
+    ShoppingCart,
+    User,
+} from "lucide-react";
 import { useCartStore } from "@/store/cartStore";
-
-
 import TopBar from "./TopBar";
 import SearchBar from "./SearchBar";
 import NavLinks from "./NavLinks";
@@ -21,47 +23,69 @@ export default function Navbar() {
         <>
             <TopBar />
 
-            <header className="sticky top-0 z-50 border-b bg-white shadow-sm">
+            <header className="sticky top-0 z-50 border-b bg-white/95 backdrop-blur-lg shadow-sm">
+
                 <div className="mx-auto flex max-w-7xl items-center gap-8 px-6 py-5">
 
                     {/*Logo*/}
 
                     <Link
-                        href = "/"
-                        className="text-3xl font-bold text-green-700"
+                        href="/"
+                        className="flex items-center gap-3"
                     >
-                        Hajwairi Trading
+                        <Image 
+                            src="/logo/logo.png"
+                            alt="Hajwairi Trading"
+                            width={90}
+                            height={90}
+                            priority
+                            className="h-20 w-20 rounded-xl object-contain"
+                        />
+
+                        <div>
+                            <h1 className="text-2xl font-extrabold tracking-tight text-green-900">
+                                Hajwairi Trading
+                            </h1>
+
+                            <p className="text-xs text-gray-500">
+                                Fresh Fruits + Vegetables
+                            </p>
+                        </div>
+                    
                     </Link>
 
                     {/*Search*/}
 
-                    <div className="flex-1">
+                    <div className="hidden flex-1 lg:block">
                         <SearchBar />
                     </div>
 
-                    {/*Right side*/}
+                    {/*Right*/}
 
-                    <div className="flex items-center gap-4">
-
-                        {/*Cart*/}
+                    <div className="flex items-center gap-3">
 
                         <Link
-                            href = "/cart"
-                            className="relative rounded-xl border p-3 transition hover:bg-gray-100"
+                            href="/cart"
+                            className="relative rounded-full border border-gray-200 p-3 transition hover:border-green-900 hover:bg-green-50"
                         >
-                            <ShoppingCart size={24} />
+                            <ShoppingCart size={23} />
+
                             {totalItems > 0 && (
-                                <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-red-600 text-xs font-bold text-white">
+                                <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-red-600 text-xs font-bold text-white">
                                     {totalItems}
                                 </span>
+
                             )}
+                        
                         </Link>
 
-                        {/*Login*/}
-
-                        <button className="rounded-lg bg-orange-500 px-6 py-2 text-white transition hover:bg-orange-600">
+                        <Link
+                            href="/login"
+                            className="hidden items-center gap-2 rounded-full bg-green-900 px-6 py-3 font-semibold text-white transition hover:bg-green-800 md:flex"
+                        >
+                            <User size={18} />
                             Login
-                        </button>
+                        </Link>
 
                     </div>
 
@@ -69,11 +93,9 @@ export default function Navbar() {
 
                 <div className="border-t">
                     <div className="mx-auto flex max-w-7xl px-6 py-4">
-                        
-                        <NavLinks />
 
+                        <NavLinks />
                     </div>
-                    
                 </div>
 
             </header>

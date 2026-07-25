@@ -25,6 +25,13 @@ export async function getActiveCategories() {
         where: {
             isActive: true,
         },
+        include: {
+            _count: {
+                select: {
+                    products: true,
+                }
+            }
+        },
         orderBy: [
             {
                 sortOrder: "asc",
