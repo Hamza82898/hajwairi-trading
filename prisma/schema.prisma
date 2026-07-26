@@ -13,22 +13,22 @@ datasource db {
 }
 
 model Category {
-  id                  Int      @id @default(autoincrement())
-  name                String   @unique
-  slug                String   @unique
-  image               String?
-  cloudinaryPublicId  String?
-  products            Product[]
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
-  isActive            Boolean  @default(true)
-  sortOrder           Int      @default(0)
+  id                 Int       @id @default(autoincrement())
+  name               String    @unique
+  slug               String    @unique
+  image              String?
+  cloudinaryPublicId String?
+  products           Product[]
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  isActive           Boolean   @default(true)
+  sortOrder          Int       @default(0)
 }
 
 model Product {
-  id          Int       @id @default(autoincrement())
+  id          Int            @id @default(autoincrement())
   name        String
-  slug        String    @unique
+  slug        String         @unique
   description String
   images      ProductImage[]
   oldPrice    Float
@@ -37,60 +37,60 @@ model Product {
   brand       String
   origin      String
   stock       Int
-  sku         String?   @unique
-  isActive    Boolean   @default(true)
-  
-  inStock     Boolean   @default(true)
-  featured    Boolean   @default(false)
-  badge       String?
-  discount    Int       @default(0)
+  sku         String?        @unique
+  isActive    Boolean        @default(true)
 
-  rating      Float     @default(5)
-  reviews     Int       @default(0)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  inStock  Boolean @default(true)
+  featured Boolean @default(false)
+  badge    String?
+  discount Int     @default(0)
 
-  categoryId  Int
-  category    Category  @relation(fields: [categoryId], references: [id])
+  rating      Float    @default(5)
+  reviewCount Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  orderItems  OrderItem[]
+  categoryId Int
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  orderItems OrderItem[]
+  reviews    Review[]
 }
 
 model Customer {
-  id        Int @id   @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   fullName  String
-  phone     String    @unique
+  phone     String   @unique
   area      String
   address   String
   landmark  String?
   orders    Order[]
-  createdAt DateTime  @default(now())
+  createdAt DateTime @default(now())
 }
 
 model Order {
-  id            Int           @id @default(autoincrement())
-  orderNumber   String        @unique
+  id          Int    @id @default(autoincrement())
+  orderNumber String @unique
 
   total         Float
   delivery      Float
   paymentMethod String
-  status        OrderStatus   @default(PENDING)
-  createdAt     DateTime      @default(now())
+  status        OrderStatus @default(PENDING)
+  createdAt     DateTime    @default(now())
 
-  customerId    Int
-  customer      Customer      @relation(fields: [customerId], references: [id])
+  customerId Int
+  customer   Customer @relation(fields: [customerId], references: [id])
 
-  items         OrderItem[]
+  items OrderItem[]
 }
 
 model OrderItem {
-  id        Int @id @default(autoincrement())
-  quantity  Int
-  price     Float
+  id       Int   @id @default(autoincrement())
+  quantity Int
+  price    Float
 
-  orderId   Int
-  order     Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
-
+  orderId Int
+  order   Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
 
   productId Int
   product   Product @relation(fields: [productId], references: [id])
@@ -105,17 +105,16 @@ model ProductImage {
   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 }
 
-
 enum Role {
   ADMIN
 }
 
 model User {
-  id        Int @id  @default(autoincrement())
-  name      String
-  email     String   @unique
-  password  String
-  role      Role     @default(ADMIN)
+  id       Int    @id @default(autoincrement())
+  name     String
+  email    String @unique
+  password String
+  role     Role   @default(ADMIN)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -128,4 +127,24 @@ enum OrderStatus {
   SHIPPED
   DELIVERED
   CANCELLED
+}
+
+model Review {
+  id            Int     @id @default(autoincrement())
+  customerName  String
+  city          String?
+
+  rating        Int
+
+  review        String @db.Text
+
+  featured      Boolean @default(false)
+  approved      Boolean @default(false)
+  displayOrder  Int     @default(0)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  productId Int?
+  product   Product? @relation(fields: [productId], references: [id])
 }

@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import LogoutButton from "@/components/admin/LogoutButton";
+import { Toaster } from "sonner";
 
 
 export default async function AdminLayout({
@@ -63,6 +64,13 @@ export default async function AdminLayout({
                             className="block rounded-lg px-4 py-2 hover:bg-green-800"
                         >
                             Customers    
+                        </a>
+
+                        <a
+                            href="/admin/reviews"
+                            className="block rounded-lg px-4 py-2 hover:bg-green-800"
+                        >
+                            Reviews
                         </a> 
 
                     </nav>
@@ -77,6 +85,11 @@ export default async function AdminLayout({
 
                 <main className="flex-1 p-8">
                     {children}
+                    <Toaster
+                        position="top-right"
+                        richColors
+                        closeButton
+                    />
                 </main>
 
             </div>

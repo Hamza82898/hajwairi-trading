@@ -11,7 +11,7 @@ export default function OfferBanner() {
                 <div className="grid gap-8 lg:grid-cols-3">
                     {/* Main Offer */}
 
-                    <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-green-700 via-green-600 to-green-500 p-10 text-white shadow-2xl lg:col-span-2">
+                    <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-green-700 via-green-900 to-green-500 p-10 text-white shadow-2xl lg:col-span-2">
 
                         <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
 
@@ -59,7 +59,7 @@ export default function OfferBanner() {
 
                     {/* Side Card */}
 
-                    <div className="rounded-3xl bg-gradient-to-br from-orange-500 to-red-500 p-8 text-white shadow-2xl">
+                    <div className="rounded-3xl bg-gradient-to-br from-orange-400 to-red-700 p-8 text-white shadow-2xl">
 
                         <div className="flex h-full flex-col justify-between">
 
