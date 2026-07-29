@@ -14,9 +14,9 @@ export default function DeleteOrderButton({
 }: Props) {
     const router = useRouter();
 
-    const [isPending, startTransition] = useTransition();
+    const [pending, startTransition] = useTransition();
 
-    const handleDelete = () => {
+    function handleDelete() {
         const confirmed = window.confirm(
             "Are you sure you want to delete this order?\n\nThis action cannot be undone."
         );
@@ -32,6 +32,7 @@ export default function DeleteOrderButton({
             }
 
             router.push("/admin/orders");
+            router.refresh();
         });
     };
 
@@ -39,13 +40,15 @@ export default function DeleteOrderButton({
         <button
             type="button"
             onClick={handleDelete}
-            disabled={isPending}
-            className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-700 disabled:opacity-50"
+            disabled={pending}
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-red-600 px-5 py-3 font-semibold text-white transition hover:bg-red-700 disabled:opacity-50"
         >
-            <span className="flex items-center gap-2">
-                <Trash2 size={16} />
-                {isPending ? "Deleting..." : "Delete"}
-            </span>
+            <Trash2 size={18} />
+
+            {pending
+                ? "Deleting..."
+                : "Delete Order"
+            }
 
         </button>
     );

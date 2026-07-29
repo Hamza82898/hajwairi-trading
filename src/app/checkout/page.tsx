@@ -10,9 +10,51 @@ export default function CheckoutPage() {
     return (
         <main className="mx-auto max-w-7xl px-6 py-10">
 
-            <h1 className="mb-10 text-4xl font-bold">
-                Checkout
-            </h1>
+            <div className="mb-10 flex items-center justify-center gap-4">
+                <div className="flex items-center gap-2">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-700 font-bold text-white">
+                        1
+                    </div>
+
+                    <span className="font-semibold text-green-700">
+                        Cart
+                    </span>
+                </div>
+
+                <div className="h-1 w-16 rounded bg-green-700" />
+                <div className="flex items-center gap-2">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-700 font-bold text-white"> 
+                        2
+                    </div>
+
+                    <span className="font-semibold text-green-700">
+                        Checkout
+                    </span>
+                </div>
+
+                <div className="h-1 w-16 rounded bg-gray-300" />
+                <div className="flex items-center gap-2">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 font-bold text-gray-700">
+                        3
+                    </div>
+
+                    <span className="text-gray-500">
+                        Complete
+                    </span>
+                </div>
+            </div>
+
+            {/*Page heading*/}
+            
+            <div className="mb-8">
+                <h1 className="text-4xl font-bold text-gray-900">
+                    Secure Checkout
+                </h1>
+
+                <p className="mt-2 text-gray-500">
+                    Complete your order by providing your delivery details
+                </p>
+            </div>
 
             <CheckoutFormProvider>
 
@@ -27,13 +69,13 @@ export default function CheckoutPage() {
                         <PaymentMethod />
                 
                     
-                </div>
+                    </div>
 
-                {/*Right*/}
-
-                <div>
-                    <OrderSummary />
-                </div>
+                    {/*Right*/}
+ 
+                    <div className="lg:sticky lg:top-28 lg:self-start">
+                        <OrderSummary />
+                    </div>
 
                 </div>
             </CheckoutFormProvider>

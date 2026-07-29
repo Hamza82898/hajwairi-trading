@@ -57,8 +57,16 @@ export default function CustomerInfo({
                     </p>
 
                     <p className="font-medium">
-                        {customer.address}
+                        {customer.area}, Block {customer.block}, Road {customer.road}
                     </p>
+
+                    <p>
+                        Building {customer.building}
+                    </p>
+
+                    {customer.flat && (
+                        <p>Flat {customer.flat}</p>
+                    )}
                 </div>
 
                 {customer.landmark && (

@@ -95,6 +95,16 @@ export async function placeOrder(
     try {
 
         const { customer, cart } = data;
+
+        const fullAddress = [
+            customer.area,
+            `Block ${customer.block}`,
+            `Road ${customer.road}`,
+            `Building ${customer.building}`,
+            customer.flat ? `Flat ${customer.flat}` : "",
+        ]
+            .filter(Boolean)
+            .join(", ");
         
         if (cart.length === 0) {
             return {
@@ -108,11 +118,14 @@ export async function placeOrder(
             0
         );
 
-        const delivery = subtotal > 20 ? 0 : 1.5;
+        const delivery = subtotal > 20 ? 0 : 1.0;
 
-        const total = subtotal + delivery
+        const total = subtotal;
 
         const orderNumber = `HTC-${Date.now()}`;
+
+        let createdOrderId = 0;
+        let createdOrderNumber = "";
 
         await prisma.$transaction(async (tx) => {
 
@@ -132,9 +145,17 @@ export async function placeOrder(
                     },
                     data: {
                         fullName: customer.fullName,
+                        phone: customer.phone,
+                        email: customer.email,
+
                         area: customer.area,
-                        address: customer.address,
+                        block: customer.block,
+                        road: customer.road,
+                        building: customer.building,
+                        flat: customer.flat,
+
                         landmark: customer.landmark,
+                        notes: customer.notes,
                     },
                 });
 
@@ -144,9 +165,16 @@ export async function placeOrder(
                     data: {
                         fullName: customer.fullName,
                         phone: customer.phone,
+                        email: customer.email,
+
                         area: customer.area,
-                        address: customer.address,
+                        block: customer.block,
+                        road: customer.road,
+                        building: customer.building,
+                        flat: customer.flat,
+
                         landmark: customer.landmark,
+                        notes: customer.notes,
                     },
                 });
 
@@ -164,6 +192,9 @@ export async function placeOrder(
                     status: OrderStatus.PENDING,
                 },
             });
+
+            createdOrderId = order.id;
+            createdOrderNumber = order.orderNumber;
 
             // Create Order Items
             await tx.orderItem.createMany({
@@ -183,6 +214,8 @@ export async function placeOrder(
         return {
             success: true,
             message: "Order placed successfully.",
+            orderId: createdOrderId,
+            orderNumber: createdOrderNumber,
         };
     } catch (error) {
         console.error(error);

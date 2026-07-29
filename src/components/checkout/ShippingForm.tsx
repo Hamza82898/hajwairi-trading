@@ -50,7 +50,7 @@ export default function ShippingForm() {
 
                     <input 
                         type="tel"
-                        placeholder="+973 3XXX XXXX"
+                        placeholder="+973 3XXXXXXX"
                         {...register("phone")}
                         className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
                     />
@@ -60,6 +60,19 @@ export default function ShippingForm() {
                             {errors.phone.message}
                         </p>
                     )}
+                </div>
+                <div>
+                    <label className="mb-2 block font-medium">
+                        Email (Optional)
+                    </label>
+
+                    <input 
+                        type="email"
+                        placeholder="example@gmail.com"
+                        autoComplete="email"
+                        {...register("email")}
+                        className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
+                    />
                 </div>
 
             </div>
@@ -100,24 +113,58 @@ export default function ShippingForm() {
 
             {/*Address*/}
 
-            <div className="mt-6">
-                <label className="mb-2 block font-medium">
-                    Full Address
-                </label>
+            <div className="mt-6 grid gap-6 md:grid-cols-2">
+                <div>
+                    <label className="mb-2 block font-medium">
+                        Block
+                    </label>
 
-                <textarea 
-                    rows={4}
-                    placeholder="Building, Road, Block..."
-                    {...register("address")}
-                    className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
-                />
+                    <input 
+                        type="text"
+                        placeholder="Block"
+                        {...register("block")}
+                        className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
+                    />
+                </div>
 
-                {errors.address && (
-                    <p className="mt-1 text-sm text-red-600">
-                        {errors.address.message}
-                    </p>
-                )}
+                <div>
+                    <label className="mb-2 block font-medium">
+                        Road
+                    </label>
 
+                    <input 
+                        type="text"
+                        placeholder="Road"
+                        {...register("road")}
+                        className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
+                    />
+                </div>
+
+                <div>
+                    <label className="mb-2 block font-medium">
+                        Building
+                    </label>
+
+                    <input 
+                        type="text"
+                        placeholder="Building"
+                        {...register("building")}
+                        className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
+                    />
+                </div>
+
+                <div>
+                    <label className="mb-2 block font-medium">
+                        Flat / Apartment
+                    </label>
+
+                    <input 
+                        type="text"
+                        placeholder="Flat"
+                        {...register("flat")}
+                        className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
+                    />
+                </div>
             </div>
 
             {/*Landmark*/}
@@ -134,6 +181,19 @@ export default function ShippingForm() {
                     className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
                 />
 
+            </div>
+
+            <div className="mt-6">
+                <label className="mb-2 block font-medium">
+                    Delivery Notes
+                </label>
+
+                <textarea 
+                    rows={4}
+                    placeholder="Leave at reception, call before delivery..."
+                    {...register("notes")}
+                    className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
+                />
             </div>
 
         </div>

@@ -2,14 +2,12 @@ import Link from "next/link";
 
 interface CartSummaryProps {
     subtotal: number;
-    delivery: number;
 }
 
 export default function CartSummary({
     subtotal,
-    delivery,
 }: CartSummaryProps) {
-    const total = subtotal + delivery;
+    const total = subtotal;
 
     return (
         <div className="rounded-2xl border p-6 shadow-sm">
@@ -23,10 +21,6 @@ export default function CartSummary({
                     <span>{subtotal.toFixed(2)} BD</span>
                 </div>
 
-                <div className="flex justify-between">
-                    <span>Delivery</span>
-                    <span>{delivery.toFixed(2)} BD</span>
-                </div>
 
                 <hr />
 
@@ -36,6 +30,8 @@ export default function CartSummary({
                 </div>
 
             </div>
+
+            
 
             <Link
                 href = "/checkout"

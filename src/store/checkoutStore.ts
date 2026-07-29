@@ -3,9 +3,14 @@ import { create } from "zustand";
 export interface CheckoutData {
     fullName: string;
     phone: string;
+    email: string;
     area: string;
-    address: string;
+    block: string;
+    road: string;
+    building: string;
+    flat: string;
     landmark?: string;
+    notes?: string
     paymentMethod: "cash" | "benefitpay";
 }
 
@@ -17,15 +22,24 @@ interface CheckoutStore {
     clearCheckout: () => void;
 }
 
+const initialData: CheckoutData = {
+    fullName: "",
+    phone: "",
+    email: "",
+
+    area: "",
+    block: "",
+    road: "",
+    building: "",
+    flat: "",
+
+    landmark: "",
+    notes: "",
+    paymentMethod: "cash",
+};
+
 export const useCheckoutStore = create<CheckoutStore>((set) => ({
-    data: {
-        fullName: "",
-        phone: "",
-        area: "",
-        address: "",
-        landmark: "",
-        paymentMethod: "cash",
-    },
+    data: initialData,
 
     setCheckoutData: (data) =>
         set({
@@ -34,13 +48,6 @@ export const useCheckoutStore = create<CheckoutStore>((set) => ({
 
         clearCheckout: () =>
             set({
-                data: {
-                    fullName: "",
-                    phone: "",
-                    area: "",
-                    address: "",
-                    landmark: "",
-                    paymentMethod: "cash",
-                },
+                data: initialData
             }),
 }));

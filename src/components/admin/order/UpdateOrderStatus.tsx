@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { OrderStatus, Prisma } from "@prisma/client";
 import { updateOrderStatus } from "@/actions/order";
 import DeleteOrderButton from "./DeleteOrderButton";
+import OrderStatusBadge from "./OrderStatusBadge";
 
 
 
@@ -64,10 +65,19 @@ export default function UpdateOrderStatus({
             <h2 className="mb-6 text-2xl font-semibold">
                 Update Status
             </h2>
+            <div className="mb-5">
+                <p className="mb-2 text-sm text-gray-500">
+                    Current Status
+                </p>
+
+                <OrderStatusBadge 
+                    status={order.status}
+                />
+            </div>
 
             {message && (
                 <div 
-                    className={`mb-5 rounded-lg p-3 text-sm $> ${
+                    className={`mb-5 rounded-lg p-3 text-sm ${
                         success
                             ? "bg-green-100 text-green-700"
                             : "bg-red-100 text-red-700"

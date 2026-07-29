@@ -5,6 +5,8 @@ import OrderInfo from "@/components/admin/order/OrderInfo";
 import CustomerInfo from "@/components/admin/order/CustomerInfo";
 import OrderItems from "@/components/admin/order/OrderItems";
 import UpdateOrderStatus from "@/components/admin/order/UpdateOrderStatus";
+import OrderTimeline from "@/components/admin/order/OrderTimeline";
+import "./print.css"
 
 
 interface Props {
@@ -47,6 +49,10 @@ export default async function OrderDetailsPage({
                 <div className="space-y-8">
 
                     <CustomerInfo order={order} />
+
+                    <OrderTimeline 
+                        status={order.status}
+                    />
 
                     <UpdateOrderStatus order={order} />
 

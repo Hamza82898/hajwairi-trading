@@ -32,7 +32,7 @@ export default function ProductInfo({ product }: ProductInfoProps) {
                 ))}
 
                 <span className="ml-2 text-sm text-gray-500">
-                    ({product.reviews} Reviews)
+                    (0 Reviews)
                 </span>
 
             </div>

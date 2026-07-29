@@ -9,14 +9,20 @@ import CartSummary from "@/components/cart/CartSummary";
 
 
 export default function CartPage() {
-    const cart = useCartStore((state) => state.cart);
+    const {
+        cart,
+        clearCart,
+        getTotalItems,
+    } = useCartStore();
 
-    const subtotal = cart.reduce(
-        (total, item) => total + item.price * item.quantity,
-        0
-    );
+    const subtotal = useCartStore((state) => state.getSubtotal());
 
-    const delivery = subtotal > 20 ? 0 : 1.5;
+    const totalItems = getTotalItems();
+
+    const delivery = subtotal >= 20 ? 0 : 1.0;
+
+    const remainingForFreeDelivery =
+        subtotal >= 20 ? 0 : 20 - subtotal;
 
     if (cart.length === 0) {
         return (
@@ -29,9 +35,54 @@ export default function CartPage() {
 
     return (
         <main className="mx-auto max-w-7xl px-6 py-10">
-            <h1 className="mb-10 text-4xl font-bold">
-                Shopping Cart
-            </h1>
+            <div className="mb-10 flex flex-col justify-between gap-4 border-b pb-6 md:flex-row md:items-center">
+                <div>
+                    <h1 className="text-4xl font-bold text-gray-900">
+                        Shopping Cart
+                    </h1>
+
+                    <p className="mt-2 text-gray-500">
+                        {totalItems} Item{totalItems !== 1 ? "s" : ""} in your cart
+                    </p>
+                </div>
+
+                <button
+                    onClick={clearCart}
+                    className="rounded-xl border border-red-200 px-5 py-3 font-semibold text-red-600 transition hover:bg-red-50"
+                >
+                    Clear Cart
+                </button>
+            </div>
+
+            <div className="mb-8 rounded-2xl border border-green-200 bg-green-50 p-5">
+                {delivery === 0 ? (
+                    <p className="font-semibold text-green-800">
+                        Congratulations! You unlocked FREE Delivery.
+                    </p>
+                ) : (
+                    <>
+                        <p className="font-medium text-green-800">
+                            Spend{" "}
+                            <span className="font-bold">
+                                BD {remainingForFreeDelivery.toFixed(2)}
+                            </span>{" "}
+                            more to unlock FREE Delivery.
+                        </p>
+
+                        <div className="mt-4 h-3 overflow-hidden rounded-full bg-green-100">
+                            <div 
+                                className="h-full rounded-full bg-green-700 transition-all duration-500"
+                                style={{
+                                    width: `${Math.min(
+                                        (subtotal / 20) * 100,
+                                        100
+                                    )}%`,
+                                }}
+                            />
+                        </div>
+                    </>
+                )}
+            </div>
 
             <div className="grid gap-8 lg:grid-cols-3">
 
@@ -57,7 +108,6 @@ export default function CartPage() {
                 <div>
                     <CartSummary 
                         subtotal={subtotal}
-                        delivery={delivery}
                     />
                 </div>
 

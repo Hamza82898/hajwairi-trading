@@ -61,9 +61,17 @@ model Customer {
   id        Int      @id @default(autoincrement())
   fullName  String
   phone     String   @unique
+  email     String?
+
   area      String
-  address   String
+  block     String
+  road      String
+  building  String
+  flat      String
+
   landmark  String?
+  notes     String?
+  
   orders    Order[]
   createdAt DateTime @default(now())
 }

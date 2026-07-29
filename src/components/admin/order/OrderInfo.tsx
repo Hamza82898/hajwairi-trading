@@ -1,4 +1,9 @@
 import { Prisma } from "@prisma/client";
+import { Calendar, CreditCard, Printer, Receipt } from "lucide-react";
+import PrintInvoiceButton from "./PrintInvoiceButton";
+import OrderStatusBadge from "./OrderStatusBadge";
+
+
 
 type OrderWithRelations = Prisma.OrderGetPayload<{
     include: {
@@ -19,60 +24,71 @@ interface Props {
     order: OrderWithRelations;
 }
 
+
+
 export default function OrderInfo({
     order,
 }: Props) {
     const grandTotal = order.total + order.delivery;
 
     return (
-        <div className="rounded-xl bg-white p-6 shadow">
-            <h2 className="mb-6 text-2xl font-semibold">
-                Order Information
-            </h2>
+        <div className="rounded-2xl border bg-white p-8 shadow-sm">
+            <div className="mb-8 flex items-center justify-between">
+                <h2 className="text-2xl font-bold">
+                    Order Information
+                </h2>
 
-            <div className="grid gap-5 md:grid-cols-2">
+                <div className="print-hide">
+                    <PrintInvoiceButton />
+                </div>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2">
                 <div>
-                    <p className="text-sm text-gray-500">
+                    <p className="mb-1 text-sm text-gray-500">
                         Order Number
                     </p>
 
-                    <p className="font-semibold">
+                    <p className="flex items-center gap-2 font-semibold">
+                        <Receipt size={18} />
                         #{order.orderNumber}
                     </p>
                 </div>
 
                 <div>
-                    <p className="text-sm text-gray-500">
+                    <p className="mb-1 text-sm text-gray-500">
                         Order Date
                     </p>
 
-                    <p className="font-semibold">
+                    <p className="flex items-center gap-2 font-semibold">
+                        <Calendar size={18} />
                         {new Date(order.createdAt).toLocaleString()}
                     </p>
                 </div>
 
                 <div>
-                    <p className="text-sm text-gray-500">
+                    <p className="mb-1 text-sm text-gray-500">
                         Payment Method
                     </p>
 
-                    <p className="font-semibold">
+                    <p className="flex items-center gap-2 font-semibold capitalize">
+                        <CreditCard size={18} />
                         {order.paymentMethod}
                     </p>
                 </div>
 
                 <div>
-                    <p className="text-sm text-gray-500">
-                        Status
+                    <p className="mb-1 text-sm text-gray-500">
+                        Order Status
                     </p>
 
-                    <p className="font-semibold">
-                        {order.status}
-                    </p>
+                    <OrderStatusBadge 
+                        status={order.status}
+                    />
                 </div>
 
                 <div>
-                    <p className="text-sm text-gray-500">
+                    <p className="mb-1 text-sm text-gray-500">
                         Subtotal
                     </p>
 
@@ -82,7 +98,7 @@ export default function OrderInfo({
                 </div>
 
                 <div>
-                    <p className="text-sm text-gray-500">
+                    <p className="mb-1 text-sm text-gray-500">
                         Delivery Charges
                     </p>
 
@@ -93,14 +109,14 @@ export default function OrderInfo({
 
             </div>
 
-            <div className="mt-8 border-t pt-5">
+            <div className="mt-8 border-t pt-6">
                 <div className="flex items-center justify-between">
 
-                    <span className="text-lg font-semibold">
+                    <span className="text-xl font-bold">
                         Grand Total
                     </span>
 
-                    <span className="text-2xl font-bold text-green-700">
+                    <span className="text-3xl font-bold text-green-700">
                         BD {grandTotal.toFixed(2)}
                     </span>
 

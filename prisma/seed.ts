@@ -61,7 +61,6 @@ async function main() {
             badge: "20% OFF",
             discount: 20,
             rating: 5,
-            reviews: 124,
             categoryId: fruits.id,
         },
     });
@@ -95,7 +94,6 @@ async function main() {
             badge: "NEW",
             discount: 15,
             rating: 5,
-            reviews: 65,
             categoryId: fruits.id,
         },
     });

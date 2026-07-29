@@ -1,0 +1,44 @@
+@media print {
+    body {
+        background: white !important;
+    }
+
+    nav,
+    aside,
+    header,
+    footer,
+    button {
+        display: none !important;
+    }
+
+    main {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .print-hide {
+        display: none !important;
+    }
+
+    .print-break {
+        page-break-after: always;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table th,
+    table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+    }
+
+    h1,
+    h2,
+    h3 {
+        color: black;
+    }
+}

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { ShieldCheck } from "lucide-react";
 import { useFormContext } from "react-hook-form";
 
 import { CheckoutFormData } from "@/lib/validations/checkout";
@@ -15,6 +16,7 @@ export default function OrderSummary() {
 
     const router = useRouter();
     const [loading, setLoading] = useState(false);
+    const [acceptedTerms, setAcceptedTerms] = useState(false);
 
     const cart = useCartStore((state) => state.cart);
     const clearCart = useCartStore((state) => state.clearCart);
@@ -36,7 +38,7 @@ export default function OrderSummary() {
         0
     );
 
-    const delivery = subtotal > 20 ? 0 : 1.5;
+    const delivery = subtotal > 20 ? 0 : 1.0;
 
     const total = subtotal + delivery;
 
@@ -67,7 +69,7 @@ export default function OrderSummary() {
             clearCart();
             clearCheckout();
 
-            router.push("/checkout/success");
+            router.push(`/checkout/success/${result.orderId}`);
         } catch (error) {
             console.error(error);
             alert("Something went wrong while placeing your order.");
@@ -120,11 +122,11 @@ export default function OrderSummary() {
                 <div className="flex justify-between">
                     <span>Delivery</span>
                     <span>
-                        {delivery === 0
-                            ? "Free"
-                            : `${delivery.toFixed(2)} BD`}
+                        {delivery.toFixed(2)} BD
                     </span>
                 </div>
+
+                {/*Coupon*/}
 
                 <hr />
 
@@ -136,11 +138,47 @@ export default function OrderSummary() {
 
             </div>
 
+            {/*Secure Checkout*/}
+
+            <div className="mt-6 rounded-xl bg-green-50 p-4">
+                <div className="flex items-center gap-2">
+                    <ShieldCheck 
+                        size={20}
+                        className="text-green-700"
+                    />
+
+                    <span className="font-semibold text-green-700">
+                        Secure Checkout
+                    </span>
+                </div>
+
+                <p className="mt-2 text-sm text-gray-600">
+                    Your personal information is encrypted and securely protected.
+                </p>
+            </div>
+
+            {/*Terms*/}
+
+            <label className="mt-6 flex items-start gap-3">
+                <input 
+                    type="checkbox"
+                    checked={acceptedTerms}
+                    onChange={(e) =>
+                        setAcceptedTerms(e.target.checked)
+                    }
+                    className="mt-1"
+                />
+
+                <span className="text-sm text-gray-600">
+                    I agree to the Terms & Conditions and Privacy Policy.
+                </span>
+            </label>
+
             <button 
                 type="button"
                 onClick={handleSubmit(submitOrder)}
-                disabled={loading || cart.length === 0}
-                className="mt-8 w-full rounded-xl bg-green-700 py-4 font-semibold text-white transition hover:bg-green-800"
+                disabled={loading || cart.length === 0 || !acceptedTerms}
+                className="mt-6 w-full rounded-xl bg-green-700 py-4 text-lg font-semibold text-white transition hover:bg-green-800 disabled:cursor-not-allowed disabled:opacity-50"
             >
                 {loading ? "Placing Order..." : "Place Order"}
             </button>

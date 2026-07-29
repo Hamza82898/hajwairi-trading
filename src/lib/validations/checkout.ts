@@ -3,46 +3,48 @@ import { z } from "zod";
 export const checkoutSchema = z.object({
     fullName: z
         .string()
-        .trim()
         .min(3, "Full name must be at least 3 characters"),
 
     phone: z
         .string()
-        .regex(
-            /^(\+973)?\s?[3-9]\d{7}$/,
-            "Enter a valid Bahrain phone number"
-        ),
+        .min(8, "Enter a valid Bahrain phone number"),
 
-    area: z.enum(
-        [
-            "Manama",
-            "Muharraq",
-            "Riffa",
-            "Isa Town",
-            "Hamad Town",
-            "Saar",
-            "Budaiya",
-            "Juffair",
-            "Amwaj",
-            "Sanad",
-        ],
-        {
-            message: "Please select a valid delivery area",
-        }
-    ),
-
+    email: z.string().email("Invalid email address").or(z.literal("")),
         
 
-    address: z
+    area: z
         .string()
-        .min(10, "Address must be at least 10 characters"),
+        .min(1, "Please select a delivery area"),
 
-    landmark: z.string().optional(),
+    block: z
+        .string()
+        .min(1, "Block is required"),
+
+    road: z
+        .string()
+        .min(1, "Road is required"),
+
+    building: z
+        .string()
+        .min(1, "Building is required"),
+
+    flat: z
+        .string()
+        .min(1, "Flat is required"),
+
+    landmark: z
+        .string()
+        .optional(),
 
     paymentMethod: z.enum([
         "cash",
         "benefitpay",
     ]),
+
+    notes: z
+        .string()
+        .max(300, "Maximum 300 characters")
+        .optional(),
 });
 
 export type CheckoutFormData = z.infer<typeof checkoutSchema>;

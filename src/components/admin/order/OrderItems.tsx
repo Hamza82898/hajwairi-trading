@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Prisma } from "@prisma/client";
-import { it } from "node:test";
+
+
 
 type OrderWithRelations = Prisma.OrderGetPayload<{
     include: {
@@ -24,88 +25,115 @@ interface Props {
 export default function OrderItems({
     order,
 }: Props) {
+    const productsTotal = order.items.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+    );
+
     return (
-        <div className="rounded-xl bg-white shadow">
-            <div className="border-b p-6">
-                <h2 className="text-2xl font-semibold">
-                    Ordered Items
-                </h2>
-            </div>
+        <div className="rounded-2xl bg-white shadow">
+            
+            <h2 className="text-2xl font-semibold">
+                Ordered Products
+            </h2>
+            
+            <div className="overflow-x-auto">
+                <table className="w-full">
+                    <thead className="border-b bg-gray-50">
+                        <tr className="text-left">
+                            <th className="px-4 py-3">
+                                Product
+                            </th>
 
-            <table className="min-w-full">
-                <thead className="bg-gray-50">
-                    <tr>
-                        <th className="px-5 py-4 text-left">
-                            Image
-                        </th>
+                            <th className="px-4 py-3">
+                                Unit Price
+                            </th>
 
-                        <th className="px-5 py-4 text-left">
-                            Product
-                        </th>
+                            <th className="px-4 py-3">
+                                Qty
+                            </th>
 
-                        <th className="px-5 py-4 text-center">
-                            Qty
-                        </th>
+                            <th className="px-4 py-3 text-right">
+                                Total
+                            </th>
+                        </tr>
+                    </thead>
 
-                        <th className="px-5 py-4 text-right">
-                            Price
-                        </th>
-
-                        <th className="px-5 py-4 text-right">
-                            Total
-                        </th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {order.items.map((item) => {
-                        const image = 
-                            item.product.images.find(
-                                (img) => img.isPrimary
-                            )?.url ??
-                            item.product.images[0]?.url ??
-                            "/placeholder.png";
-                        
-                        return (
+                    <tbody>
+                        {order.items.map((item) => (
                             <tr
                                 key={item.id}
-                                className="border-t"
+                                className="border-b transition hover:bg-gray-50"
                             >
-                                <td className="px-5 py-4">
-                                    <Image 
-                                        src={image}
-                                        alt={item.product.name}
-                                        width={70}
-                                        height={70}
-                                        className="rounded-lg object-cover"
-                                    />
-                                </td>
+                                {/*Product*/}
 
-                                <td className="px-5 py-4">
-                                    <div>
-                                        <p className="font-semibold">
-                                            {item.product.name}
-                                        </p>
+                                <td className="px-4 py-5">
+                                    <div className="flex items-center gap-4">
+                                        <div className="relative h-20 w-20 overflow-hidden rounded-xl border">
 
-                                        <p className="text-sm text-gray-500">
-                                            {item.product.unit}
-                                        </p>
+                                            <Image 
+                                                src={
+                                                    item.product.images[0]
+                                                        ?.url ??
+                                                    "/placeholder.png"   
+                                                }
+                                                alt={item.product.name}
+                                                fill
+                                                className="object-cover"
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <h3 className="font-semibold">
+                                                {item.product.name}
+                                            </h3>
+
+                                            {/* <p className="text-sm text-gray-500">
+                                                {item.product.category}
+                                            </p> */}
+                                        </div>
                                     </div>
                                 </td>
 
-                                <td className="px-5 py-4 text-center">
-                                    {item.quantity}
-                                </td>
+                                {/*Price*/}
 
-                                <td className="px-5 py-4 text-right">
+                                <td className="px-4 py-5 font-semibold">
                                     BD {item.price.toFixed(2)}
                                 </td>
 
+                                {/*Qty*/}
+                                <td className="px-4 py-5">
+                                    <span className="rounded-full bg-green-100 px-3 py-1 font-semibold text-green-700">
+                                        {item.quantity}
+                                    </span>
+                                </td>
+
+                                {/*Total*/}
+
+                                <td className="px-4 py-5 text-right font-bold">
+                                    BD {(item.price * item.quantity).toFixed(2)}
+                                </td>
                             </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
+                        ))}
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <td
+                                colSpan={3}
+                                className="px-4 py-6 text-right text-lg font-bold"
+                            >
+                                Products Total
+                            </td>
+
+                            <td className="px-4 py-6 text-right text-2xl font-bold text-green-700">
+                                BD {productsTotal.toFixed(2)}
+                            </td>
+                        </tr>
+                    </tfoot>
+                        
+                </table>
+            </div>
         </div>
     );
 }
