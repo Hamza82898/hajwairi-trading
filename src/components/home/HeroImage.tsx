@@ -25,7 +25,7 @@ export default function HeroImage() {
                     width={900}
                     height={900}
                     priority
-                    className="relative z-10 w-full max-w-[260px] transition duration-500 hover:scale-105 sm:max-w-[420px] lg:max-w-[650px]"
+                    className="relative z-10 mx-auto h-auto w-full max-w-[260px] translate-y-6 object-contain transition duration-500 hover:scale-105 sm:max-w-[420px] sm:translate-y-8 lg:max-w-[650px] lg:translate-y-10"
                 />
 
                 {/* Offer */}
