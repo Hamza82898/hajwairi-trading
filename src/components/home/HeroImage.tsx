@@ -1,60 +1,63 @@
 import Image from "next/image";
-import { Star, Truck, Percent } from "lucide-react";
+import { Percent, Star, Truck } from "lucide-react";
 
 export default function HeroImage() {
     return (
         <div className="relative w-full">
 
-            {/* Background Glow */}
-            <div className="absolute inset-0 rounded-[40px] bg-gradient-to-br from-green-100 via-white to-orange-100 blur-3xl" />
+            {/* Glow */}
+            <div className="absolute inset-0 rounded-[40px] bg-gradient-to-br from-green-100/70 via-white to-orange-100/70 blur-3xl" />
 
             {/* Hero Card */}
-            <div className="relative h-[420px] sm:h-[520px] md:h-[620px] lg:h-[720px] xl:h-[760px] overflow-hidden rounded-[40px] bg-gradient-to-br from-green-50 via-white to-orange-50 shadow-2xl">
+            <div className="relative overflow-hidden rounded-[40px] bg-gradient-to-br from-green-50 via-white to-orange-50 shadow-2xl h-[430px] sm:h-[540px] md:h-[650px] lg:h-[740px] xl:h-[790px]">
 
-                {/* Hero Image */}
-                <div className="absolute inset-0 flex items-center justify-center">
+                {/* Image */}
+                <div className="absolute inset-0 flex items-end justify-center">
 
                     <Image
                         src="/products/fruits/hero-fruits.png"
                         alt="Fresh Fruits"
-                        fill
+                        width={1500}
+                        height={1100}
                         priority
                         className="
+                            pointer-events-none
+                            select-none
+                            h-auto
+                            w-[96%]
+                            sm:w-[90%]
+                            md:w-[88%]
+                            lg:w-[92%]
+                            xl:w-[96%]
                             object-contain
-                            object-bottom
-                            scale-[0.9]
-                            sm:scale-100
-                            md:scale-105
-                            lg:scale-110
-                            xl:scale-[1.15]
+                            drop-shadow-[0_45px_35px_rgba(0,0,0,.18)]
                             transition-all
                             duration-500
-                            hover:scale-[1.18]
-                            drop-shadow-[0_35px_35px_rgba(0,0,0,0.18)]
+                            hover:scale-[1.03]
                         "
                     />
 
                 </div>
 
-                {/* Delivery Card */}
+                {/* Delivery */}
 
-                <div className="absolute top-4 left-4 sm:top-8 sm:left-8 z-30 rounded-2xl bg-white/95 backdrop-blur-md shadow-xl px-3 py-3 sm:px-6 sm:py-5">
+                <div className="absolute left-[4%] top-[6%] z-30 rounded-3xl bg-white/95 backdrop-blur-md shadow-xl px-3 py-3 sm:px-5 sm:py-4 lg:px-6 lg:py-5">
 
                     <div className="flex items-center gap-3">
 
-                        <div className="rounded-full bg-green-100 p-3">
+                        <div className="rounded-full bg-green-100 p-3 lg:p-4">
 
-                            <Truck className="h-5 w-5 text-green-700" />
+                            <Truck className="h-5 w-5 lg:h-6 lg:w-6 text-green-700" />
 
                         </div>
 
                         <div>
 
-                            <p className="text-[11px] sm:text-sm text-gray-500">
+                            <p className="text-[10px] sm:text-xs lg:text-sm text-gray-500">
                                 Free Delivery
                             </p>
 
-                            <h3 className="text-sm sm:text-lg font-bold text-green-900">
+                            <h3 className="text-xs sm:text-base lg:text-xl font-bold text-green-900">
                                 Selected Areas
                             </h3>
 
@@ -64,41 +67,43 @@ export default function HeroImage() {
 
                 </div>
 
-                {/* Offer Card */}
+                {/* Offer */}
 
-                <div className="absolute top-4 right-4 sm:top-8 sm:right-8 z-30 rounded-2xl bg-white/95 backdrop-blur-md shadow-xl px-4 py-4 sm:px-7 sm:py-6">
+                <div className="absolute right-[4%] top-[5%] z-30 rounded-3xl bg-white/95 backdrop-blur-md shadow-xl px-4 py-4 sm:px-6 sm:py-5 lg:px-8 lg:py-6">
 
                     <div className="mb-2 flex items-center gap-2">
 
                         <Percent className="h-4 w-4 text-orange-500" />
 
-                        <span className="text-[11px] sm:text-xs uppercase tracking-wider font-bold text-orange-500">
+                        <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-orange-500">
                             Limited Offer
                         </span>
 
                     </div>
 
-                    <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-orange-500">
+                    <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-orange-500 leading-none">
                         35%
                     </h2>
 
-                    <p className="text-base sm:text-lg font-bold text-gray-700">
+                    <p className="mt-2 text-sm sm:text-base lg:text-xl font-bold text-gray-700">
                         OFF
                     </p>
 
                 </div>
 
-                {/* Premium Button */}
+                {/* Premium */}
 
-                <div className="absolute bottom-4 left-4 sm:bottom-8 sm:left-8 z-30 rounded-full bg-green-900 px-5 py-3 sm:px-10 sm:py-4 text-sm sm:text-lg font-semibold text-white shadow-xl">
+                <div className="absolute left-[5%] bottom-[8%] z-30 rounded-full bg-green-900 px-5 py-3 sm:px-7 sm:py-4 lg:px-10 lg:py-5 shadow-xl">
 
-                    Premium Fresh Fruits
+                    <p className="text-xs sm:text-base lg:text-xl font-semibold text-white whitespace-nowrap">
+                        Premium Fresh Fruits
+                    </p>
 
                 </div>
 
-                {/* Rating Card */}
+                {/* Rating */}
 
-                <div className="absolute bottom-4 right-4 sm:bottom-8 sm:right-8 z-30 rounded-2xl bg-white/95 backdrop-blur-md shadow-xl px-4 py-3 sm:px-6 sm:py-5">
+                <div className="absolute right-[5%] bottom-[8%] z-30 rounded-3xl bg-white/95 backdrop-blur-md shadow-xl px-4 py-4 sm:px-6 sm:py-5">
 
                     <div className="flex items-center gap-2">
 
@@ -107,13 +112,13 @@ export default function HeroImage() {
                             fill="#FACC15"
                         />
 
-                        <span className="text-xl sm:text-3xl font-bold">
+                        <span className="text-lg sm:text-2xl lg:text-3xl font-bold">
                             4.9
                         </span>
 
                     </div>
 
-                    <p className="mt-1 text-xs sm:text-base text-gray-500">
+                    <p className="mt-2 text-[10px] sm:text-sm lg:text-base text-gray-500">
                         Customer Rating
                     </p>
 
