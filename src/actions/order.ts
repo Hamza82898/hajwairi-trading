@@ -1,5 +1,6 @@
 "use server"
 
+import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { OrderStatus } from "@prisma/client";
@@ -94,17 +95,11 @@ export async function placeOrder(
 ): Promise<ActionState> {
     try {
 
+        const session = await auth();
+
         const { customer, cart } = data;
 
-        const fullAddress = [
-            customer.area,
-            `Block ${customer.block}`,
-            `Road ${customer.road}`,
-            `Building ${customer.building}`,
-            customer.flat ? `Flat ${customer.flat}` : "",
-        ]
-            .filter(Boolean)
-            .join(", ");
+       
         
         if (cart.length === 0) {
             return {
@@ -130,55 +125,115 @@ export async function placeOrder(
         await prisma.$transaction(async (tx) => {
 
             // Find existing customer
-            let existingCustomer = await tx.customer.findUnique({
-                where: {
-                    phone: customer.phone,
-                },
-            });
-
             let customerId: number;
 
-            if (existingCustomer) {
-                const updatedCustomer = await tx.customer.update({
+            // Logged-in customer
+            if (session?.user?.email) {
+                const user = await tx.user.findUnique({
                     where: {
-                        id: existingCustomer.id,
+                        email: session.user.email,
                     },
-                    data: {
-                        fullName: customer.fullName,
-                        phone: customer.phone,
-                        email: customer.email,
-
-                        area: customer.area,
-                        block: customer.block,
-                        road: customer.road,
-                        building: customer.building,
-                        flat: customer.flat,
-
-                        landmark: customer.landmark,
-                        notes: customer.notes,
+                    include: {
+                        customer: true,
                     },
                 });
 
-                customerId = updatedCustomer.id;
+                if (!user) {
+                    throw new Error("User not found.");
+                }
+
+                if (user.customer) {
+                    const updatedCustomer = await tx.customer.update({
+                        where: {
+                            id: user.customer.id,
+                        },
+                        data: {
+                            fullName: customer.fullName,
+                            phone: customer.phone,
+                            email: customer.email,
+                            area: customer.area,
+                            block: customer.block,
+                            road: customer.road,
+                            building: customer.building,
+                            flat: customer.flat,
+                            landmark: customer.landmark,
+                            notes: customer.notes,
+                        },
+                    });
+
+                    customerId = updatedCustomer.id;
+                } else {
+                    const newCustomer = await tx.customer.create({
+                        data: {
+                            userId: user.id,
+
+                            fullName: customer.fullName,
+                            phone: customer.phone,
+                            email: customer.email,
+
+                            area: customer.area,
+                            block: customer.block,
+                            road: customer.road,
+                            building: customer.building,
+                            flat: customer.flat,
+
+                            landmark: customer.landmark,
+                            notes: customer.notes,
+                        },
+                    });
+
+                    customerId = newCustomer.id;
+                } 
             } else {
-                const newCustomer = await tx.customer.create({
-                    data: {
-                        fullName: customer.fullName,
+                // Guest checkout
+                let existingCustomer = await tx.customer.findFirst({
+                    where: {
                         phone: customer.phone,
-                        email: customer.email,
-
-                        area: customer.area,
-                        block: customer.block,
-                        road: customer.road,
-                        building: customer.building,
-                        flat: customer.flat,
-
-                        landmark: customer.landmark,
-                        notes: customer.notes,
+                        userId: null,
                     },
                 });
 
-                customerId = newCustomer.id;
+                if (existingCustomer) {
+                    const updatedCustomer = await tx.customer.update({
+                        where: {
+                            id: existingCustomer.id,
+                        },
+                        data: {
+                            fullName: customer.fullName,
+                            phone: customer.phone,
+                            email: customer.email,
+
+                            area: customer.area,
+                            block: customer.block,
+                            road: customer.road,
+                            building: customer.building,
+                            flat: customer.flat,
+
+                            landmark: customer.landmark,
+                            notes: customer.notes,
+                        },
+                    });
+
+                    customerId = updatedCustomer.id;
+                } else {
+                    const newCustomer = await tx.customer.create({
+                        data: {
+                            fullName: customer.fullName,
+                            phone: customer.phone,
+                            email: customer.email,
+
+                            area: customer.area,
+                            block: customer.block,
+                            road: customer.road,
+                            building: customer.building,
+                            flat: customer.flat,
+
+                            landmark: customer.landmark,
+                            notes: customer.notes,
+                        },
+                    });
+                    customerId = newCustomer.id;
+                }
             }
 
             // Create Order

@@ -1,4 +1,7 @@
-"use client"
+
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
+
 
 import ShippingForm from "@/components/checkout/ShippingForm";
 import PaymentMethod from "@/components/checkout/PaymentMethod";
@@ -6,7 +9,14 @@ import OrderSummary from "@/components/checkout/OrderSummary";
 import CheckoutFormProvider from "@/components/checkout/CheckoutFormProvider";
 
 
-export default function CheckoutPage() {
+export default async function CheckoutPage() {
+
+    const session = await auth();
+
+    if (!session) {
+        redirect("/login");
+    }
+
     return (
         <main className="mx-auto max-w-7xl px-6 py-10">
 
@@ -56,7 +66,9 @@ export default function CheckoutPage() {
                 </p>
             </div>
 
-            <CheckoutFormProvider>
+            <CheckoutFormProvider
+                session={session}
+            >
 
                 <div className="grid gap-10 lg:grid-cols-3">
 

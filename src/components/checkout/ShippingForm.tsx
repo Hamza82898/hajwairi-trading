@@ -30,6 +30,7 @@ export default function ShippingForm() {
                     <input 
                         type="text"
                         placeholder="Enter your full name"
+                        readOnly
                         {...register("fullName")}
                         className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
                     />
@@ -63,13 +64,14 @@ export default function ShippingForm() {
                 </div>
                 <div>
                     <label className="mb-2 block font-medium">
-                        Email (Optional)
+                        Email
                     </label>
 
                     <input 
                         type="email"
                         placeholder="example@gmail.com"
                         autoComplete="email"
+                        readOnly
                         {...register("email")}
                         className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
                     />

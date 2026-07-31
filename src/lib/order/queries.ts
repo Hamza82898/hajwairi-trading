@@ -1,19 +1,93 @@
 import { prisma } from "@/lib/prisma";
 
-export async function getOrders() {
-    return prisma.order.findMany({
+export async function getOrders(
+    search?: string,
+    status?: string,
+    sort?: string,
+    page = 1,
+    limit = 10,
+) {
+    const where: any = {
+        AND: [
+            search
+                ? {
+                      OR: [
+                          {
+                              orderNumber: {
+                                  contains: search,
+                                  mode: "insensitive" as const,
+                              },
+                          },
+                          {
+                              customer: {
+                                  fullName: {
+                                      contains: search,
+                                      mode: "insensitive" as const,
+                                  },
+                              },
+                          },
+                          {
+                              customer: {
+                                  phone: {
+                                      contains: search,
+                                  },
+                              },
+                          },
+                          {
+                              customer: {
+                                  email: {
+                                      contains: search,
+                                      mode: "insensitive" as const,
+                                  },
+                              },
+                          },
+                      ],
+                  }
+                : {},
+
+            status
+                ? {
+                      status: status as any,
+                  }
+                : {},
+        ],
+    };
+
+    const totalOrders = await prisma.order.count({
+        where,
+    });
+
+    const orders = await prisma.order.findMany({
+        where,
+
         include: {
             customer: true,
+
             items: {
                 include: {
                     product: true,
                 },
             },
         },
+
         orderBy: {
-            createdAt: "desc"
+            createdAt:
+                sort === "oldest"
+                    ? "asc"
+                    : "desc",
         },
+
+        skip: (page - 1) * limit,
+
+        take: limit,
     });
+
+    return {
+        orders,
+        totalOrders,
+        totalPages: Math.ceil(totalOrders / limit),
+        currentPage: page,
+    };
 }
 
 export async function getOrderById(id: number) {

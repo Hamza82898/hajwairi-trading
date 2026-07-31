@@ -17,7 +17,7 @@ type OrderWithRelations = Prisma.OrderGetPayload<{
 }>;
 
 interface Props {
-    orders: any[];
+    orders: OrderWithRelations[];
 }
 
 export default function OrdersTable({
@@ -99,7 +99,7 @@ export default function OrdersTable({
                             className="border-t"
                         >
                             <td className="px-5 py-4 font-semibold">
-                                #{order.orderNumer}
+                                #{order.orderNumber}
                             </td>
 
                             <td className="px-5 py-4">
@@ -119,7 +119,9 @@ export default function OrdersTable({
                             </td>
 
                             <td className="px-5 py-4">
-                                {order.paymentMethod}
+                                {order.paymentMethod
+                                    .replace("-", " ")
+                                    .replace(/\b\w/g, (c:string) => c.toUpperCase())}
                             </td>
 
                             <td className="px-5 py-4">

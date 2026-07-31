@@ -3,6 +3,7 @@ import { Prisma } from "@prisma/client"
 
 type CustomerWithOrders = Prisma.CustomerGetPayload<{
     include: {
+        user: true;
         orders: true;
     };
 }>;
@@ -31,7 +32,11 @@ export default function CustomersTable({
                         </th>
 
                         <th className="px-6 py-4 text-left">
-                            Area
+                            Email
+                        </th>
+
+                        <th className="px-6 py-4 text-center">
+                            Type
                         </th>
 
                         <th className="px-6 py-4 text-center">
@@ -39,7 +44,11 @@ export default function CustomersTable({
                         </th>
 
                         <th className="px-6 py-4 text-right">
-                            Total Spending
+                            Total Spent
+                        </th>
+
+                        <th className="px-6 py-4 text-center">
+                            Last Order
                         </th>
 
                         <th className="px-6 py-4 text-center">
@@ -60,13 +69,25 @@ export default function CustomersTable({
                             0
                         );
 
+                        const lastOrder =
+                            customer.orders.length > 0
+                                ? customer.orders[0]
+                                : null;
+
                         return (
                             <tr
                                 key={customer.id}
                                 className="border-b hover:bg-gray-50"
                             >
-                                <td className="px-6 py-5 font-semibold">
-                                    {customer.fullName}
+                                <td className="px-6 py-5">
+                                    <div className="font-semibold">
+                                        {customer.fullName}
+                                    </div>
+
+                                    <div className="text-sm text-gray-500"> 
+                                        {customer.area}
+                                    </div>
+                                    
                                 </td>
 
                                 <td className="px-6 py-5">
@@ -74,7 +95,19 @@ export default function CustomersTable({
                                 </td>
 
                                 <td className="px-6 py-5">
-                                    {customer.area}
+                                    {customer.email ?? "-"}
+                                </td>
+
+                                <td className="px-6 py-5 text-center">
+                                    {customer.user ? (
+                                        <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
+                                            Registered
+                                        </span>
+                                    ) : (
+                                        <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700">
+                                            Guest
+                                        </span>
+                                    )}
                                 </td>
 
                                 <td className="px-6 py-5 text-center">
@@ -86,13 +119,23 @@ export default function CustomersTable({
                                 </td>
 
                                 <td className="px-6 py-5 text-center">
-                                    {customer.createdAt.toLocaleDateString()}
+                                    {lastOrder
+                                        ? new Date(
+                                            lastOrder.createdAt
+                                        ).toLocaleDateString()
+                                        : "-"}
+                                </td>
+
+                                <td className="px-6 py-5 text-center">
+                                    {new Date(
+                                        customer.createdAt
+                                    ).toLocaleDateString()}
                                 </td>
 
                                 <td className="px-6 py-5 text-center">
                                     <Link
                                         href={`/admin/customers/${customer.id}`}
-                                        className="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+                                        className="rounded-lg bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
                                     >
                                         View
                                     </Link>

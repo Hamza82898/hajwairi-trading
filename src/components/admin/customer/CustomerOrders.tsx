@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { Prisma } from "@prisma/client";
+import OrderStatusBadge from "../order/OrderStatusBadge";
+
+
 
 type CustomerType = Prisma.CustomerGetPayload<{
     include: {
@@ -23,80 +26,104 @@ export default function CustomerOrders({
     customer,
 }: Props) {
     return (
-        <div className="rounded-xl bg-white p-6 shadow">
-            <h2 className="mb-6 text-2xl font-semibold">
-                Order History
-            </h2>
+        <div className="rounded-2xl bg-white p-6 shadow">
+            <div className="mb-6 flex items-center justify-between">
+
+                <h2 className="text-2xl font-bold">
+                    Order History
+                </h2>
+
+                <span className="rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700">
+                    {customer.orders.length} Orders
+                </span>
+            </div>
 
             {customer.orders.length === 0 ? (
-                <p className="text-gray-500">
-                    No orders found.
-                </p>
+                <div className="rounded-xl border border-dashed p-10 text-center">
+                    <p className="text-gray-500">
+                        This customer has not placed any orders yet.
+                    </p>
+                </div>
             ) : (
-                <table className="min-w-full">
+                <div className="overflow-x-auto">
 
-                    <thead>
-                        <tr className="border-b text-left">
+                    <table className="min-w-full">
 
-                            <th className="pb-4">
-                                Order
-                            </th>
+                        <thead className="border-b bg-gray-500">
+                            <tr>
 
-                            <th className="pb-4">
-                                Date
-                            </th>
+                                <th className="px-4 py-3 text-left">
+                                    Order #
+                                </th>
 
-                            <th className="pb-4">
-                                Status
-                            </th>
+                                <th className="px-4 py-3 text-left">
+                                    Date
+                                </th>
 
-                            <th className="pb-4 text-right">
-                                Total
-                            </th>
+                                <th className="px-4 py-3 text-center">
+                                    Items
+                                </th>
 
-                            <th className="pb-4 text-center">
-                                Action
-                            </th>
+                                <th className="px-4 py-3 text-right">
+                                    Total
+                                </th>
 
-                        </tr>
-                    </thead>
+                                <th className="px-4 py-3 text-center">
+                                    Status
+                                </th>
 
-                    <tbody>
-                        {customer.orders.map((order) => (
-                            <tr
-                                key={order.id}
-                                className="border-b"
-                            >
-                                <td className="py-4">
-                                    {order.orderNumber}
-                                </td>
-
-                                <td className="py-4">
-                                    {order.createdAt.toLocaleDateString()}
-                                </td>
-
-                                <td className="py-4">
-                                    {order.status}
-                                </td>
-
-                                <td className="py-4 text-right">
-                                    BD {order.total.toFixed(2)}
-                                </td>
-
-                                <td className="py-4 text-center">
-                                    <Link
-                                        href={`/admin/orders/${order.id}`}
-                                        className="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700"
-                                    >
-                                        View
-                                    </Link>
-                                </td>
+                                <th className="px-4 py-3 text-center">
+                                    Action
+                                </th>
 
                             </tr>
-                        ))}
-                    </tbody>
+                        </thead>
 
-                </table>
+                        <tbody>
+                            {customer.orders.map((order) => (
+                                <tr
+                                    key={order.id}
+                                    className="border-b hover:bg-gray-50"
+                                >
+                                    <td className="px-4 py-4 font-semibold">
+                                        #{order.orderNumber}
+                                    </td>
+
+                                    <td className="px-4 py-4">
+                                        {new Date(
+                                            order.createdAt
+                                        ).toLocaleDateString()}
+                                    </td>
+
+                                    <td className="px-4 py-4 text-center">
+                                        {order.items.length}
+                                    </td>
+
+                                    <td className="px-4 py-4 text-right font-semibold">
+                                        BD {order.total.toFixed(2)}
+                                    </td>
+
+                                    <td className="px-4 py-4 text-center">
+                                        <OrderStatusBadge 
+                                            status={order.status}
+                                        />
+                                    </td>
+
+                                    <td className="px-4 py-4 text-center">
+                                        <Link
+                                            href={`/admin/orders/${order.id}`}
+                                            className="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white transition hover:bg-blue-700"
+                                        >
+                                            View
+                                        </Link>
+                                    </td>
+
+                                </tr>
+                            ))}
+                        </tbody>
+
+                    </table>
+                </div>
             )}
 
         </div>

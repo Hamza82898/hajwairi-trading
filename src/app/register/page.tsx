@@ -2,16 +2,17 @@
 
 import Link from "next/link";
 import { useActionState } from "react";
-import { loginAction } from "@/actions/auth";
+import { registerAction } from "@/actions/register";
+
 
 const initialState = {
     success: false,
     message: "",
 };
 
-export default function LoginPage() {
+export default function RegisterPage() {
     const [state, formAction, pending] = useActionState(
-        loginAction,
+        registerAction,
         initialState
     );
 
@@ -19,11 +20,11 @@ export default function LoginPage() {
         <main className="mx-auto flex min-h-[85vh] max-w-lg items-center justify-center px-6">
             <div className="w-full rounded-2xl border bg-white p-8 shadow">
                 <h1 className="text-center text-4xl font-bold">
-                    Welcome Back
+                    Create Account
                 </h1>
 
                 <p className="mt-2 text-center text-gray-500">
-                    Login to your account.
+                    Register to continue shopping.
                 </p>
 
                 {state.message && (
@@ -42,6 +43,19 @@ export default function LoginPage() {
                     action={formAction}
                     className="mt-8 space-y-5"
                 >
+                    <div>
+                        <label className="mb-2 block text-sm font-medium">
+                            Full Name
+                        </label>
+
+                        <input 
+                            type="text"
+                            name="name"
+                            required
+                            className="w-full rounded-xl border p-3 outline-none focus:border-green-600"
+                        />
+                    </div>
+
                     <div>
                         <label className="mb-2 block text-sm font-medium">
                             Email
@@ -68,19 +82,17 @@ export default function LoginPage() {
                         />
                     </div>
 
-                    <div className="flex items-center justify-between">
-                        <label className="flex items-center gap-2 text-sm">
-                            <input type="checkbox" />
-                            Remember Me
+                    <div>
+                        <label className="mb-2 block text-sm font-medium">
+                            Confirm Password
                         </label>
 
-                        <button
-                            type="button"
-                            className="text-sm text-green-700 hover:underline"
-                        >
-                            Forgot Password
-                        </button>
-
+                        <input 
+                            type="password"
+                            name="confirmPassword"
+                            required
+                            className="w-full rounded-xl border p-3 outline-none focus:border-green-600"
+                        />
                     </div>
 
                     <button
@@ -89,20 +101,20 @@ export default function LoginPage() {
                         className="w-full rounded-xl bg-green-700 py-3 font-semibold text-white hover:bg-green-800 disabled:opacity-50"
                     >
                         {pending
-                            ? "Signing In..."
-                            : "Login"}
+                            ? "Creating Account..."
+                            : "Create Acoount"}
                     </button>
 
                 </form>
 
                 <p className="mt-6 text-center text-sm text-gray-600">
-                    Don't have an account?
+                    Already have an account?
 
                     <Link
-                        href="/register"
+                        href="/login"
                         className="ml-2 font-semibold text-green-700 hover:underline"
                     >
-                        Register
+                        Login
                     </Link>
                 </p>
             </div>
