@@ -13,12 +13,26 @@ export default async function AuthButtons() {
     }
 
     return (
-        <Link
-            href="/login"
-            className="hidden items-center gap-2 rounded-full bg-green-900 px-6 py-3 font-semibold text-white transition hover:bg-green-800 md:flex"
-        >
-            <User size={18} />
-            Login
-        </Link>
+        <>
+            {/*Desktop*/}
+
+            <Link
+                href="/login"
+                className="hidden items-center gap-2 rounded-full bg-green-900 px-6 py-3 font-semibold text-white transition hover:bg-green-800 lg:flex"
+            >
+                <User size={18} />
+                Login
+            </Link>
+
+            {/*Mobile*/}
+
+            <Link
+                href="/login"
+                className="flex items-center justify-center gap-2 rounded-xl bg-green-900 px-5 py-3 font-semibold text-white transition hover:bg-green-800 lg:hidden"
+            >
+                <User size={18} />
+                Login
+            </Link>
+        </>
     );
 }

@@ -1,18 +1,20 @@
+import HeroBadge from "./HeroBadge";
 import HeroButtons from "./HeroButtons";
 import HeroFeatures from "./HeroFeatures";
-import HeroBadge from "./HeroBadge";
 import HeroStats from "./HeroStats";
-
 
 export default function HeroContent() {
     return (
-        <div className="space-y-8">
+        <div className="space-y-6 text-center lg:space-y-8 lg:text-left">
 
-            
             <HeroBadge />
-            {/*Heading*/}
-            <div className="space-y-5">
-                <h1 className="text-5xl font-black leading-tight text-gray-900 lg:text-7xl ">
+
+            {/* Heading */}
+
+            <div className="space-y-4 lg:space-y-5">
+
+                <h1 className="text-4xl font-black leading-tight text-gray-900 sm:text-5xl lg:text-6xl xl:text-7xl">
+
                     Fresh
 
                     <span className="block text-green-900">
@@ -20,14 +22,18 @@ export default function HeroContent() {
                     </span>
 
                     <span className="block">
+
                         Delivered
-                        <span className="ml-3 text-orange-500">
+
+                        <span className="block text-orange-500 sm:inline sm:ml-3">
                             Across Bahrain
                         </span>
+
                     </span>
+
                 </h1>
 
-                <p className="max-w-2xl text-lg leading-8 text-gray-600">
+                <p className="mx-auto max-w-2xl text-base leading-7 text-gray-600 sm:text-lg sm:leading-8 lg:mx-0">
 
                     Discover premium Pakistani fruits, fresh vegetables,
                     beverages, snacks and daily grocery essentials from
@@ -42,8 +48,8 @@ export default function HeroContent() {
 
             <HeroFeatures />
 
-            <HeroStats />            
-            
+            <HeroStats />
+
         </div>
     );
 }

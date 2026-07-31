@@ -21,7 +21,7 @@ const features = [
 
 export default function HeroFeatures() {
     return (
-        <div className="flex flex-wrap gap-6">
+        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4 lg:gap-6">
 
             {features.map((feature) => {
                 const Icon = feature.icon;
@@ -29,7 +29,7 @@ export default function HeroFeatures() {
                 return (
                     <div
                         key={feature.title}
-                        className="flex items-center gap-3 rounded-full bg-white px-5 py-3 shadow-sm"
+                        className="flex items-center gap-3 rounded-full bg-white px-4 py-3 shadow-sm sm:px-5"
                     >
                         <div className="rounded-full bg-green-100 p-2">
 
@@ -40,7 +40,7 @@ export default function HeroFeatures() {
 
                         </div>
 
-                        <span className="font-medium text-gray-700">
+                        <span className="text-sm font-medium text-gray-700 sm:text-base">
                             {feature.title}
                         </span>
                     </div>

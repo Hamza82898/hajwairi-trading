@@ -15,14 +15,14 @@ const stats = [
 
 export default function HeroStats() {
     return (
-        <div className="grid grid-cols-3 gap-5 pt-4">
+        <div className="grid grid-cols-1 gap-4 pt-4 sm:grid-cols-3 sm:gap-5">
 
             {stats.map((item) => (
                 <div
                     key={item.label}
-                    className="rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                    className="rounded-2xl border border-gray-100 bg-white p-5 text-center shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-6"
                 >
-                    <h3 className="text-3xl font-black text-green-900">
+                    <h3 className="text-2xl font-black text-green-900 sm:text-3xl">
                         {item.number}
                     </h3>
 

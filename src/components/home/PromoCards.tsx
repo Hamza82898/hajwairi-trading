@@ -48,10 +48,11 @@ const cards = [
 
 export default function PromoCards() {
     return (
-        <section className="pb-20">
-            <div className="mx-auto max-w-7xl px-6">
+        <section className="pb-12 sm:pb-16 lg:pb-20">
 
-                <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:gap-6 xl:grid-cols-4">
 
                     {cards.map((card) => {
                         const Icon = card.icon;
@@ -60,19 +61,17 @@ export default function PromoCards() {
                             <Link
                                 key={card.title}
                                 href="/shop"
-                                className="group overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+                                className="group overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl lg:rounded-3xl lg:hover:-translate-y-2"
                             >
 
-                                <div
-                                    className={`bg-gradient-to-br ${card.bg} p-8`}
-                                >
+                                <div className={`h-full bg-gradient-to-br ${card.bg} p-5 sm:p-6 lg:p-8`}>
 
                                     <div className="flex items-center justify-between">
 
                                         <div
-                                            className={`rounded-2xl bg-white p-4 shadow-md ${card.iconColor}`}
+                                            className={`rounded-2xl bg-white p-3 shadow-md sm:p-4 ${card.iconColor}`}
                                         >
-                                            <Icon size={34} />
+                                            <Icon size={28} className="sm:h-[34px] sm:w-[34px]" />
                                         </div>
 
                                         <ArrowRight
@@ -82,22 +81,22 @@ export default function PromoCards() {
 
                                     </div>
 
-                                    <h3 className="mt-8 text-2xl font-bold text-gray-900">
+                                    <h3 className="mt-6 text-xl font-bold text-gray-900 sm:mt-8 sm:text-2xl">
                                         {card.title}
                                     </h3>
 
-                                    <p className="mt-2 text-gray-500">
+                                    <p className="mt-2 text-sm text-gray-500 sm:text-base">
                                         {card.subtitle}
                                     </p>
 
-                                    <div className="mt-8">
+                                    <div className="mt-6 sm:mt-8">
 
-                                        <p className="text-3xl font-black text-green-900">
+                                        <p className="text-2xl font-black text-green-900 sm:text-3xl">
                                             {card.price}
                                         </p>
 
                                         {card.oldPrice && (
-                                            <p className="text-gray-400 line-through">
+                                            <p className="text-sm text-gray-400 line-through">
                                                 {card.oldPrice}
                                             </p>
                                         )}
@@ -113,6 +112,7 @@ export default function PromoCards() {
                 </div>
 
             </div>
+
         </section>
     );
 }

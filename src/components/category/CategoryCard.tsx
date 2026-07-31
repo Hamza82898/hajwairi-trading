@@ -5,8 +5,6 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Category } from "@prisma/client";
 
-
-
 interface Props {
     category: Category;
 }
@@ -17,44 +15,50 @@ export default function CategoryCard({
     return (
         <Link
             href={`/shop?category=${category.slug}`}
-            className="group overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-green-200 hover:shadow-2xl"
+            className="group overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-green-200 hover:shadow-xl lg:rounded-3xl lg:hover:-translate-y-2"
         >
-            <div className="relative h-56 overflow-hidden bg-gradient-to-br from-green-50 to-orange-50">
+            {/* Image */}
 
-                <Image 
+            <div className="relative h-36 overflow-hidden bg-gradient-to-br from-green-50 to-orange-50 sm:h-44 lg:h-56">
+
+                <Image
                     src={category.image || "/placeholder.png"}
                     alt={category.name}
                     fill
-                    className="object-contain p-6 transition duration-500 group-hover:scale-110"
+                    className="object-contain p-3 transition duration-500 group-hover:scale-110 sm:p-5 lg:p-6"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent opacity-0 transition group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 transition group-hover:opacity-100" />
 
             </div>
 
-            <div className="flex items-center justify-between p-6">
+            {/* Content */}
+
+            <div className="flex items-center justify-between p-3 sm:p-4 lg:p-6">
 
                 <div>
-                    <h3 className="text-xl font-bold text-gray-900 transition group-hover:text-green-900">
+
+                    <h3 className="text-base font-bold text-gray-900 transition group-hover:text-green-900 sm:text-lg lg:text-xl">
                         {category.name}
                     </h3>
 
-                    <p className="mt-1 text-sm text-gray-500">
+                    <p className="mt-1 text-xs text-gray-500 sm:text-sm">
                         Explore Collection
                     </p>
+
                 </div>
 
-                <div className="rounded-full bg-green-100 p-3 transition-all duration-300 group-hover:bg-green-900">
+                <div className="rounded-full bg-green-100 p-2 transition-all duration-300 group-hover:bg-green-900 sm:p-3">
 
-                    <ArrowRight 
-                        size={18}
-                        className="text-green-900 transition group-hover:translate-x-1 group-hover:text-white"
+                    <ArrowRight
+                        size={16}
+                        className="text-green-900 transition group-hover:translate-x-1 group-hover:text-white sm:h-[18px] sm:w-[18px]"
                     />
 
                 </div>
 
             </div>
-        
+
         </Link>
     );
 }

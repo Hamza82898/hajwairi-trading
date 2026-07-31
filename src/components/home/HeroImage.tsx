@@ -11,13 +11,13 @@ export default function HeroImage() {
 
             {/* Background Glow */}
 
-            <div className="absolute inset-0 rounded-[50px] bg-gradient-to-br from-green-100 via-white to-orange-100 blur-3xl" />
+            <div className="absolute inset-0 rounded-[40px] bg-gradient-to-br from-green-100 via-white to-orange-100 blur-3xl" />
 
             {/* Main Card */}
 
-            <div className="relative flex h-[620px] w-full items-center justify-center rounded-[40px] bg-gradient-to-br from-green-50 via-white to-orange-50 shadow-2xl">
+            <div className="relative flex min-h-[380px] w-full items-center justify-center overflow-hidden rounded-[30px] bg-gradient-to-br from-green-50 via-white to-orange-50 p-6 shadow-2xl sm:min-h-[500px] lg:h-[620px] lg:rounded-[40px] lg:p-0">
 
-                {/* Main Fruits Image */}
+                {/* Main Image */}
 
                 <Image
                     src="/products/fruits/hero-fruits.png"
@@ -25,46 +25,46 @@ export default function HeroImage() {
                     width={900}
                     height={900}
                     priority
-                    className="relative z-10 w-[95%] max-w-[650px] drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] transition duration-500 hover:scale-105"
+                    className="relative z-10 w-full max-w-[260px] transition duration-500 hover:scale-105 sm:max-w-[420px] lg:max-w-[650px]"
                 />
 
-                {/* Offer Badge */}
+                {/* Offer */}
 
-                <div className="absolute right-6 top-8 rounded-3xl bg-white p-5 shadow-xl">
+                <div className="absolute right-3 top-3 rounded-2xl bg-white p-3 shadow-xl sm:right-6 sm:top-6 sm:p-5">
 
                     <div className="flex items-center gap-2">
 
                         <Percent
-                            size={18}
+                            size={16}
                             className="text-orange-500"
                         />
 
-                        <span className="text-xs font-bold uppercase tracking-wider text-orange-500">
+                        <span className="hidden text-xs font-bold uppercase tracking-wider text-orange-500 sm:block">
                             Limited Offer
                         </span>
 
                     </div>
 
-                    <h2 className="mt-2 text-4xl font-black text-orange-500">
+                    <h2 className="mt-1 text-2xl font-black text-orange-500 sm:mt-2 sm:text-4xl">
                         35%
                     </h2>
 
-                    <p className="font-semibold text-gray-600">
+                    <p className="text-xs font-semibold text-gray-600 sm:text-base">
                         OFF
                     </p>
 
                 </div>
 
-                {/* Free Delivery */}
+                {/* Delivery */}
 
-                <div className="absolute left-6 top-24 rounded-2xl bg-white px-5 py-4 shadow-xl">
+                <div className="absolute left-3 top-16 rounded-xl bg-white px-3 py-2 shadow-xl sm:left-6 sm:top-24 sm:rounded-2xl sm:px-5 sm:py-4">
 
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 sm:gap-3">
 
-                        <div className="rounded-full bg-green-100 p-3">
+                        <div className="rounded-full bg-green-100 p-2 sm:p-3">
 
                             <Truck
-                                size={22}
+                                size={18}
                                 className="text-green-900"
                             />
 
@@ -72,11 +72,11 @@ export default function HeroImage() {
 
                         <div>
 
-                            <p className="text-xs text-gray-500">
+                            <p className="hidden text-xs text-gray-500 sm:block">
                                 Free Delivery
                             </p>
 
-                            <h3 className="font-bold text-green-900">
+                            <h3 className="text-xs font-bold text-green-900 sm:text-base">
                                 Selected Areas
                             </h3>
 
@@ -88,31 +88,31 @@ export default function HeroImage() {
 
                 {/* Rating */}
 
-                <div className="absolute bottom-8 right-10 rounded-2xl bg-white px-6 py-4 shadow-xl">
+                <div className="absolute bottom-4 right-3 rounded-xl bg-white px-3 py-2 shadow-xl sm:bottom-8 sm:right-8 sm:rounded-2xl sm:px-6 sm:py-4">
 
                     <div className="flex items-center gap-2">
 
                         <Star
-                            size={20}
+                            size={18}
                             fill="#FACC15"
                             className="text-yellow-400"
                         />
 
                         <span className="font-bold">
-                            4.9/5
+                            4.9
                         </span>
 
                     </div>
 
-                    <p className="mt-1 text-sm text-gray-500">
+                    <p className="hidden text-sm text-gray-500 sm:block">
                         Customer Rating
                     </p>
 
                 </div>
 
-                {/* Premium Badge */}
+                {/* Premium */}
 
-                <div className="absolute bottom-10 left-8 rounded-full bg-green-900 px-6 py-3 text-white shadow-xl">
+                <div className="absolute bottom-4 left-3 rounded-full bg-green-900 px-3 py-2 text-xs font-medium text-white shadow-xl sm:bottom-8 sm:left-8 sm:px-6 sm:py-3 sm:text-base">
 
                     Premium Fresh Fruits
 
