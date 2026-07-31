@@ -1,82 +1,60 @@
 import Image from "next/image";
-import {
-    Star,
-    Truck,
-    Percent,
-} from "lucide-react";
+import { Star, Truck, Percent } from "lucide-react";
 
 export default function HeroImage() {
     return (
-        <div className="relative flex items-center justify-center">
+        <div className="relative w-full">
 
             {/* Background Glow */}
-
             <div className="absolute inset-0 rounded-[40px] bg-gradient-to-br from-green-100 via-white to-orange-100 blur-3xl" />
 
-            {/* Main Card */}
+            {/* Hero Card */}
+            <div className="relative h-[420px] sm:h-[520px] md:h-[620px] lg:h-[720px] xl:h-[760px] overflow-hidden rounded-[40px] bg-gradient-to-br from-green-50 via-white to-orange-50 shadow-2xl">
 
-            <div className="relative flex min-h-[380px] w-full items-center justify-center overflow-hidden rounded-[30px] bg-gradient-to-br from-green-50 via-white to-orange-50 p-6 shadow-2xl sm:min-h-[500px] lg:h-[620px] lg:rounded-[40px] lg:p-0">
+                {/* Hero Image */}
+                <div className="absolute inset-0 flex items-center justify-center">
 
-                {/* Main Image */}
-
-                <Image
-                    src="/products/fruits/hero-fruits.png"
-                    alt="Fresh Fruits"
-                    width={900}
-                    height={900}
-                    priority
-                    className="relative z-10 w-full max-w-[260px] transition duration-500 hover:scale-105 sm:max-w-[420px] lg:max-w-[650px]"
-                />
-
-                {/* Offer */}
-
-                <div className="absolute right-3 top-3 rounded-2xl bg-white p-3 shadow-xl sm:right-6 sm:top-6 sm:p-5">
-
-                    <div className="flex items-center gap-2">
-
-                        <Percent
-                            size={16}
-                            className="text-orange-500"
-                        />
-
-                        <span className="hidden text-xs font-bold uppercase tracking-wider text-orange-500 sm:block">
-                            Limited Offer
-                        </span>
-
-                    </div>
-
-                    <h2 className="mt-1 text-2xl font-black text-orange-500 sm:mt-2 sm:text-4xl">
-                        35%
-                    </h2>
-
-                    <p className="text-xs font-semibold text-gray-600 sm:text-base">
-                        OFF
-                    </p>
+                    <Image
+                        src="/products/fruits/hero-fruits.png"
+                        alt="Fresh Fruits"
+                        fill
+                        priority
+                        className="
+                            object-contain
+                            object-bottom
+                            scale-[0.9]
+                            sm:scale-100
+                            md:scale-105
+                            lg:scale-110
+                            xl:scale-[1.15]
+                            transition-all
+                            duration-500
+                            hover:scale-[1.18]
+                            drop-shadow-[0_35px_35px_rgba(0,0,0,0.18)]
+                        "
+                    />
 
                 </div>
 
-                {/* Delivery */}
+                {/* Delivery Card */}
 
-                <div className="absolute left-3 top-16 rounded-xl bg-white px-3 py-2 shadow-xl sm:left-6 sm:top-24 sm:rounded-2xl sm:px-5 sm:py-4">
+                <div className="absolute top-4 left-4 sm:top-8 sm:left-8 z-30 rounded-2xl bg-white/95 backdrop-blur-md shadow-xl px-3 py-3 sm:px-6 sm:py-5">
 
-                    <div className="flex items-center gap-2 sm:gap-3">
+                    <div className="flex items-center gap-3">
 
-                        <div className="rounded-full bg-green-100 p-2 sm:p-3">
+                        <div className="rounded-full bg-green-100 p-3">
 
-                            <Truck
-                                size={18}
-                                className="text-green-900"
-                            />
+                            <Truck className="h-5 w-5 text-green-700" />
 
                         </div>
 
                         <div>
 
-                            <p className="hidden text-xs text-gray-500 sm:block">
+                            <p className="text-[11px] sm:text-sm text-gray-500">
                                 Free Delivery
                             </p>
 
-                            <h3 className="text-xs font-bold text-green-900 sm:text-base">
+                            <h3 className="text-sm sm:text-lg font-bold text-green-900">
                                 Selected Areas
                             </h3>
 
@@ -86,35 +64,58 @@ export default function HeroImage() {
 
                 </div>
 
-                {/* Rating */}
+                {/* Offer Card */}
 
-                <div className="absolute bottom-4 right-3 rounded-xl bg-white px-3 py-2 shadow-xl sm:bottom-8 sm:right-8 sm:rounded-2xl sm:px-6 sm:py-4">
+                <div className="absolute top-4 right-4 sm:top-8 sm:right-8 z-30 rounded-2xl bg-white/95 backdrop-blur-md shadow-xl px-4 py-4 sm:px-7 sm:py-6">
+
+                    <div className="mb-2 flex items-center gap-2">
+
+                        <Percent className="h-4 w-4 text-orange-500" />
+
+                        <span className="text-[11px] sm:text-xs uppercase tracking-wider font-bold text-orange-500">
+                            Limited Offer
+                        </span>
+
+                    </div>
+
+                    <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-orange-500">
+                        35%
+                    </h2>
+
+                    <p className="text-base sm:text-lg font-bold text-gray-700">
+                        OFF
+                    </p>
+
+                </div>
+
+                {/* Premium Button */}
+
+                <div className="absolute bottom-4 left-4 sm:bottom-8 sm:left-8 z-30 rounded-full bg-green-900 px-5 py-3 sm:px-10 sm:py-4 text-sm sm:text-lg font-semibold text-white shadow-xl">
+
+                    Premium Fresh Fruits
+
+                </div>
+
+                {/* Rating Card */}
+
+                <div className="absolute bottom-4 right-4 sm:bottom-8 sm:right-8 z-30 rounded-2xl bg-white/95 backdrop-blur-md shadow-xl px-4 py-3 sm:px-6 sm:py-5">
 
                     <div className="flex items-center gap-2">
 
                         <Star
-                            size={18}
+                            className="h-5 w-5 text-yellow-400"
                             fill="#FACC15"
-                            className="text-yellow-400"
                         />
 
-                        <span className="font-bold">
+                        <span className="text-xl sm:text-3xl font-bold">
                             4.9
                         </span>
 
                     </div>
 
-                    <p className="hidden text-sm text-gray-500 sm:block">
+                    <p className="mt-1 text-xs sm:text-base text-gray-500">
                         Customer Rating
                     </p>
-
-                </div>
-
-                {/* Premium */}
-
-                <div className="absolute bottom-4 left-3 rounded-full bg-green-900 px-3 py-2 text-xs font-medium text-white shadow-xl sm:bottom-8 sm:left-8 sm:px-6 sm:py-3 sm:text-base">
-
-                    Premium Fresh Fruits
 
                 </div>
 
