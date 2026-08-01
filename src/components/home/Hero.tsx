@@ -3,7 +3,7 @@ import HeroImage from "./HeroImage";
 
 export default function Hero() {
     return (
-        <section className="relative overflow-hidden bg-gradient-to-br from-white via-green-50 to-orange-50">
+        <section className="relative overflow-hidden bg-gradient-to-br from-white via-green-50 to-orange-50 py-4 sm:py-6 lg:py-0">
 
             {/* Background Blur */}
 
@@ -13,7 +13,7 @@ export default function Hero() {
 
             {/* Main Content */}
 
-            <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-2 lg:gap-20 lg:px-8 lg:py-24">
+            <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-5 py-12 sm:px-6 sm:py-16 lg:grid-cols-2 lg:gap-20 lg:px-8 lg:py-24">
 
                 <HeroContent />
 

@@ -43,7 +43,7 @@ export default function ProductActions({
                 onDecrease={decrease}
             />
 
-            <div className="mt-6 flex gap-4">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:gap-4">
 
                 <button 
                     onClick = {() =>
@@ -57,7 +57,7 @@ export default function ProductActions({
                             quantity
                         )
                     }
-                    className="flex-1 rounded-xl bg-green-700 px-6 py-4 font-semibold text-white transition hover:bg-green-800"
+                    className="flex-1 rounded-xl bg-green-700 px-5 py-3.5 text-sm font-semibold text-white transition hover:bg-green-800 sm:px-6 sm:py-4 sm:text-base"
                 >
                     <div className="flex items-center justify-center gap-2">
                         <ShoppingCart size={20} />
@@ -65,7 +65,7 @@ export default function ProductActions({
                     </div>
                 </button>
 
-                <button className="rounded-xl border p-4 transition hover:bg-gray-100">
+                <button className="flex items-center justify-center rounded-xl border p-3 transition hover:bg-gray-100 sm:p-4">
                     <Heart size={22} />
                 </button>
 

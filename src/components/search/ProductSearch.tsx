@@ -1,7 +1,6 @@
-"use client"
+"use client";
 
 import { Search } from "lucide-react";
-
 
 interface ProductSearchProps {
     value: string;
@@ -13,19 +12,38 @@ export default function ProductSearch({
     onChange,
 }: ProductSearchProps) {
     return (
-        <div className="relative">
+        <div className="relative w-full">
 
-            <Search 
-                size={20}
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+            <Search
+                className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400"
             />
 
-            <input 
+            <input
                 type="text"
-                placeholder="Search Products"
+                placeholder="Search products..."
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
-                className="w-full rounded-xl border py-3 pl-12 pr-4 outline-none focus:border-green-700"
+                className="
+                    w-full
+                    rounded-xl
+                    border
+                    border-gray-300
+                    bg-white
+                    py-3
+                    pl-12
+                    pr-4
+                    text-sm
+                    text-gray-700
+                    placeholder:text-gray-400
+                    outline-none
+                    transition-all
+                    duration-200
+                    focus:border-green-700
+                    focus:ring-2
+                    focus:ring-green-200
+                    sm:py-3.5
+                    sm:text-base
+                "
             />
 
         </div>

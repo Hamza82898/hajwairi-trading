@@ -16,69 +16,110 @@ export default function LoginPage() {
     );
 
     return (
-        <main className="mx-auto flex min-h-[85vh] max-w-lg items-center justify-center px-6">
-            <div className="w-full rounded-2xl border bg-white p-8 shadow">
-                <h1 className="text-center text-4xl font-bold">
+        <main className="mx-auto flex min-h-[85vh] max-w-md items-center justify-center px-4 py-10 sm:px-6">
+
+            <div className="w-full rounded-2xl border bg-white p-6 shadow-lg sm:p-8">
+
+                {/* Heading */}
+
+                <h1 className="text-center text-3xl font-bold text-gray-900 sm:text-4xl">
                     Welcome Back
                 </h1>
 
-                <p className="mt-2 text-center text-gray-500">
+                <p className="mt-2 text-center text-sm text-gray-500 sm:text-base">
                     Login to your account.
                 </p>
 
+                {/* Message */}
+
                 {state.message && (
                     <div
-                        className={`mt-6 rounded-lg p-4 text-sm ${
+                        className={`mt-6 rounded-xl p-4 text-sm ${
                             state.success
-                                ? "bg-green-100 text-green-700"
-                                : "bg-red-100 text-red-700" 
+                                ? "border border-green-200 bg-green-50 text-green-700"
+                                : "border border-red-200 bg-red-50 text-red-700"
                         }`}
                     >
                         {state.message}
                     </div>
                 )}
 
+                {/* Form */}
+
                 <form
                     action={formAction}
                     className="mt-8 space-y-5"
                 >
                     <div>
-                        <label className="mb-2 block text-sm font-medium">
+                        <label className="mb-2 block text-sm font-medium text-gray-700">
                             Email
                         </label>
 
-                        <input 
+                        <input
                             type="email"
                             name="email"
                             required
-                            className="w-full rounded-xl border p-3 outline-none focus:border-green-600"
+                            placeholder="Enter your email"
+                            className="
+                                w-full
+                                rounded-xl
+                                border
+                                border-gray-300
+                                px-4
+                                py-3
+                                text-sm
+                                outline-none
+                                transition-all
+                                focus:border-green-700
+                                focus:ring-2
+                                focus:ring-green-200
+                                sm:text-base
+                            "
                         />
                     </div>
 
                     <div>
-                        <label className="mb-2 block text-sm font-medium">
+                        <label className="mb-2 block text-sm font-medium text-gray-700">
                             Password
                         </label>
 
-                        <input 
+                        <input
                             type="password"
                             name="password"
                             required
-                            className="w-full rounded-xl border p-3 outline-none focus:border-green-600"
+                            placeholder="********"
+                            className="
+                                w-full
+                                rounded-xl
+                                border
+                                border-gray-300
+                                px-4
+                                py-3
+                                text-sm
+                                outline-none
+                                transition-all
+                                focus:border-green-700
+                                focus:ring-2
+                                focus:ring-green-200
+                                sm:text-base
+                            "
                         />
                     </div>
 
-                    <div className="flex items-center justify-between">
-                        <label className="flex items-center gap-2 text-sm">
+                    {/* Options */}
+
+                    <div className="flex flex-col gap-3 text-sm sm:flex-row sm:items-center sm:justify-between">
+
+                        <label className="flex items-center gap-2">
                             <input type="checkbox" />
                             Remember Me
                         </label>
 
                         <button
                             type="button"
-                            className="text-sm text-green-700 hover:underline"
+                            className="text-left font-medium text-green-700 hover:underline sm:text-right"
                         >
-                            Forgot Password
+                            Forgot Password?
                         </button>
 
                     </div>
@@ -86,14 +127,25 @@ export default function LoginPage() {
                     <button
                         type="submit"
                         disabled={pending}
-                        className="w-full rounded-xl bg-green-700 py-3 font-semibold text-white hover:bg-green-800 disabled:opacity-50"
+                        className="
+                            w-full
+                            rounded-xl
+                            bg-green-700
+                            py-3
+                            font-semibold
+                            text-white
+                            transition
+                            hover:bg-green-800
+                            disabled:cursor-not-allowed
+                            disabled:opacity-60
+                        "
                     >
-                        {pending
-                            ? "Signing In..."
-                            : "Login"}
+                        {pending ? "Signing In..." : "Login"}
                     </button>
 
                 </form>
+
+                {/* Register */}
 
                 <p className="mt-6 text-center text-sm text-gray-600">
                     Don't have an account?
@@ -105,6 +157,7 @@ export default function LoginPage() {
                         Register
                     </Link>
                 </p>
+
             </div>
 
         </main>

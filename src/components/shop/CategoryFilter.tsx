@@ -1,6 +1,5 @@
 "use client"
 
-import { categories } from "@/data/categories";
 
 interface CategoryFilterProps {
     categories: {
@@ -18,36 +17,39 @@ export default function CategoryFilter({
     onSelect,
 }: CategoryFilterProps) {
     return (
-        <div className="rounded-2xl border bg-white p-6 shadow-sm">
-            <h2 className="mb-5 text-xl font-semibold">
+        <div className="rounded-2xl border bg-white p-5 shadow-sm lg:p-6">
+            <h2 className="mb-5 text-lg font-semibold lg:text-xl">
                 Categories
             </h2>
 
-            <button 
-                onClick={() => onSelect("")}
-                className={`mb-3 block w-full rounded-lg px-4 py-2 text-left transition ${
-                    selected === ""
-                    ? "bg-green-700 text-white"
-                    : "hover:bg-gray-100"
-                }`}
-            >
-                All Products
-            </button>
+            <div className="space-y-3">
 
-            {categories.map((category) => (
-
-                <button
-                    key = {category.id}
-                    onClick = {() => onSelect(category.slug)}
-                    className={`mb-3 block w-full rounded-lg px-4 py-2 text-left transition ${
-                        selected === category.slug
+                <button 
+                    onClick={() => onSelect("")}
+                    className={`w-full rounded-xl px-4 py-3 text-left font-medium transition ${
+                        selected === ""
                         ? "bg-green-700 text-white"
-                        : "hover:bg-gray-100"
+                        : "border border-gray-200 hover:bg-gray-100"
                     }`}
                 >
-                    {category.name}
+                    All Products
                 </button>
-            ))}
+
+                {categories.map((category) => (
+
+                    <button
+                        key = {category.id}
+                        onClick = {() => onSelect(category.slug)}
+                        className={`w-full rounded-xl px-4 py-3 text-left font-medium transition ${
+                            selected === category.slug
+                            ? "bg-green-700 text-white"
+                            : "border border-gray-200 hover:bg-gray-100"
+                        }`}
+                    >
+                        {category.name}
+                    </button>
+                ))}
+            </div>
 
         </div>
     );

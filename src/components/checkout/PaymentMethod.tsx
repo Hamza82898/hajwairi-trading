@@ -13,9 +13,9 @@ export default function PaymentMethod() {
     } = useFormContext<CheckoutFormData>();
 
     return (
-        <div className="mt-8 rounded-2xl border bg-white p-6 shadow-sm">
+        <div className="mt-8 rounded-2xl border bg-white p-5 shadow-sm sm:p-6">
 
-            <h2 className="mb-6 text-2xl font-bold">
+            <h2 className="mb-5 text-xl font-bold sm:mb-6 sm:text-2xl">
                 Payment Method
             </h2>
 
@@ -23,7 +23,7 @@ export default function PaymentMethod() {
 
                 {/*Cash*/}
 
-                <label className="flex cursor-pointer items-center gap-4 rounded-xl border p-4 transition hover:border-green-700">
+                <label className="flex cursor-pointer items-start gap-3 rounded-xl border p-4 transition hover:border-green-700 sm:items-center sm:gap-4">
 
                     <input 
                         type="radio"
@@ -31,14 +31,14 @@ export default function PaymentMethod() {
                         {...register("paymentMethod")}
                     />
 
-                    <Banknote className="text-green-700" />
+                    <Banknote className="h-5 w-5 shrink-0 text-green-700 sm:h-6 sm:w-6" />
 
                     <div>
-                        <h3 className="font-semibold">
+                        <h3 className="text-sm font-semibold sm:text-base">
                             Cash on Delivery
                         </h3>
 
-                        <p className="text-sm text-gray-500">
+                        <p className="text-xs text-gray-500 sm:text-sm">
                             Pay when your order arrives.
                         </p>
                     </div>
@@ -47,7 +47,7 @@ export default function PaymentMethod() {
 
                 {/*Benefit Pay*/}
 
-                <label className="flex cursor-pointer items-center gap-4 rounded-xl border p-4 transition hover:border-green-700">
+                <label className="flex cursor-pointer items-start gap-3 rounded-xl border p-4 transition hover:border-green-700 sm:items-center sm:gap-4">
 
                     <input 
                         type="radio"
@@ -55,14 +55,14 @@ export default function PaymentMethod() {
                         {...register("paymentMethod")}
                     />
 
-                    <Smartphone className="text-blue-600" />
+                    <Smartphone className="h-5 w-5 shrink-0 text-blue-600 sm:h-6 sm:w-6" />
 
                     <div>
-                        <h3 className="font-semibold">
+                        <h3 className="text-sm font-semibold sm:text-base">
                             BenefitPay
                         </h3>
 
-                        <p className="text-sm text-gray-500">
+                        <p className="text-xs text-gray-500 sm:text-sm">
                             Pay securely using BenefitPay.
                         </p>
                     </div>
@@ -70,20 +70,20 @@ export default function PaymentMethod() {
 
                 {/*Card*/}
 
-                <label className="flex cursor-not-allowed items-center gap-4 rounded-xl border bg-gray-50 p-4 opacity-60">
+                <label className="flex cursor-not-allowed items-start gap-3 rounded-xl border bg-gray-50 p-4 opacity-60 sm:items-center sm:gap-4">
                     <input 
                         type="radio"
                         disabled
                     />
 
-                    <CreditCard />
+                    <CreditCard className="h-5 w-5 shrink-0 sm:h-6 sm:w-6" />
 
                     <div>
-                        <h3 className="font-semibold">
+                        <h3 className="text-sm font-semibold sm:text-base">
                             Credit / Debit Card
                         </h3>
 
-                        <p className="text-sm text-gray-500"> 
+                        <p className="text-xs text-gray-500 sm:text-sm"> 
                             Coming Soon
                         </p>
                     </div>
@@ -92,7 +92,7 @@ export default function PaymentMethod() {
             </div>
 
             {errors.paymentMethod && (
-                <p className="mt-4 text-sm text-red-600">
+                <p className="mt-4 text-xs text-red-600 sm:text-sm">
                     {errors.paymentMethod.message}
                 </p>
             )}

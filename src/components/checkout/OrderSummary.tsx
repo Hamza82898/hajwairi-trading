@@ -80,9 +80,9 @@ export default function OrderSummary() {
         
 
     return (
-        <div className="sticky top-28 rounded-2xl border bg-white p-6 shadow-sm">
+        <div className="rounded-2xl border bg-white p-5 shadow-sm lg:sticky lg:top-28 sm:p-6">
 
-            <h2 className="mb-6 text-2xl font-bold">
+            <h2 className="mb-5 text-xl font-bold sm:mb-6 sm:text-2xl">
                 Order Summary
             </h2>
 
@@ -97,13 +97,13 @@ export default function OrderSummary() {
                     cart.map((item) => (
                         <div
                             key = {item.id}
-                            className="flex justify-between"
+                            className="flex items-start justify-between gap-4"
                         >
-                            <span>
+                            <span className="flex-1 text-sm sm:text-base">
                                 {item.name} x {item.quantity}
                             </span>
 
-                            <span>
+                            <span className="whitespace-nowrap text-sm font-semibold sm:text-base">
                                 {(item.price * item.quantity).toFixed(2)} BD
                             </span>
 
@@ -114,7 +114,7 @@ export default function OrderSummary() {
 
                 <hr />
 
-                <div className="flex justify-between">
+                <div className="flex justify-between text-sm sm:text-base">
                     <span>Subtotal</span>
                     <span>{subtotal.toFixed(2)} BD</span>
                 </div>
@@ -130,7 +130,7 @@ export default function OrderSummary() {
 
                 <hr />
 
-                <div className="flex justify-between text-xl font-bold">
+                <div className="flex justify-between text-lg font-bold sm:text-xl">
                     <span>Total</span>
 
                     <span>{total.toFixed(2)} BD</span>
@@ -152,14 +152,14 @@ export default function OrderSummary() {
                     </span>
                 </div>
 
-                <p className="mt-2 text-sm text-gray-600">
+                <p className="mt-2 text-xs text-gray-600 sm:text-sm">
                     Your personal information is encrypted and securely protected.
                 </p>
             </div>
 
             {/*Terms*/}
 
-            <label className="mt-6 flex items-start gap-3">
+            <label className="mt-6 flex items-start gap-3 text-sm">
                 <input 
                     type="checkbox"
                     checked={acceptedTerms}
@@ -178,7 +178,7 @@ export default function OrderSummary() {
                 type="button"
                 onClick={handleSubmit(submitOrder)}
                 disabled={loading || cart.length === 0 || !acceptedTerms}
-                className="mt-6 w-full rounded-xl bg-green-700 py-4 text-lg font-semibold text-white transition hover:bg-green-800 disabled:cursor-not-allowed disabled:opacity-50"
+                className="mt-6 w-full rounded-xl bg-green-700 py-3 text-base font-semibold text-white transition hover:bg-green-800 sm:py-4 sm:text-lg disabled:cursor-not-allowed disabled:opacity-50"
             >
                 {loading ? "Placing Order..." : "Place Order"}
             </button>

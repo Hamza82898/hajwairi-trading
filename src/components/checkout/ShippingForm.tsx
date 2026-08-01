@@ -13,17 +13,17 @@ export default function ShippingForm() {
 
 
     return (
-        <div className="rounded-2xl border bg-white p-6 shadow-sm">
-            <h2 className="mb-6 text-2xl font-bold">
+        <div className="rounded-2xl border bg-white p-5 shadow-sm sm:p-6">
+            <h2 className="mb-5 text-xl font-bold sm:mb-6 sm:text-2xl">
                 Shipping Information
             </h2>
 
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-5 md:grid-cols-2 md:gap-6">
 
                 {/*Full Name*/}
 
                 <div>
-                    <label className="mb-2 block font-medium">
+                    <label className="mb-2 block text-sm font-medium sm:text-base">
                         Full Name
                     </label>
 
@@ -32,11 +32,11 @@ export default function ShippingForm() {
                         placeholder="Enter your full name"
                         readOnly
                         {...register("fullName")}
-                        className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
+                        className="w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-green-700 sm:text-base"
                     />
 
                     {errors.fullName && (
-                        <p className="mt-1 text-sm text-red-600">
+                        <p className="mt-1 text-xs text-red-600 sm:text-sm">
                             {errors.fullName.message}
                         </p>
                     )}
@@ -45,7 +45,7 @@ export default function ShippingForm() {
                 {/*Phone*/}
 
                 <div>
-                    <label className="mb-2 block font-medium">
+                    <label className="mb-2 block text-sm font-medium sm:text-base">
                         Phone Number
                     </label>
 
@@ -53,17 +53,17 @@ export default function ShippingForm() {
                         type="tel"
                         placeholder="+973 3XXXXXXX"
                         {...register("phone")}
-                        className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
+                        className="w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-green-700 sm:text-base"
                     />
 
                     {errors.phone && (
-                        <p className="mt-1 text-sm text-red-600">
+                        <p className="mt-1 text-xs text-red-600 sm:text-sm">
                             {errors.phone.message}
                         </p>
                     )}
                 </div>
-                <div>
-                    <label className="mb-2 block font-medium">
+                <div className="md:col-span-2">
+                    <label className="mb-2 block text-sm font-medium sm:text-base">
                         Email
                     </label>
 
@@ -73,7 +73,7 @@ export default function ShippingForm() {
                         autoComplete="email"
                         readOnly
                         {...register("email")}
-                        className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
+                        className="w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-green-700 sm:text-base"
                     />
                 </div>
 
@@ -83,13 +83,13 @@ export default function ShippingForm() {
 
             <div className="mt-6">
 
-                <label className="mb-2 block font-medium">
+                <label className="mb-2 block text-sm font-medium sm:text-base">
                     Delivery Area
                 </label>
 
                 <select
                     {...register("area")}
-                    className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
+                    className="w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-green-700 sm:text-base"
                 >
                     <option value="">Select Area</option>
                     <option>Manama</option>
@@ -106,7 +106,7 @@ export default function ShippingForm() {
                 </select>
 
                 {errors.area && (
-                    <p className="mt-1 text-sm text-red-600">
+                    <p className="mt-1 text-xs text-red-600 sm:text-sm">
                         {errors.area.message}
                     </p>
                 )}
@@ -115,9 +115,9 @@ export default function ShippingForm() {
 
             {/*Address*/}
 
-            <div className="mt-6 grid gap-6 md:grid-cols-2">
+            <div className="mt-6 grid gap-5 md:grid-cols-2 md:gap-6">
                 <div>
-                    <label className="mb-2 block font-medium">
+                    <label className="mb-2 block text-sm font-medium sm:text-base">
                         Block
                     </label>
 
@@ -125,12 +125,12 @@ export default function ShippingForm() {
                         type="text"
                         placeholder="Block"
                         {...register("block")}
-                        className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
+                        className="w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-green-700 sm:text-base"
                     />
                 </div>
 
                 <div>
-                    <label className="mb-2 block font-medium">
+                    <label className="mb-2 block text-sm font-medium sm:text-base">
                         Road
                     </label>
 
@@ -138,12 +138,12 @@ export default function ShippingForm() {
                         type="text"
                         placeholder="Road"
                         {...register("road")}
-                        className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
+                        className="w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-green-700 sm:text-base"
                     />
                 </div>
 
                 <div>
-                    <label className="mb-2 block font-medium">
+                    <label className="mb-2 block text-sm font-medium sm:text-base">
                         Building
                     </label>
 
@@ -151,12 +151,12 @@ export default function ShippingForm() {
                         type="text"
                         placeholder="Building"
                         {...register("building")}
-                        className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
+                        className="w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-green-700 sm:text-base"
                     />
                 </div>
 
                 <div>
-                    <label className="mb-2 block font-medium">
+                    <label className="mb-2 block text-sm font-medium sm:text-base">
                         Flat / Apartment
                     </label>
 
@@ -164,7 +164,7 @@ export default function ShippingForm() {
                         type="text"
                         placeholder="Flat"
                         {...register("flat")}
-                        className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
+                        className="w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-green-700 sm:text-base"
                     />
                 </div>
             </div>
@@ -172,7 +172,7 @@ export default function ShippingForm() {
             {/*Landmark*/}
 
             <div className="mt-6">
-                <label className="mb-2 block font-medium">
+                <label className="mb-2 block text-sm font-medium sm:text-base">
                     Landmark (Optional)
                 </label>
 
@@ -180,13 +180,13 @@ export default function ShippingForm() {
                     type="text"
                     placeholder="Nearby Landmark"
                     {...register("landmark")}
-                    className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
+                    className="w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-green-700 sm:text-base"
                 />
 
             </div>
 
             <div className="mt-6">
-                <label className="mb-2 block font-medium">
+                <label className="mb-2 block text-sm font-medium sm:text-base">
                     Delivery Notes
                 </label>
 
@@ -194,7 +194,7 @@ export default function ShippingForm() {
                     rows={4}
                     placeholder="Leave at reception, call before delivery..."
                     {...register("notes")}
-                    className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
+                    className="w-full resize-none rounded-xl border px-4 py-3 text-sm outline-none transition focus:border-green-700 sm:text-base"
                 />
             </div>
 

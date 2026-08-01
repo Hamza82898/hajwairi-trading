@@ -29,123 +29,126 @@ export default async function EditProfilePage() {
                 "use server";
                 await updateProfile(formData);
             }}
-            className="space-y-6 rounded-2xl border bg-white p-8 shadow-sm"
+            className="rounded-2xl border bg-white p-5 shadow-sm sm:p-6 lg:p-8"
         >
+            <h2 className="mb-6 text-xl font-bold text-gray-900 sm:text-2xl">
+                Edit Profile
+            </h2>
 
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-5 md:grid-cols-2 md:gap-6">
 
                 <div>
-                    <label className="mb-2 block font-medium">
+                    <label className="mb-2 block text-sm font-medium sm:text-base">
                         Full Name
                     </label>
 
                     <input
                         name="fullName"
                         defaultValue={user.customer.fullName}
-                        className="w-full rounded-xl border p-3"
+                        className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-green-700 focus:ring-2 focus:ring-green-200 sm:text-base"
                     />
                 </div>
 
                 <div>
-                    <label className="mb-2 block font-medium">
+                    <label className="mb-2 block text-sm font-medium sm:text-base">
                         Phone
                     </label>
 
                     <input
                         name="phone"
                         defaultValue={user.customer.phone}
-                        className="w-full rounded-xl border p-3"
+                        className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-green-700 focus:ring-2 focus:ring-green-200 sm:text-base"
                     />
                 </div>
 
                 <div>
-                    <label className="mb-2 block font-medium">
+                    <label className="mb-2 block text-sm font-medium sm:text-base">
                         Email
                     </label>
 
                     <input
                         name="email"
                         defaultValue={user.customer.email ?? ""}
-                        className="w-full rounded-xl border p-3"
+                        className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-green-700 focus:ring-2 focus:ring-green-200 sm:text-base"
                     />
                 </div>
 
                 <div>
-                    <label className="mb-2 block font-medium">
+                    <label className="mb-2 block text-sm font-medium sm:text-base">
                         Area
                     </label>
 
                     <input
                         name="area"
                         defaultValue={user.customer.area}
-                        className="w-full rounded-xl border p-3"
+                        className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-green-700 focus:ring-2 focus:ring-green-200 sm:text-base"
                     />
                 </div>
 
                 <div>
-                    <label className="mb-2 block font-medium">
+                    <label className="mb-2 block text-sm font-medium sm:text-base">
                         Block
                     </label>
 
                     <input
                         name="block"
                         defaultValue={user.customer.block}
-                        className="w-full rounded-xl border p-3"
+                        className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-green-700 focus:ring-2 focus:ring-green-200 sm:text-base"
                     />
                 </div>
 
                 <div>
-                    <label className="mb-2 block font-medium">
+                    <label className="mb-2 block text-sm font-medium sm:text-base">
                         Road
                     </label>
 
                     <input
                         name="road"
                         defaultValue={user.customer.road}
-                        className="w-full rounded-xl border p-3"
+                        className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-green-700 focus:ring-2 focus:ring-green-200 sm:text-base"
                     />
                 </div>
 
                 <div>
-                    <label className="mb-2 block font-medium">
+                    <label className="mb-2 block text-sm font-medium sm:text-base">
                         Building
                     </label>
 
                     <input
                         name="building"
                         defaultValue={user.customer.building}
-                        className="w-full rounded-xl border p-3"
+                        className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-green-700 focus:ring-2 focus:ring-green-200 sm:text-base"
                     />
                 </div>
 
                 <div>
-                    <label className="mb-2 block font-medium">
+                    <label className="mb-2 block text-sm font-medium sm:text-base">
                         Flat
                     </label>
 
                     <input
                         name="flat"
                         defaultValue={user.customer.flat}
-                        className="w-full rounded-xl border p-3"
+                        className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-green-700 focus:ring-2 focus:ring-green-200 sm:text-base"
                     />
                 </div>
 
             </div>
 
-            <div>
-                <label className="mb-2 block font-medium">
+            <div className="mt-6">
+                <label className="mb-2 block text-sm font-medium sm:text-base">
                     Landmark
                 </label>
 
                 <input
                     name="landmark"
                     defaultValue={user.customer.landmark ?? ""}
-                    className="w-full rounded-xl border p-3"
+                    className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-green-700 focus:ring-2 focus:ring-green-200 sm:text-base"
                 />
             </div>
 
-            <div>
-                <label className="mb-2 block font-medium">
+            <div className="mt-6">
+                <label className="mb-2 block text-sm font-medium sm:text-base">
                     Notes
                 </label>
 
@@ -153,13 +156,13 @@ export default async function EditProfilePage() {
                     name="notes"
                     rows={4}
                     defaultValue={user.customer.notes ?? ""}
-                    className="w-full rounded-xl border p-3"
+                    className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-green-700 focus:ring-2 focus:ring-green-200 sm:text-base"
                 />
             </div>
 
             <button
                 type="submit"
-                className="rounded-xl bg-green-700 px-8 py-3 font-semibold text-white hover:bg-green-800"
+                className="mt-8 w-full rounded-xl bg-green-700 py-3 font-semibold text-white transition hover:bg-green-800 sm:w-auto sm:px-8"
             >
                 Save Changes
             </button>

@@ -36,7 +36,7 @@ export default function CheckoutFormProvider({
                 session.user.email ||
                 "",
         },
-        mode: "onChange"
+        mode: "onChange",
     });
 
     return (

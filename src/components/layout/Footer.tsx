@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Phone, Mail, MapPin, } from "lucide-react";
+import { FaFacebookF, FaInstagram, } from "react-icons/fa";
 
 export default function Footer() {
     return (
@@ -20,6 +22,24 @@ export default function Footer() {
                             Fresh Fruits, Vegetables, Grocery &
                             Daily Essentials delivered across Bahrain.
                         </p>
+
+                        <div className="mt-6 flex gap-3">
+                            <a
+                                href="#"
+                                className="rounded-full bg-gray-800 p-3 transition hover:bg-green-700"
+                            >
+                                <FaFacebookF size={18} />
+                            </a>
+
+                            <a
+                                href="https://instagram.com/hajwairitradingcompany"
+                                target="_blank"
+                                className="rounded-full bg-gray-800 p-3 transition hover:bg-pink-600"
+                            >
+                                <FaInstagram size={18} />
+                            </a>
+
+                        </div>
 
                     </div>
 
@@ -100,20 +120,45 @@ export default function Footer() {
                             Contact
                         </h3>
 
-                        <div className="space-y-3 text-gray-400">
+                        <div className="space-y-4 text-gray-400">
 
-                            <p>
-                                📍 Building 133, Road 101,
-                                Block 104, Hidd, Bahrain
-                            </p>
+                            <div className="flex items-start gap-3">
+                                <MapPin 
+                                    size={18}
+                                    className="mt-1 text-green-400"
+                                />
+                                <p>
+                                    Building 133, Road 101,
+                                    Block 104, Hidd, Bahrain
+                                </p>
+                            </div>
 
-                            <p>
-                                📞 +973 3903 2710
-                            </p>
+                            <div className="flex items-center gap-3">
+                                <Phone 
+                                    size={18}
+                                    className="text-green-400"
+                                />
+                                <a
+                                    href="tel:+97339032710"
+                                    className="transition hover:text-white"
+                                >
+                                    +973 3903 2710
+                                </a>
+                            </div>
 
-                            <p className="break-all">
-                                ✉️ info@hajwairitrading.com
-                            </p>
+                            <div className="flex items-center gap-3">
+                                <Mail 
+                                    size={18}
+                                    className="text-green-400"
+                                />
+                                <a
+                                    href="mailto:info@hajwairitrading.com"
+                                    className="break-all transition hover:text-white"
+                                >
+                                    info@hajwairitrading.com
+                                </a>
+
+                            </div>
 
                         </div>
 

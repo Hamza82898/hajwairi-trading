@@ -39,38 +39,38 @@ export default async function MyOrdersPage() {
         <>
             {orders.length === 0 ? (
 
-                <div className="rounded-xl border bg-white p-8 text-center shadow-sm">
-                    <p className="text-gray-500">
+                <div className="rounded-2xl border bg-white p-6 text-center shadow-sm sm:p-8">
+                    <p className="text-sm text-gray-500 sm:text-base">
                         You haven't placed any orders yet.
                     </p>
                 </div>
 
             ) : (
 
-                <div className="space-y-6">
+                <div className="space-y-5 sm:space-y-6">
 
                     {orders.map((order) => (
 
                         <div
                             key={order.id}
-                            className="rounded-2xl border bg-white p-6 shadow-sm"
+                            className="rounded-2xl border bg-white p-4 shadow-sm sm:p-6"
                         >
 
-                            <div className="flex items-center justify-between">
+                            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
 
-                                <div>
-                                    <h2 className="text-lg font-bold">
+                                <div className="min-w-0">
+                                    <h2 className="truncate text-lg font-bold sm:text-xl">
                                         {order.orderNumber}
                                     </h2>
 
-                                    <p className="text-sm text-gray-500">
+                                    <p className="mt-1 text-xs text-gray-500 sm:text-sm">
                                         {new Date(order.createdAt).toLocaleString()}
                                     </p>
                                 </div>
 
-                                <div className="text-right">
+                                <div className="sm:text-right">
 
-                                    <p className="font-bold text-green-700">
+                                    <p className="text-lg font-bold text-green-700 sm:text-xl">
                                         BD {order.total.toFixed(2)}
                                     </p>
 
@@ -82,17 +82,17 @@ export default async function MyOrdersPage() {
 
                             </div>
 
-                            <div className="mt-6 space-y-3">
+                            <div className="mt-5 divide-y">
 
                                 {order.items.map((item) => (
 
                                     <div
                                         key={item.id}
-                                        className="flex items-center justify-between border-b pb-3"
+                                        className="flex flex-col gap-2 py-3 sm:flex-row sm:items-center sm:justify-between"
                                     >
 
-                                        <div>
-                                            <p className="font-medium">
+                                        <div className="min-w-0">
+                                            <p className="truncate font-medium">
                                                 {item.product.name}
                                             </p>
 
@@ -101,7 +101,7 @@ export default async function MyOrdersPage() {
                                             </p>
                                         </div>
 
-                                        <p className="font-semibold">
+                                        <p className="font-semibold text-green-700">
                                             BD {(item.price * item.quantity).toFixed(2)}
                                         </p>
 

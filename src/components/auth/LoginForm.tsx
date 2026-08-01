@@ -17,9 +17,9 @@ export default function LoginForm() {
     );
 
     return (
-        <form action={formAction} className="space-y-5">
+        <form action={formAction} className="space-y-5 sm:space-y-6">
             <div>
-                <label className="mb-2 block text-sm font-medium">
+                <label className="mb-2 block text-sm font-medium text-gray-700 sm:text-base">
                     Email
                 </label>
 
@@ -27,13 +27,13 @@ export default function LoginForm() {
                     name="email" 
                     type="email"
                     placeholder="admin@hajwairi.com"
-                    className="w-full rounded-lg border px-4 py-3 outline-none focus:border-green-700"
+                    className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none transition-all focus:border-green-700 focus:ring-2 focus:ring-green-200 sm:text-base"
                     required
                 />
             </div>
 
             <div>
-                <label className="mb-2 block text-sm font-medium">
+                <label className="mb-2 block text-sm font-medium text-gray-700 sm:text-base">
                     Password
                 </label>
 
@@ -41,13 +41,13 @@ export default function LoginForm() {
                     name="password"
                     type="password"
                     placeholder="********"
-                    className="w-full rounded-lg border px-4 py-3 outline-none focus:border-green-700"
+                    className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none transition-all focus:border-green-700 focus:ring-2 focus:ring-green-200 sm:text-base"
                     required
                 />
             </div>
 
             {state.message && (
-                <div className="rounded-lg bg-red-100 p-3 text-sm text-red-700">
+                <div className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700 sm:text-base">
                     {state.message}
                 </div>
             )}

@@ -9,7 +9,7 @@ export default function HeroImage() {
             <div className="absolute inset-0 rounded-[40px] bg-gradient-to-br from-green-100 via-white to-orange-100 blur-3xl" />
 
             {/* Hero Card */}
-            <div className="relative h-[420px] sm:h-[520px] md:h-[620px] lg:h-[720px] xl:h-[760px] overflow-hidden rounded-[40px] bg-gradient-to-br from-green-50 via-white to-orange-50 shadow-2xl">
+            <div className="relative h-[390px] sm:h-[520px] md:h-[620px] lg:h-[720px] xl:h-[760px] overflow-hidden rounded-[40px] bg-gradient-to-br from-green-50 via-white to-orange-50 shadow-2xl">
 
                 {/* Hero Image */}
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -22,7 +22,7 @@ export default function HeroImage() {
                         className="
                             object-contain
                             object-bottom
-                            scale-[0.9]
+                            scale-[0.95]
                             sm:scale-100
                             md:scale-105
                             lg:scale-110
@@ -38,7 +38,7 @@ export default function HeroImage() {
 
                 {/* Delivery Card */}
 
-                <div className="absolute top-4 left-4 sm:top-8 sm:left-8 z-30 rounded-2xl bg-white/95 backdrop-blur-md shadow-xl px-3 py-3 sm:px-6 sm:py-5">
+                <div className="absolute top-3 left-3 sm:top-8 sm:left-8 z-30 rounded-2xl bg-white/95 backdrop-blur-md shadow-xl px-3 py-3 sm:px-6 sm:py-5">
 
                     <div className="flex items-center gap-3">
 
@@ -66,7 +66,7 @@ export default function HeroImage() {
 
                 {/* Offer Card */}
 
-                <div className="absolute top-4 right-4 sm:top-8 sm:right-8 z-30 rounded-2xl bg-white/95 backdrop-blur-md shadow-xl px-4 py-4 sm:px-7 sm:py-6">
+                <div className="absolute top-3 right-3 sm:top-8 sm:right-8 z-30 rounded-2xl bg-white/95 backdrop-blur-md shadow-xl px-4 py-4 sm:px-7 sm:py-6">
 
                     <div className="mb-2 flex items-center gap-2">
 
@@ -90,7 +90,7 @@ export default function HeroImage() {
 
                 {/* Premium Button */}
 
-                <div className="absolute bottom-4 left-4 sm:bottom-8 sm:left-8 z-30 rounded-full bg-green-900 px-5 py-3 sm:px-10 sm:py-4 text-sm sm:text-lg font-semibold text-white shadow-xl">
+                <div className="absolute bottom-3 left-3 sm:bottom-8 sm:left-8 z-30 rounded-full bg-green-900 px-5 py-3 sm:px-10 sm:py-4 text-sm sm:text-lg font-semibold text-white shadow-xl">
 
                     Premium Fresh Fruits
 
@@ -98,7 +98,7 @@ export default function HeroImage() {
 
                 {/* Rating Card */}
 
-                <div className="absolute bottom-4 right-4 sm:bottom-8 sm:right-8 z-30 rounded-2xl bg-white/95 backdrop-blur-md shadow-xl px-4 py-3 sm:px-6 sm:py-5">
+                <div className="absolute bottom-3 right-3 sm:bottom-8 sm:right-8 z-30 rounded-2xl bg-white/95 backdrop-blur-md shadow-xl px-4 py-3 sm:px-6 sm:py-5">
 
                     <div className="flex items-center gap-2">
 

@@ -10,16 +10,16 @@ export default function SortProducts({
     onChange,
 }: SortProductsProps) {
     return (
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between gap-3 sm:justify-end">
 
-            <label className="font-medium">
+            <label className="text-sm font-medium whitespace-nowrap">
                 Sort By:
             </label>
 
             <select
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
-                className="rounded-lg border px-4 py-2 outline-none focus:border-green-700"
+                className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-green-700 sm:w-64"
             >
 
                 <option value="default">Default</option>

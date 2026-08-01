@@ -34,10 +34,10 @@ export default function CartPage() {
 
 
     return (
-        <main className="mx-auto max-w-7xl px-6 py-10">
-            <div className="mb-10 flex flex-col justify-between gap-4 border-b pb-6 md:flex-row md:items-center">
+        <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
+            <div className="mb-8 flex flex-col gap-5 border-b pb-6 md:flex-row md:items-center md:justify-between">
                 <div>
-                    <h1 className="text-4xl font-bold text-gray-900">
+                    <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">
                         Shopping Cart
                     </h1>
 
@@ -48,13 +48,13 @@ export default function CartPage() {
 
                 <button
                     onClick={clearCart}
-                    className="rounded-xl border border-red-200 px-5 py-3 font-semibold text-red-600 transition hover:bg-red-50"
+                    className="w-full rounded-xl border border-red-200 px-5 py-3 font-semibold text-red-600 transition hover:bg-red-50 md:w-auto"
                 >
                     Clear Cart
                 </button>
             </div>
 
-            <div className="mb-8 rounded-2xl border border-green-200 bg-green-50 p-5">
+            <div className="mb-8 rounded-2xl border border-green-200 bg-green-50 p-4 sm:p-5">
                 {delivery === 0 ? (
                     <p className="font-semibold text-green-800">
                         Congratulations! You unlocked FREE Delivery.
@@ -88,7 +88,7 @@ export default function CartPage() {
 
                 {/*Left Side*/}
 
-                <div className="space-y-6 lg:col-span-2">
+                <div className="space-y-5 lg:col-span-2">
 
                     {cart.map((item) => (
                         <CartItem 
@@ -105,7 +105,7 @@ export default function CartPage() {
 
                 {/*Right Side*/}
 
-                <div>
+                <div className="lg:sticky lg:top-28 lg:self-start">
                     <CartSummary 
                         subtotal={subtotal}
                     />

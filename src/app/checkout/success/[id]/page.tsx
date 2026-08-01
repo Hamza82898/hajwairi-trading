@@ -29,23 +29,23 @@ export default async function CheckoutSuccessPage({
     }
 
     return (
-        <main className="mx-auto flex min-h-[80vh] max-w-3xl items-center justify-center px-6 py-16">
-            <div className="w-full rounded-3xl border bg-white p-10 text-center shadow-lg">
+        <main className="mx-auto flex min-h-[80vh] max-w-3xl items-center justify-center px-4 py-8 sm:px-6 sm:py-12 lg:py-16">
+            <div className="w-full rounded-2xl border bg-white p-6 text-center shadow-lg sm:rounded-3xl sm:p-8 lg:p-10">
 
                 <CheckCircle2 
-                    size={90}
-                    className="mx-auto text-green-600"
+                    size={70}
+                    className="mx-auto text-green-600 sm:h-20 sm:w-20"
                 />
 
-                <h1 className="mt-6 text-4xl font-bold">
+                <h1 className="mt-6 text-3xl font-bold sm:text-4xl">
                     Order Placed Successfully!
                 </h1>
 
-                <p className="mt-4 text-lg text-gray-600">
+                <p className="mt-4 text-base text-gray-600 sm:text-lg">
                     Thank you for shopping with Hajwairi Trading.
                 </p>
 
-                <div className="mt-8 rounded-2xl bg-gray-50 p-6 text-left">
+                <div className="mt-8 rounded-2xl bg-gray-50 p-4 text-left sm:p-6">
                     <p>
                         <strong>Order Number:</strong>{" "}
                         {order.orderNumber}
@@ -77,7 +77,7 @@ export default async function CheckoutSuccessPage({
 
                 <hr className="my-5" />
 
-                <div className="rounded-xl bg-green-50 p-4">
+                <div className="rounded-xl bg-green-50 p-4 text-sm sm:text-base">
                     <h3 className="font-semibold text-green-700">
                         Estimated Delivery
                     </h3>
@@ -89,17 +89,17 @@ export default async function CheckoutSuccessPage({
                     </p>
                 </div>
 
-                <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
+                <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center">
                     <Link
                         href="/"
-                        className="rounded-xl bg-green-700 px-8 py-3 font-semibold text-white hover:bg-green-800"
+                        className="w-full rounded-xl bg-green-700 px-8 py-3 text-center font-semibold text-white hover:bg-green-800 sm:w-auto"
                     >
                         Back to Home
                     </Link>
 
                     <Link
                         href="/shop"
-                        className="rounded-xl border px-8 py-3 font-semibold hover:bg-gray-100"
+                        className="w-full rounded-xl border px-8 py-3 text-center font-semibold hover:bg-gray-100 sm:w-auto"
                     >
                         Continue Shopping
                     </Link>
@@ -107,7 +107,7 @@ export default async function CheckoutSuccessPage({
                     <PrintInvoiceButton />
                 </div>
 
-                <div className="mt-8 rounded-xl border bg-gray-50 p-5">
+                <div className="mt-8 rounded-xl border bg-gray-50 p-4 sm:p-5">
                     <h3 className="font-semibold">
                         Need Help?
                     </h3>
@@ -120,7 +120,7 @@ export default async function CheckoutSuccessPage({
                         href="https://wa.me/97339032710"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-4 inline-block rounded-xl bg-green-600 px-6 py-3 font-semibold text-white hover:bg-green-700"
+                        className="mt-4 inline-block w-full rounded-xl bg-green-600 px-6 py-3 text-center font-semibold text-white hover:bg-green-700 sm:w-auto"
                     >
                         WhatsApp Support
                     </a>

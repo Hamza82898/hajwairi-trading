@@ -2,6 +2,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import AuthSessionProvider from "@/components/providers/SessionProvider";
 
+import { auth } from "@/auth";
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
@@ -16,16 +17,18 @@ export const metadata: Metadata = {
     "Fresh Fruits, Vegetables, Grocery & Daily Essentials Delivered Across Bahrain",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+
   return (
     <html lang="en">
       <body>
         <AuthSessionProvider>
-          <Navbar />
+          <Navbar session={session} />
 
           {children}
 

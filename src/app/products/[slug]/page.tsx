@@ -38,7 +38,7 @@ export default async function ProductPage({
     );
 
     return (
-        <main className="mx-auto max-w-7xl px-6 py-10">
+        <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:py-10">
 
             <Breadcrumb 
                 items = {[
@@ -61,14 +61,14 @@ export default async function ProductPage({
             />
 
             
-            <div className="grid gap-10 lg:grid-cols-2">
+            <div className="grid gap-6 lg:grid-cols-2 lg:gap-10">
                 
                 <ProductGallery
                     images={product.images.map((img) => img.url)}
                     name={product.name}
                 />
 
-                <div>
+                <div className="space-y-5 lg:space-y-6">
                     <ProductInfo product={product} />
 
                 

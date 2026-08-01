@@ -28,7 +28,7 @@ export default async function AuthButtons() {
 
             <Link
                 href="/login"
-                className="flex items-center justify-center gap-2 rounded-xl bg-green-900 px-5 py-3 font-semibold text-white transition hover:bg-green-800 lg:hidden"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-green-900 px-5 py-3 font-semibold text-white transition hover:bg-green-800 lg:hidden"
             >
                 <User size={18} />
                 Login

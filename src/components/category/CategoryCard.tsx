@@ -25,20 +25,21 @@ export default function CategoryCard({
                     src={category.image || "/placeholder.png"}
                     alt={category.name}
                     fill
-                    className="object-contain p-3 transition duration-500 group-hover:scale-110 sm:p-5 lg:p-6"
+                    sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw"
+                    className="object-contain p-3 transition-transform duration-500 group-hover:scale-110 sm:p-5 lg:p-6"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 transition group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
             </div>
 
             {/* Content */}
 
-            <div className="flex items-center justify-between p-3 sm:p-4 lg:p-6">
+            <div className="flex items-center justify-between p-4 sm:p-5 lg:p-6">
 
-                <div>
+                <div className="min-w-0">
 
-                    <h3 className="text-base font-bold text-gray-900 transition group-hover:text-green-900 sm:text-lg lg:text-xl">
+                    <h3 className="truncate text-base font-bold text-gray-900 transition-colors group-hover:text-green-900 sm:text-lg lg:text-xl">
                         {category.name}
                     </h3>
 
@@ -48,11 +49,11 @@ export default function CategoryCard({
 
                 </div>
 
-                <div className="rounded-full bg-green-100 p-2 transition-all duration-300 group-hover:bg-green-900 sm:p-3">
+                <div className="ml-4 shrink-0 rounded-full bg-green-100 p-2 transition-all duration-300 group-hover:bg-green-900 sm:p-3">
 
                     <ArrowRight
                         size={16}
-                        className="text-green-900 transition group-hover:translate-x-1 group-hover:text-white sm:h-[18px] sm:w-[18px]"
+                        className="h-4 w-4 text-green-900 transition-all duration-300 group-hover:translate-x-1 group-hover:text-white sm:h-5 sm:w-5"
                     />
 
                 </div>

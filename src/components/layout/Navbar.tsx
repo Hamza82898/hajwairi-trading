@@ -1,9 +1,14 @@
 import NavbarClient from "./NavbarClient";
 import AuthButtons from "./AuthButtons";
+import { Session } from "next-auth";
 
-export default function Navbar() {
+interface Props {
+    session: Session | null;
+}
+
+export default function Navbar({session}: Props) {
     return (
-        <NavbarClient>
+        <NavbarClient session={session}>
             <AuthButtons />
         </NavbarClient>
     );

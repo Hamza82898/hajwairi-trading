@@ -21,12 +21,12 @@ export default function RelatedProducts({
     }
 
     return (
-        <section className="mt-20">
-            <h2 className="mb-8 text-3xl font-bold">
+        <section className="mt-12 sm:mt-16 lg:mt-20">
+            <h2 className="mb-6 text-2xl font-bold sm:mb-8 sm:text-3xl">
                 Related Products
             </h2>
 
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
 
                 {relatedProducts.map((product) => (
                     <ProductCard 

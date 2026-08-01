@@ -13,7 +13,7 @@ export default async function ShopPage() {
     });
 
     return (
-        <main className="mx-auto max-w-7xl px-6 py-10">
+        <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
             <Breadcrumb 
                 items = {[
                     {
@@ -26,12 +26,12 @@ export default async function ShopPage() {
                 ]}
             />
 
-            <div className="mb-10">
-                <h1 className="text-4xl font-bold">
+            <div className="mb-8 sm:mb-10">
+                <h1 className="text-3xl font-bold sm:text-4xl">
                     Shop
                 </h1>
 
-                <p className="mt-2 text-gray-600">
+                <p className="mt-2 text-sm text-gray-600 sm:text-base">
                     Fresh fruits, vegetables, dry items and grocery products.
                 </p>
             </div>

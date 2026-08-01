@@ -36,13 +36,13 @@ export default function AccountSidebar() {
     const pathname = usePathname();
 
     return (
-        <aside className="rounded-2xl border bg-white p-5 shadow-sm">
+        <aside className="rounded-2xl border bg-white p-4 shadow-sm sm:p-5">
 
-            <h2 className="mb-6 text-xl font-bold">
+            <h2 className="mb-5 text-lg font-bold sm:mb-6 sm:text-xl">
                 My Account
             </h2>
 
-            <nav className="space-y-2">
+            <nav className="grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-1 lg:gap-2">
 
                 {links.map((link) => {
                     const Icon = link.icon;
@@ -53,14 +53,16 @@ export default function AccountSidebar() {
                         <Link
                             key={link.href}
                             href={link.href}
-                            className={`flex items-center gap-3 rounded-xl px-4 py-3 transition ${
+                            className={`flex items-center justify-center gap-2 rounded-xl px-3 py-3 text-sm font-medium transition sm:justify-start sm:px-4 sm:text-base ${
                                 active
-                                    ? "bg-green-700 text-white"
-                                    : "hover:bg-gray-100"
+                                    ? "bg-green-700 text-white shadow-md"
+                                    : "text-gray-700 hover:bg-gray-100"
                             }`}
                         >
-                            <Icon size={20} />
-                            {link.label}
+                            <Icon className="h-5 w-5 shrink-0" />
+                            <span className="truncate">
+                                {link.label}
+                            </span>
                         </Link>
                     );
                 })}

@@ -43,13 +43,15 @@ export default function ProductCard({
 
                 {/* Image */}
 
-                <div className="relative flex h-44 items-center justify-center overflow-hidden bg-white sm:h-52 lg:h-[240px]">
+                <div className="relative flex aspect-square items-center justify-center overflow-hidden bg-white p-4">
 
                     <Image
                         src={image}
                         alt={name}
                         fill
-                        sizes="(max-width:768px)100vw,33vw"
+                        sizes="(max-width:640px)100vw,
+                        (max-width:1024px)50vw,
+                        33vw"
                         className="object-contain p-4 transition duration-500 group-hover:scale-105"
                     />
 

@@ -12,15 +12,18 @@ import TopBar from "./TopBar";
 import SearchBar from "./SearchBar";
 import NavLinks from "./NavLinks";
 import { ReactNode, useState } from "react";
+import { Session } from "next-auth";
 
 
 
 interface Props {
     children: ReactNode;
+    session: Session | null;
 }
 
 export default function NavbarClient({
     children,
+    session,
 }: Props) {
     const cart = useCartStore((state) => state.cart);
 
@@ -139,7 +142,7 @@ export default function NavbarClient({
 
                 {/*Drawer*/}
                 <div
-                    className={`absolute left-0 top-0 h-full w-[300px] bg-white shadow-xl transition-transform duration-300 ${
+                    className={`absolute left-0 top-0 h-full w-[85%] max-w-[340px] bg-white shadow-xl transition-transform duration-300 ${
                         mobileOpen
                             ? "translate-x-0"
                             : "-translate-x-full"
@@ -158,7 +161,10 @@ export default function NavbarClient({
                     </div>
 
                     <div className="p-5">
-                        <SearchBar />
+                        <div className="mb-6">
+                            <SearchBar />
+                        </div>
+                        
 
                         {/*Mobile Navigation*/}
 
@@ -218,7 +224,7 @@ export default function NavbarClient({
                         {/*Mobile Auth*/}
                         <div
                             onClick={() => setMobileOpen(false)}
-                            className="flex flex-col gap-3"
+                            className="flex flex-col gap-3 pb-8"
                         >
                             {children}
                         </div>
