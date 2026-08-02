@@ -1,15 +1,14 @@
 import NavbarClient from "./NavbarClient";
 import AuthButtons from "./AuthButtons";
-import { Session } from "next-auth";
+import { auth } from "@/auth";
 
-interface Props {
-    session: Session | null;
-}
 
-export default function Navbar({session}: Props) {
+export default async function Navbar() {
+    const session = await auth();
+
     return (
-        <NavbarClient session={session}>
+        <NavbarClient session={session} >
             <AuthButtons />
         </NavbarClient>
-    );
+    )
 }

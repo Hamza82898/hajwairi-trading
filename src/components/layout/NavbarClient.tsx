@@ -6,6 +6,10 @@ import {
     ShoppingCart,
     Menu,
     X,
+    User,
+    Package,
+    Lock,
+    LogOut,
 } from "lucide-react";
 import { useCartStore } from "@/store/cartStore";
 import TopBar from "./TopBar";
@@ -13,6 +17,7 @@ import SearchBar from "./SearchBar";
 import NavLinks from "./NavLinks";
 import { ReactNode, useState } from "react";
 import { Session } from "next-auth";
+import { signOut } from "next-auth/react";
 
 
 
@@ -222,11 +227,75 @@ export default function NavbarClient({
                         <div className="my-6 border-t" />
 
                         {/*Mobile Auth*/}
-                        <div
-                            onClick={() => setMobileOpen(false)}
-                            className="flex flex-col gap-3 pb-8"
-                        >
-                            {children}
+                        <div className="pb-8">
+                            {session ? (
+                                <div className="space-y-2">
+
+                                    <div className="mb-4 rounded-xl bg-green-50 p-4">
+                                        <p className="text-sm text-gray-500">
+                                            Signed in as
+                                        </p>
+
+                                        <p className="font-semibold text-green-900">
+                                            {session.user?.name}
+                                        </p>
+
+                                        <p className="text-sm text-gray-500">
+                                            {session.user?.email}
+                                        </p>
+                                    </div>
+
+                                    <Link
+                                        href="/account"
+                                        onClick={() => setMobileOpen(false)}
+                                        className="flex items-center gap-3 rounded-lg px-4 py-3 hover:bg-green-50"
+                                    >
+                                        <User size={20} />
+                                        My Profile
+                                    </Link>
+
+                                    <Link
+                                        href="/my-orders"
+                                        onClick={() => setMobileOpen(false)}
+                                        className="flex items-center gap-3 rounded-lg px-4 py-3 hover:bg-green-50"
+                                    >
+                                        <Package size={20} />
+                                        My Orders
+                                    </Link>
+
+                                    <Link
+                                        href="/account/change-password"
+                                        onClick={() => setMobileOpen(false)}
+                                        className="flex items-center gap-3 rounded-lg px-4 py-3 hover:bg-green-50"
+                                    >
+                                        <Lock size={20} />
+                                        Change Password
+                                    </Link>
+
+                                    <button
+                                        onClick={() => {
+                                            setMobileOpen(false);
+                                            signOut({
+                                                callbackUrl: "/",
+                                            });
+                                        }}
+                                        className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left text-red-600 hover:bg-red-100"
+                                    >
+                                        <LogOut size={20} />
+                                        Logout
+                                    </button>
+                                </div>
+                            ) : (
+                                <div
+                                    onClick={() => setMobileOpen(false)}
+                                    className="flex flex-col gap-3"
+                                >
+                                    {children}
+                                </div>
+
+                            )}
+                            
+
                         </div>
 
                     </div>
