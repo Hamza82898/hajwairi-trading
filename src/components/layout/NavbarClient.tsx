@@ -147,7 +147,7 @@ export default function NavbarClient({
 
                 {/*Drawer*/}
                 <div
-                    className={`absolute left-0 top-0 h-full w-[85%] max-w-[340px] bg-white shadow-xl transition-transform duration-300 ${
+                    className={`absolute left-0 top-0 flex h-full w-[85%] max-w-[340px] flex-col overflow-y-auto bg-white shadow-xl transition-transform duration-300 ${
                         mobileOpen
                             ? "translate-x-0"
                             : "-translate-x-full"
@@ -165,7 +165,7 @@ export default function NavbarClient({
                         </button>
                     </div>
 
-                    <div className="p-5">
+                    <div className="flex h-full flex-col p-5">
                         <div className="mb-6">
                             <SearchBar />
                         </div>
@@ -227,7 +227,7 @@ export default function NavbarClient({
                         <div className="my-6 border-t" />
 
                         {/*Mobile Auth*/}
-                        <div className="pb-8">
+                        <div className="mt-auto pt-6 pb-8">
                             {session ? (
                                 <div className="space-y-2">
 
