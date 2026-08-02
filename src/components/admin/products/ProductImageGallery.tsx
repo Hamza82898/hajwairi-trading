@@ -18,14 +18,14 @@ export default function ProductImageGallery({
 }: Props) {
     if (images.length === 0) {
         return (
-            <div className="rounded-lg border-dashed p-8 text-center text-gray-500">
+            <div className="rounded-xl border-2 border-dashed border-gray-300 p-8 text-center text-gray-500">
                 No images uploaded yet.
             </div>
         );
     }
 
     return (
-        <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {images.map((image) => (
                 <ProductImageCard 
                     key = {image.id}

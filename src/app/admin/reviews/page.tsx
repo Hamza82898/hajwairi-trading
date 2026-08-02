@@ -9,27 +9,27 @@ export default async function ReviewsPage() {
     return (
         <div className="space-y-8">
 
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                    <h1 className="text-3xl font-bold">
+                    <h1 className="text-3xl font-bold sm:text-4xl">
                         Reviews
                     </h1>
 
-                    <p className="text-gray-500">
+                    <p className="mt-2 text-sm text-gray-500 sm:text-base">
                         Manage customer testimonials.
                     </p>
                 </div>
                 <Link
                     href="/admin/reviews/new"
-                    className="rounded-xl bg-green-700 px-5 py-3 font-semibold text-white hover:bg-green-800"
+                    className="w-full rounded-xl bg-green-700 px-5 py-3 text-center font-semibold text-white hover:bg-green-800 sm:w-auto"
                 >
                     + Add Review
                 </Link>
             </div>
             
-            <div className="overflow-hidden rounded-2xl bg-white shadow">
+            <div className="overflow-x-auto rounded-2xl bg-white shadow">
 
-                <table className="w-full">
+                <table className="min-w-[850px] w-full">
 
                     <thead className="bg-gray-50">
 
@@ -94,7 +94,9 @@ export default async function ReviewsPage() {
 
                                 <td className="p-4">
 
-                                    Edit
+                                    <button className="rounded-lg bg-blue-600 px-3 py-2 text-sm text-white hover:bg-blue-700">
+                                        Edit
+                                    </button>
 
                                 </td>
 

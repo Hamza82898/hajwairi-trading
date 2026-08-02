@@ -65,22 +65,22 @@ export default function UpdateOrderStatus({
             <h2 className="mb-6 text-2xl font-semibold">
                 Update Status
             </h2>
-            <div className="mb-5">
+            <div className="mb-5 rounded-lg bg-gray-50 p-4">
                 <p className="mb-2 text-sm text-gray-500">
                     Current Status
                 </p>
 
                 <OrderStatusBadge 
-                    status={order.status}
+                    status={status}
                 />
             </div>
 
             {message && (
                 <div 
-                    className={`mb-5 rounded-lg p-3 text-sm ${
+                    className={`mb-5 rounded-xl border p-3 text-sm ${
                         success
-                            ? "bg-green-100 text-green-700"
-                            : "bg-red-100 text-red-700"
+                            ? "border-green-300 bg-green-50 text-green-700"
+                            : "border-red-300 bg-red-50 text-red-700"
                     }`}
                 >
                     {message}
@@ -92,7 +92,7 @@ export default function UpdateOrderStatus({
                 onChange={(e) => 
                     setStatus(e.target.value as OrderStatus)
                 }
-                className="w-full rounded-lg border p-3"
+                className="w-full rounded-lg border p-3 transition focus:border-green-700 focus:outline-none"
             >
                 {Object.values(OrderStatus).map((item) => (
                     <option
@@ -107,7 +107,7 @@ export default function UpdateOrderStatus({
             <button
                 onClick={handleUpdate}
                 disabled={pending}
-                className="mt-5 w-full rounded-lg bg-green-700 py-3 font-medium text-white hover:bg-green-800 disabled:opacity-60"
+                className="mt-5 w-full rounded-lg bg-green-700 py-3 font-semibold text-white transition hover:bg-green-800 hover:shadow-md active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
             >
                 {pending
                     ? "Updating..."
@@ -117,8 +117,8 @@ export default function UpdateOrderStatus({
 
             {(order.status === OrderStatus.PENDING ||
                 order.status === OrderStatus.CANCELLED) && (
-                    <div className="mt-6 border-t pt-6">
-                        <h3 className="mb-3 text-sm font-semibold text-red-600">
+                    <div className="mt-6 rounded-xl border border-red-200 bg-red-50 p-5">
+                        <h3 className="mb-3 text-sm font-semibold text-red-700">
                             Danger Zone
                         </h3>
 

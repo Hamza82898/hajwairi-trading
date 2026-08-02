@@ -6,7 +6,7 @@ import {
     Truck,
     XCircle,
 } from "lucide-react";
-import { Prisma, OrderStatus } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 
 type LatestOrder = Prisma.OrderGetPayload<{
     include: {
@@ -40,63 +40,67 @@ export default function RecentActivity({
     orders,
 }: Props) {
     return (
-        <div className="rounded-3xl border bg-white p-6 shadow-sm">
-            <div className="mb-8 flex items-center justify-between">
+        <div className="rounded-2xl lg:rounded-3xl border bg-white p-4 sm:p-6 shadow-sm">
+            <div className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                    <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">
+                    <p className="text-xs sm:text-sm font-semibold uppercase tracking-wide text-gray-500">
                         Activity
                     </p>
 
-                    <h2 className="mt-2 text-3xl font-bold">
+                    <h2 className="mt-1 sm:mt-2 text-2xl sm:text-3xl font-bold">
                         Recent Orders
                     </h2>
                 </div>
 
-                <div className="rounded-xl bg-green-100 px-3 py-2 text-sm font-semibold text-green-700">
+                <div className="w-fit rounded-xl bg-green-100 px-3 py-2 text-sm font-semibold text-green-700">
                     {orders.length} Recent
                 </div>
             </div>
 
             
             {orders.length === 0 ? (
-                <div className="rounded-xl bg-gray-50 p-8 text-center text-gray-500">
+                <div className="rounded-xl bg-gray-50 p-6 sm:p-8 text-center text-gray-500">
                     No recent activity.
                 </div>
             ) : (
-                <div className="space-y-5">
+                <div className="space-y-4">
                     {orders.map((order) => (
                         <div
                             key={order.id}
-                            className="flex items-start justify-between rounded-xl border p-4 hover:bg-gray-50"
+                            className="rounded-xl border p-4 transition hover:bg-gray-50"
                         >
-                            <div className="flex items-center gap-4">
-                                <div className="rounded-full bg-gray-100 p-3">
-                                    {statusIcon[order.status]}
+                            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                                <div className="flex items-start gap-3 sm:gap-4">
+                                    <div className="rounded-full bg-gray-100 p-3 shrink-0">
+                                        {statusIcon[order.status]}
+                                    </div>
+                                    <div className="min-w-0 flex-1">
+                                        <Link
+                                            href={`/admin/orders/${order.id}`}
+                                            className="font-semibold text-green-700 hover:underline break-all"
+                                        >
+                                            #{order.orderNumber}
+                                        </Link>
+
+                                        <p className="mt-1 text-sm text-gray-600 break-words">
+                                            {order.customer.fullName}
+                                        </p>
+
+                                        <p className="mt-1 text-xs text-gray-400">
+                                            {new Date(order.createdAt).toLocaleDateString()}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <Link
-                                        href={`/admin/orders/${order.id}`}
-                                        className="text-green-700 hover:underline"
+                                <div className="sm:text-right">
+                                    <span
+                                        className={`inline-block rounded-full px-3 py-1 text-xs font-semibold ${
+                                            statusBadge[order.status]
+                                        }`}
                                     >
-                                        #{order.orderNumber}
-                                    </Link>
-
-                                    <p className="mt-1 text-sm text-gray-500">
-                                        {order.customer.fullName}
-                                    </p>
-
-                                    <p className="text-xs text-gray-400">
-                                        {order.createdAt.toLocaleDateString()}
-                                    </p>
+                                        {order.status}
+                                    </span>
                                 </div>
                             </div>
-                            <span
-                                className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                                    statusBadge[order.status]
-                                }`}
-                            >
-                                {order.status}
-                            </span>
                         </div>
                     ))}
                 </div>

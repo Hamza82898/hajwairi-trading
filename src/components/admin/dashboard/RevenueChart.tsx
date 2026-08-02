@@ -33,27 +33,35 @@ export default function RevenueChart({
     );
 
     return (
-        <div className="rounded-3xl border bg-white p-6 shadow">
-            <div className="mb-8 flex items-center justify-between">
+        <div className="rounded-2xl border bg-white p-4 shadow sm:rounded-3xl sm:p-6">
+            <div className="mb-6 flex flex-col gap-3 sm:mb-8 sm:flex-row sm:items-center sm:justify-between">
 
                 <div>
-                    <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 sm:text-sm">
                         Revenue
                     </p>
 
-                    <h2 className="mt-2 text-4xl font-extrabold">
+                    <h2 className="mt-2 break-all text-2xl font-extrabold sm:text-3xl lg:text-4xl">
                         BD {totalRevenue.toFixed(2)}
                     </h2>
 
-                    <p className="mt-2 text-sm text-green-600">
+                    <p className="mt-2 text-xs text-green-600 sm:text-sm">
                         Last 7 Days
                     </p>           
                 </div>
             </div>
 
-            <div className="h-80">
+            <div className="h-64 sm:h-72 lg:h-80">
                 <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={chartData}>
+                    <AreaChart 
+                        data={chartData}
+                        margin={{
+                            top: 10,
+                            right: 10,
+                            left: -20,
+                            bottom: 0,
+                        }}
+                    >
                         <defs>
                             <linearGradient
                                 id="revenueGradient"
@@ -84,10 +92,13 @@ export default function RevenueChart({
                             dataKey="day"
                             tickLine={false}
                             axisLine={false}
+                            tick={{ fontSize: 12}}
                         />
                         <YAxis 
                             tickLine={false}
                             axisLine={false}
+                            tick={{ fontSize: 12 }}
+                            width={40}
                         />
                         <Tooltip 
                             contentStyle={{
@@ -97,7 +108,7 @@ export default function RevenueChart({
                                     "0 8px 25px rgba(0,0,0,.12",
                             }}
                             formatter={(value) => [
-                                `BD ${value}`,
+                                `BD ${Number(value).toFixed(2)}`,
                                 "Revenue",
                             ]}
                         />
@@ -105,7 +116,7 @@ export default function RevenueChart({
                             type="monotone"
                             dataKey="revenue"
                             stroke="#16a34a"
-                            strokeWidth={4}
+                            strokeWidth={3}
                             fill="url(#revenueGradient)"
                         />
                     </AreaChart>

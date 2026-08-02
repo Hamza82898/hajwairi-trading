@@ -39,20 +39,20 @@ export default async function AdminPage() {
     ]);
 
     return (
-        <main className="space-y-10">
+        <main className="space-y-6 lg:space-y-10">
 
-            <div className="overflow-hidden rounded-3xl bg-gradient-to-r from-green-700 via-green-600 to-emerald-500 p-8 text-white shadow-xl">
-                <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-center">
+            <div className="overflow-hidden rounded-2xl bg-gradient-to-r from-green-700 via-green-600 to-emerald-500 p-5 text-white shadow-xl sm:p-6 lg:rounded-3xl lg:p-8">
+                <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
                     <div>
-                        <p className="text-sm uppercase tracking-widest text-green-100">
+                        <p className="text-xs uppercase tracking-[0.25em] text-green-100 sm:text-sm">
                             Hajwairi Trading Company
                         </p>
 
-                        <h1 className="mt-3 text-5xl font-extrabold">
+                        <h1 className="mt-2 text-3xl font-extrabold sm:text-4xl lg:mt-3 lg:text-5xl">
                             Admin Dashboard
                         </h1>
 
-                        <p className="mt-4 text-green-100">
+                        <p className="mt-3 text-sm text-green-100 sm:text-base">
                             Welcome back,
                             <span className="ml-2 font-bold">
                                 {session.user?.name}
@@ -60,12 +60,12 @@ export default async function AdminPage() {
                         </p>
                     </div>
 
-                    <div className="rounded-2xl bg-white/10 p-6 backdrop-blur">
+                    <div className="w-full rounded-2xl bg-white/10 p-5 backdrop-blur sm:w-auto sm:min-w-[260px] lg:p-6">
                         <p className="text-sm text-green-100">
                             Today's Overview
                         </p>
 
-                        <h2 className="mt-2 text-4xl font-bold">
+                        <h2 className="mt-2 text-3xl font-bold sm:text-4xl">
                             BD {stats.totalRevenue.toFixed(2)}
                         </h2>
 
@@ -81,7 +81,7 @@ export default async function AdminPage() {
 
             <StatsCards stats={stats} />
 
-            <div className="grid gap-8 xl:grid-cols-2">
+            <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
 
                 <RevenueChart 
                     data={analytics.revenue7Days}
@@ -92,7 +92,7 @@ export default async function AdminPage() {
                 />
             </div>
 
-            <div className="grid gap-8 xl:grid-cols-2">
+            <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
 
                 <LatestOrders 
                     orders={latestOrders}
@@ -103,7 +103,7 @@ export default async function AdminPage() {
                 />
             </div>
 
-            <div className="grid gap-8 xl:grid-cols-2">
+            <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
                 <TopSellingProducts 
                     products={analytics.topProducts}
                 />

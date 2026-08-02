@@ -38,38 +38,38 @@ export default function CustomerStats({
             : null;
 
     return (
-        <div className="rounded-2xl bg-white p-6 shadow">
-            <h2 className="mb-6 text-2xl font-bold">
+        <div className="rounded-2xl bg-white p-4 shadow sm:p-6">
+            <h2 className="mb-6 text-xl font-bold sm:text-2xl">
                 Statistics
             </h2>
 
             <div className="space-y-6">
-                <div className="rounded-xl bg-gray-50 p-4">
+                <div className="rounded-xl bg-gray-50 p-4 text-center">
                     <p className="text-sm text-gray-500">
                         Total Orders
                     </p>
 
-                    <p className="mt-1 text-3xl font-bold">
+                    <p className="mt-1 text-2xl font-bold sm:text-3xl">
                         {totalOrders}
                     </p>
                 </div>
 
-                <div className="rounded-xl bg-green-50 p-4">
+                <div className="rounded-xl bg-green-50 p-4 text-center">
                     <p className="text-sm text-gray-500">
                         Total Spending
                     </p>
 
-                    <p className="mt-1 text-3xl font-bold text-green-700">
+                    <p className="mt-1 text-2xl font-bold text-green-700 sm:text-3xl">
                         BD {totalSpent.toFixed(2)}
                     </p>
                 </div>
 
-                <div className="rounded-xl bg-blue-50 p-4">
+                <div className="rounded-xl bg-blue-50 p-4 text-center">
                     <p className="text-sm text-gray-500">
                         Average Order
                     </p>
 
-                    <p className="mt-1 text-2xl font-bold text-blue-700">
+                    <p className="mt-1 text-xl font-bold text-blue-700 sm:text-2xl">
                         BD {averageOrder.toFixed(2)}
                     </p>
                 </div>
@@ -116,11 +116,11 @@ export default function CustomerStats({
                     </p>
 
                     {customer.user ? (
-                        <span className="rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700">
+                        <span className="inline-block rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700 sm:text-sm">
                             Registered
                         </span>
                     ) : (
-                        <span className="rounded-full bg-gray-100 px-3 py-1 text-sm font-semibold text-gray-700">
+                        <span className="inline-block rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 sm:text-sm">
                             Guest
                         </span>
                     )}

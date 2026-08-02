@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image";
-import { startTransition, useTransition } from "react";
+import { useTransition } from "react";
 import { deleteProductImage, setPrimaryImage  } from "@/actions/product-image";
 
 interface Props {
@@ -19,7 +19,7 @@ export default function ProductImageCard({
 }: Props) {
     const [pending, startTransition] = useTransition();
     return (
-        <div className="overflow-hidden rounded-xl border bg-white shadow transition hover:shadow-lg">
+        <div className="overflow-hidden rounded-xl border bg-white shadow transition-all hover:-translate-y-1 hover:shadow-lg">
             <div className="relative aspect-square">
                 <Image 
                     src={url}
@@ -32,16 +32,16 @@ export default function ProductImageCard({
             <div className="space-y-3 p-4">
 
                 {isPrimary ? (
-                    <span className="inline-block rounded-full bg-green-600 px-3 py-1 text-xs font-medium text-white">
-                        ⭐ Primary Image
+                    <span className="inline-block rounded-full bg-green-600 px-3 py-1 text-xs font-semibold text-white">
+                        Primary Image
                     </span>
                 ) : (
-                    <span className="inline-block rounded-full bg-gray-200 px-3 py-1 text-xs">
+                    <span className="inline-block rounded-full bg-gray-200 px-3 py-1 text-xs font-medium text-gray-700">
                         Secondary Image
                     </span>
                 )}
 
-                <div className="flex gap-2">
+                <div className="flex flex-col gap-2 sm:flex-row">
                     <button
                         disabled={pending}
                         onClick={() => {
@@ -52,7 +52,7 @@ export default function ProductImageCard({
                                 );
                             });
                         }}
-                        className="flex-1 rounded-lg bg-green-700 px-3 py-2 text-sm text-white disabled:opacity-50"
+                        className="flex-1 rounded-lg bg-green-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-green-800 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                         {pending ? "Saving..." : "Set Primary"}
                     </button>
@@ -71,7 +71,7 @@ export default function ProductImageCard({
                                 );
                             });
                         }}
-                        className="flex-1 rounded-lg bg-red-600 px-3 py-2 text-sm text-white disabled:opacity-50"
+                        className="flex-1 rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                         {pending ? "Deleting..." : "Delete"}
                     </button>

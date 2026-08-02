@@ -30,7 +30,7 @@ export default function DeleteCategoryButton({
         <button
             onClick={handleDelete}
             disabled={pending}
-            className="rounded bg-red-600 px-4 py-2 text-sm text-white hover:bg-red-700 disabled:opacity-60"
+            className="whitespace-nowrap rounded bg-red-600 px-3 py-2 text-sm text-white hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60"
         >
             {pending ? "Deleting..." : "Delete"}
         </button>

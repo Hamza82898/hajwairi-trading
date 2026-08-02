@@ -19,20 +19,20 @@ export default function TopSellingProducts({
     products,
 }: Props) {
     return (
-        <div className="rounded-3xl border bg-white p-6 shadow-sm">
+        <div className="rounded-3xl border bg-white p-4 shadow-sm sm:p-6">
 
-            <div className="mb-8 flex items-center justify-between">
+            <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                    <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 sm:text-sm">
                         Best Sellers
                     </p>
 
-                    <h2 className="mt-2 text-3xl font-bold">
+                    <h2 className="mt-2 text-2xl font-bold sm:text-3xl">
                         Top Selling Products
                     </h2>
                 </div>
 
-                <div className="rounded-2xl bg-yellow-100 p-3">
+                <div className="self-start rounded-2xl bg-yellow-100 p-3 sm:self-auto">
                     <Trophy 
                         size={28}
                         className="text-yellow-600"
@@ -51,10 +51,10 @@ export default function TopSellingProducts({
                     {products.map((product, index) => (
                         <div
                             key={product.productId}
-                            className="flex items-center justify-between rounded-2xl border p-4 transition hover:bg-gray-50"
+                            className="flex flex-col gap-4 rounded-2xl border p-4 transition hover:bg-gray-50 sm:flex-row sm:items-center sm:justify-between"
                         >
                             <div className="flex items-center gap-4">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-100 font-bold text-green-700">
+                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-green-100 font-bold text-green-700">
                                     
                                     #{index + 1}
                                     
@@ -62,7 +62,7 @@ export default function TopSellingProducts({
                                 <div>
                                     <Link
                                         href={`/admin/products/${product.productId}`}
-                                        className="font-semibold hover:text-green-700"
+                                        className="block break-words font-semibold transition hover:text-green-700"
                                     >
                                         {product.name}
                                     </Link>
@@ -72,11 +72,11 @@ export default function TopSellingProducts({
                                 </div>
                             </div>
 
-                            <div className="text-right">
-                                <div className="flex items-center justify-end gap-2 text-green-600">
+                            <div className="text-left sm:text-right">
+                                <div className="flex items-center gap-2 text-green-600 sm:justify-end">
                                     <TrendingUp size={18} />
 
-                                    <span className="font-bold">
+                                    <span className="text-lg font-bold">
                                         {product.quantity}
                                     </span>
                                 </div>

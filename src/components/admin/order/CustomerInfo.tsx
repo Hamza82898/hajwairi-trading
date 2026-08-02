@@ -25,8 +25,8 @@ export default function CustomerInfo({
     const customer = order.customer;
 
     return (
-        <div className="rounded-2xl bg-white p-6 shadow">
-            <h2 className="mb-6 text-2xl font-bold">
+        <div className="rounded-2xl bg-white p-4 shadow sm:p-6">
+            <h2 className="mb-6 text-xl font-bold sm:text-2xl">
                 Customer Information
             </h2>
 
@@ -36,7 +36,7 @@ export default function CustomerInfo({
                         Full Name
                     </p>
 
-                    <p className="font-semibold">
+                    <p className="break-words font-semibold">
                         {customer.fullName}
                     </p>
                 </div>
@@ -46,7 +46,7 @@ export default function CustomerInfo({
                         Phone Number
                     </p>
 
-                    <p className="font-semibold">
+                    <p className="break-all font-semibold">
                         {customer.phone}
                     </p>
                 </div>
@@ -56,18 +56,18 @@ export default function CustomerInfo({
                         Email
                     </p>
 
-                    <p className="font-semibold">
+                    <p className="break-all font-semibold">
                         {customer.email || "-"}
                     </p>
                 </div>
             </div>
 
             <hr className="my-6" />
-            <h3 className="mb-4 text-lg font-semibold">
+            <h3 className="mb-5 text-lg font-semibold">
                 Delivery Address
             </h3>
 
-            <div className="space-y-4">
+            <div className="grid gap-5 sm:grid-cols-2">
 
                 <div>
                     <p className="text-sm text-gray-500">
@@ -129,19 +129,19 @@ export default function CustomerInfo({
                             Landmark
                         </p>
 
-                        <p className="font-semibold">
+                        <p className="font-semibold break-words">
                             {customer.landmark}
                         </p>
                     </div>
                 )}
 
                 {customer.notes && (
-                    <div>
+                    <div className="sm:col-span-2">
                         <p className="text-sm text-gray-500">
                             Delivery Notes
                         </p>
 
-                        <p className="font-semibold">
+                        <p className="break-words font-semibold">
                             {customer.notes}
                         </p>
                     </div>

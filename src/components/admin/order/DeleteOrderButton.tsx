@@ -41,14 +41,13 @@ export default function DeleteOrderButton({
             type="button"
             onClick={handleDelete}
             disabled={pending}
-            className="flex w-full items-center justify-center gap-2 rounded-xl bg-red-600 px-5 py-3 font-semibold text-white transition hover:bg-red-700 disabled:opacity-50"
+            className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-red-600 px-5 py-3 text-sm sm:text-base font-semibold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
-            <Trash2 size={18} />
+            <Trash2 className="h-4 w-4 sm:h-5 sm:w-5" />
 
-            {pending
-                ? "Deleting..."
-                : "Delete Order"
-            }
+            <span className="whitespace-nowrap">
+                {pending ? "Deleting..." : "Delete Order"}
+            </span>
 
         </button>
     );

@@ -24,8 +24,8 @@ export default function CategoryTable({
     categories,
 }: Props) {
     return (
-        <div className="overflow-hidden rounded-xl bg-white shadow">
-            <table className="min-w-full">
+        <div className="overflow-x-auto rounded-xl bg-white shadow">
+            <table className="min-w-[900px] w-full">
                 <thead className="bg-gray-100">
                     <tr>
                         <th className="px-5 py-4 text-left">Image</th>
@@ -51,7 +51,7 @@ export default function CategoryTable({
                                         alt={category.name}
                                         width={60}
                                         height={60}
-                                        className="rounded-lg object-cover"
+                                        className="h-[60px] w-[60px] rounded-lg object-cover"
                                     />
                                 ) : (
                                     <div className="flex h-[60px] w-[60px] items-center justify-center rounded-lg bg-gray-100 text-xs text-gray-500">
@@ -78,21 +78,21 @@ export default function CategoryTable({
 
                             <td className="px-5 py-4">
                                 {category.isActive ? (
-                                    <span className="rounded-full bg-green-100 px-3 py-1 text-sm text-green-700">
+                                    <span className="inline-block rounded-full bg-green-100 px-3 py-1 text-xs sm:text-sm text-green-700">
                                         Active
                                     </span>
                                 ) : (
-                                    <span className="rounded-full bg-red-100 px-3 py-1 text-sm text-red-700">
+                                    <span className="inline-block rounded-full bg-red-100 px-3 py-1 text-xs sm:text-sm text-red-700">
                                         Inactive
                                     </span>
                                 )}
                             </td>
 
                             <td className="px-5 py-4">
-                                <div className="flex justify-end gap-3">
+                                <div className="flex flex-wrap justify-end gap-2">
                                     <Link
                                         href={`/admin/categories/${category.id}/edit`}
-                                        className="rounded bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700"
+                                        className="rounded bg-blue-600 px-3 py-2 text-sm text-white hover:bg-blue-700 whitespace-nowrap"
                                     >
                                         Edit
                                     </Link>

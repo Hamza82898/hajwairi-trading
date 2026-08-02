@@ -31,16 +31,16 @@ export default async function CustomersPage({
     );
 
     return (
-        <main>
+        <main className="space-y-6">
             {/*Header*/}
 
-            <div className="mb-8 flex items-center justify-between">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                    <h1 className="text-4xl font-bold">
+                    <h1 className="text-2xl font-bold sm:text-3xl lg:text-4xl">
                         Customers
                     </h1>
 
-                    <p className="mt-2 text-gray-500">
+                    <p className="mt-1 text-sm text-gray-500 sm:text-base">
                         Manage all customers
                     </p>
                 </div>
@@ -50,21 +50,21 @@ export default async function CustomersPage({
 
             <form
                 method="GET"
-                className="mb-6 rounded-2xl border bg-white p-5 shadow-sm"
+                className="rounded-2xl border bg-white p-4 shadow-sm sm:p-5"
             >
-                <div className="grid gap-4 lg:gird-cols-3">
+                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                     <input 
                         type="text"
                         name="search"
                         defaultValue={search}
                         placeholder="Search name, phone or email"
-                        className="rounded-xl border p-3"
+                        className="w-full rounded-xl border p-3"
                     />
 
                     <select
                         name="sort"
                         defaultValue={sort}
-                        className="rounded-xl border p-3"
+                        className="w-full rounded-xl border p-3"
                     >
                         <option value="latest">
                             Latest First
@@ -77,7 +77,7 @@ export default async function CustomersPage({
 
                     <button
                         type="submit"
-                        className="rounded-xl bg-green-700 font-semibold text-white hover:bg-green-800"
+                        className="w-full rounded-xl bg-green-700 p-3 font-semibold text-white transition hover:bg-green-800"
                     >
                         Apply Filters
                     </button>
@@ -88,8 +88,8 @@ export default async function CustomersPage({
             {/*Customer*/}
 
             {customers.length === 0 ? (
-                <div className="rounded-xl border bg-white p-12 text-center shadow">
-                    <h2 className="text-2xl font-semibold">
+                <div className="rounded-xl border bg-white p-8 text-center shadow sm:p-12">
+                    <h2 className="text-xl font-semibold sm:text-2xl">
                         No Customers Found
                     </h2>
 
@@ -101,11 +101,11 @@ export default async function CustomersPage({
                 <>
                     <CustomersTable customers={customers} />
 
-                    <div className="mt-8 flex items-center justify-center gap-2">
+                    <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
                         {currentPage > 1 && (
                             <Link
                                 href={`?search=${search}&sort=${sort}&page=${currentPage - 1}`}
-                                className="rounded-lg border px-4 py-2 hover:bg-gray-100"
+                                className="rounded-lg border px-4 py-2 text-sm hover:bg-gray-100"
                             >
                                 Previous
                             </Link>
@@ -118,7 +118,7 @@ export default async function CustomersPage({
                             <Link
                                 key={pageNumber}
                                 href={`?search=${search}&sort=${sort}&page=${pageNumber}`}
-                                className={`rounded-lg px-4 py-2 ${
+                                className={`rounded-lg px-4 py-2 text-sm ${
                                     currentPage === pageNumber
                                         ? "bg-green-700 textwhite"
                                         : "border hover:bg-gray-100"
@@ -131,7 +131,7 @@ export default async function CustomersPage({
                         {currentPage < totalPages && (
                             <Link
                                 href={`?search=${search}&sort=${sort}&page=${currentPage + 1}`}
-                                className="rounded-lg border px-4 py-2 hover:bg-gray-100"
+                                className="rounded-lg border px-4 py-2 text-sm hover:bg-gray-100"
                             >
                                 Next
                             </Link>

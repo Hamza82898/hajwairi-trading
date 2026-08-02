@@ -1,8 +1,9 @@
 "use client"
 
 import Link from "next/link"
-import { Prisma, OrderStatus } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import DeleteOrderButton from "./DeleteOrderButton";
+import OrderStatusBadge from "./OrderStatusBadge";
 
 
 type OrderWithRelations = Prisma.OrderGetPayload<{
@@ -20,37 +21,18 @@ interface Props {
     orders: OrderWithRelations[];
 }
 
+function formatPaymentMethod(value: string) {
+    return value
+        .replace(/-/g, " ")
+        .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
 export default function OrdersTable({
     orders,
 }: Props) {
-    function statusColor(status: OrderStatus) {
-        switch (status) {
-
-            case "PENDING":
-                return "bg-yellow-100 text-yellow-700";
-
-            case "CONFIRMED":
-                return "bg-blue-100 text-blue-700";
-
-            case "PROCESSING":
-                return "bg-purple-100 text-purple-700";
-
-            case "SHIPPED":
-                return "bg-indigo-100 text-indigo-700";
-
-            case "DELIVERED":
-                return "bg-green-100 text-green-700";
-
-            case "CANCELLED":
-                return "bg-red-100 text-red-700";
-
-            default:
-                return "bg-gray-100 text-gray-700";
-        }
-    }
-
+   
     return (
-        <div className="overflow-hidden rounded-xl bg-white shadow">
+        <div className="overflow-x-auto rounded-xl bg-white shadow">
             <table className="min-w-full">
                 <thead className="bg-gray-100">
                     <tr>
@@ -66,11 +48,11 @@ export default function OrdersTable({
                             Phone
                         </th>
 
-                        <th className="px-5 py-4 text-left">
+                        <th className="px-5 py-4 text-right">
                             Total
                         </th>
 
-                        <th className="px-5 py-4 text-left">
+                        <th className="px-5 py-4 text-right">
                             Delivery
                         </th>
 
@@ -78,11 +60,11 @@ export default function OrdersTable({
                             Payment
                         </th>
 
-                        <th className="px-5 py-4 text-left">
+                        <th className="px-5 py-4 text-center">
                             Status
                         </th>
 
-                        <th className="px-5 py-4 text-left">
+                        <th className="px-5 py-4 text-center">
                             Date
                         </th>
 
@@ -96,7 +78,7 @@ export default function OrdersTable({
                     {orders.map((order) => (
                         <tr
                             key={order.id}
-                            className="border-t"
+                            className="border-t transition hover:bg-gray-50"
                         >
                             <td className="px-5 py-4 font-semibold">
                                 #{order.orderNumber}
@@ -110,29 +92,25 @@ export default function OrdersTable({
                                 {order.customer.phone}
                             </td>
 
-                            <td className="px-5 py-4">
+                            <td className="px-5 py-4 text-right font-medium">
                                 BD {order.total.toFixed(2)}
                             </td>
 
-                            <td className="px-5 py-4">
+                            <td className="px-5 py-4 text-right">
                                 BD {order.delivery.toFixed(2)}
                             </td>
 
                             <td className="px-5 py-4">
-                                {order.paymentMethod
-                                    .replace("-", " ")
-                                    .replace(/\b\w/g, (c:string) => c.toUpperCase())}
+                                {formatPaymentMethod(order.paymentMethod)}
                             </td>
 
-                            <td className="px-5 py-4">
-                                <span
-                                    className={`rounded-full px-3 py-1 text-sm ${statusColor(order.status)}`}
-                                >
-                                    {order.status}
-                                </span>
+                            <td className="px-5 py-4 text-center">
+                                <OrderStatusBadge 
+                                    status={order.status}
+                                />
                             </td>
 
-                            <td className="px-5 py-4">
+                            <td className="px-5 py-4 text-center">
                                 {new Date(order.createdAt).toLocaleDateString()}
                             </td>
 
@@ -140,7 +118,7 @@ export default function OrdersTable({
                                 <div className="flex justify-end gap-2">
                                     <Link
                                         href={`/admin/orders/${order.id}`}
-                                        className="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+                                        className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700"
                                     >
                                         View
                                     </Link>

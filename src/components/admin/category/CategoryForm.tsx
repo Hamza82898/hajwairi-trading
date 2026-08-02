@@ -35,7 +35,7 @@ export default function CategoryForm({
     return (
         <form
             action={formAction}
-            className="space-y-6"
+            className="space-y-6 rounded-2xl bg-white p-4 shadow-sm sm:p-6 lg:p-8"
         >
             {state.message && (
                 <div
@@ -106,7 +106,7 @@ export default function CategoryForm({
                     )}
                 </div>
 
-                <div className="flex items-center gap-3 pt-8">
+                <div className="flex items-center gap-3 md:pt-8">
                     <input 
                         id="isActive"
                         type="checkbox"
@@ -129,7 +129,7 @@ export default function CategoryForm({
             <button
                 type="submit"
                 disabled={pending}
-                className="rounded-lg bg-green-700 px-6 py-3 text-white hover:bg-green-800 disabled:opacity-60"
+                className="w-full rounded-lg bg-green-700 px-6 py-3 font-semibold text-white hover:bg-green-800 disabled:opacity-60 sm:w-auto"
             >
                 {pending 
                     ? "Saving..."

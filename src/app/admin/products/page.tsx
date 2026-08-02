@@ -7,28 +7,28 @@ export default async function ProductsPage() {
 
     return (
         <main>
-            <div className="mb-8 flex items-center justify-between">
+            <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                    <h1 className="text-4xl font-bold">
+                    <h1 className="text-3xl font-bold sm:text-4xl">
                         Products
                     </h1>
 
-                    <p className="mt-2 text-gray-600">
+                    <p className="mt-2 text-sm text-gray-600 sm:text-base">
                         Manage all products.
                     </p>
                 </div>
 
                 <Link
                     href = "/admin/products/new"
-                    className="rounded-lg bg-green-700 px-5 py-3 text-white"
+                    className="w-full rounded-lg bg-green-700 px-5 py-3 text-center text-white hover:bg-green-800 sm:w-auto"
                 >
                     + Add Product
                 </Link>
 
             </div>
 
-            <div className="overflow-hidden rounded-xl bg-white shadow">
-                <table className="min-w-full">
+            <div className="overflow-x-auto rounded-xl bg-white shadow">
+                <table className="min-w-[900px] w-full">
 
                     <thead className="bg-gray-100">
                         <tr>
@@ -104,10 +104,10 @@ export default async function ProductsPage() {
                                 </td>
 
                                 <td className="px-5 py-4">
-                                    <div className="flex gap-2">
+                                    <div className="flex flex-wrap gap-2">
                                         <Link
                                             href={`/admin/products/${product.id}/edit`}
-                                            className="rounded bg-blue-600 px-3 py-2 text-sm text-white hover:bg-blue-700"
+                                            className="rounded bg-blue-600 px-3 py-2 text-xs sm:text-sm text-white hover:bg-blue-700"
                                         >
                                             Edit
                                         </Link>

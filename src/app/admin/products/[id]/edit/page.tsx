@@ -31,10 +31,14 @@ export default async function EditProductPage({
 
     return (
         <main>
-            <div className="mb-8">
-                <h1 className="text-4xl font-bold">
+            <div className="mb-6 sm:mb-8">
+                <h1 className="text-3xl font-bold sm:text-4xl">
                     Edit Product
                 </h1>
+
+                <p className="mt-2 text-sm text-gray-600 sm:text-base">
+                    Update product information.
+                </p>
             </div>
 
             <ProductForm 
@@ -42,8 +46,8 @@ export default async function EditProductPage({
                 product={product}
             />
 
-            <div className="mt-10">
-                <h2 className="mb-4 text-2xl font-semibold">
+            <div className="mt-8 sm:mt-10">
+                <h2 className="mb-4 text-xl font-semibold sm:text-2xl">
                     Product Images
                 </h2>
 
@@ -53,7 +57,7 @@ export default async function EditProductPage({
                     
                 />
 
-                <div className="mt-8">
+                <div className="mt-6 sm:mt-8">
                     <ProductImageGallery 
                         productId={product.id}
                         images={images} 

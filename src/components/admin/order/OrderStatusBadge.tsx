@@ -5,13 +5,22 @@ interface Props {
     status: OrderStatus;
 }
 
+const statusLabels: Record<OrderStatus, string> = {
+    PENDING: "Pending",
+    CONFIRMED: "Confirmed",
+    PROCESSING: "Processing",
+    SHIPPED: "Shipped",
+    DELIVERED: "Delivered",
+    CANCELLED: "Cancelled"
+};
+
 export default function OrderStatusBadge({
     status,
 }: Props) {
     return (
         <span
             className={clsx(
-                "rounded-full px-3 py-1 text-sm font-semibold",
+                "inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold md:text-sm",
 
                 status === "PENDING" &&
                     "bg-yellow-100 text-yellow-700",
@@ -32,7 +41,7 @@ export default function OrderStatusBadge({
                     "bg-red-100 text-red-700"
             )}
         >
-            {status}
+            {statusLabels[status]}
         </span>
     );
 }

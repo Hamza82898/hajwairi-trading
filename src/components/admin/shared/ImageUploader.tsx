@@ -189,7 +189,7 @@ export default function ImageUploader({
             }}
             onDragLeave={() => setDragging(false)}
             onDrop={handleDrop}
-            className={`rounded-xl border-2 border-dashed p-10 text-center transition-all ${
+            className={`rounded-xl border-2 border-dashed p-5 text-center transition-all sm:p-8 lg:p-10 ${
                 dragging
                     ? "border-green-700 bg-green-50"
                     : "border-gray-300"
@@ -217,7 +217,7 @@ export default function ImageUploader({
             />
 
             <div className="mb-6">
-                <p className="text-lg font-semibold">
+                <p className="text-base font-semibold sm:text-lg">
                     Drag & Drop Images Here
                 </p>
 
@@ -233,17 +233,17 @@ export default function ImageUploader({
                     </div>
                 )}
 
-                <p className="mt-2 text-sm text-gray-500">
+                <p className="mt-2 text-xs text-gray-500 sm:text-sm">
                     or click the button below
                 </p>
             </div>
 
             {selectedFiles.length > 0 && (
-                <div className="mb-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+                <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     {selectedFiles.map((file, index) => (
                         <div
                             key={index}
-                            className="rounded-lg border bg-white p-3 shadow"
+                            className="rounded-lg border bg-white p-3 shadow transition hover:shadow-md"
                         >
                             <img 
                                 src={URL.createObjectURL(file)}
@@ -270,7 +270,7 @@ export default function ImageUploader({
                                         prev.filter((_, i) => i !== index)
                                     )
                                 }
-                                className="mt-3 w-full rounded bg-red-600 py-2 text-sm text-white"
+                                className="mt-3 w-full rounded-lg bg-red-600 py-2 text-sm text-white hover:bg-red-700"
                             >
                                 Remove
                             </button>
@@ -282,7 +282,7 @@ export default function ImageUploader({
 
             {uploading && (
                 <div className="mb-6">
-                    <div className="mb-2 flex justify-between text-sm">
+                    <div className="mb-2 flex flex-col gap-1 text-sm sm:flex-row sm:justify-between">
                         <span>Uploading Images....</span>
 
                         <span>
@@ -313,7 +313,7 @@ export default function ImageUploader({
                         inputRef.current?.click();
                     }
                 }}
-                className="rounded-lg bg-green-700 px-5 py-3 text-white hover:bg-green-800 disabled:cursor-not-allowed disabled:opacity-60"
+                className="w-full rounded-lg bg-green-700 px-5 py-3 text-white hover:bg-green-800 sm:w-auto disabled:cursor-not-allowed disabled:opacity-60"
             >
                 {uploading
                     ? "Uploading..."

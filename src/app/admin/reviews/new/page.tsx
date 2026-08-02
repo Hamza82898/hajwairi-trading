@@ -11,11 +11,11 @@ export default async function NewReviewPage() {
         <div className="space-y-8">
 
             <div>
-                <h1 className="text-3xl font-bold">
+                <h1 className="text-3xl font-bold sm:text-4xl">
                     Add Review
                 </h1>
 
-                <p className="text-gray-500">
+                <p className="mt-2 text-sm text-gray-500 sm:text-base">
                     Create a new customer review.
                 </p>
             </div>

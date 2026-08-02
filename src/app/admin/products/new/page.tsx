@@ -6,12 +6,12 @@ export default async function NewProductPage() {
 
     return (
         <main>
-            <div className="mb-8">
-                <h1 className="text-4xl font-bold">
+            <div className="mb-6 sm:mb-8">
+                <h1 className="text-3xl font-bold sm:text-4xl">
                     Add Product
                 </h1>
 
-                <p className="mt-2 text-gray-600">
+                <p className="mt-2 text-sm text-gray-600 sm:text-base">
                     Create a new product.
                 </p>
             </div>

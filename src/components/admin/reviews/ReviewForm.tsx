@@ -70,11 +70,11 @@ export default function ReviewForm({
     return (
         <form 
             onSubmit={handleSubmit(onSubmit)}
-            className="space-y-8 rounded-2xl bg-white p-8 shadow"
+            className="space-y-8 rounded-2xl bg-white p-4 shadow sm:p-6 lg:p-8"
         >
 
             {/*Customer*/}
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-6 lg:grid-cols-2">
 
                 <div>
                     <label className="mb-2 block text-sm font-semibold">
@@ -168,7 +168,7 @@ export default function ReviewForm({
                     Rating
                 </label>
 
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                     {Array.from({ length: 5 }).map((_, index) => {
                         const value = index + 1;
 
@@ -182,7 +182,7 @@ export default function ReviewForm({
                                 })}
                             >
                                 <Star 
-                                    size={34}
+                                    size={32}
                                     className={
                                         value <= rating
                                             ? "fill-yellow-400 text-yellow-400"
@@ -190,15 +190,16 @@ export default function ReviewForm({
                                     }
                                 />
 
-                                {errors.rating && (
-                                    <p className="mt-2 text-sm text-red-600">
-                                        {errors.rating.message}
-                                    </p>
-                                )}
+                                
                             </button>
                         );
                     })}
                 </div>
+                {errors.rating && (
+                    <p className="mt-2 text-sm text-red-600">
+                        {errors.rating.message}
+                    </p>
+                )}
             </div>
 
             {/*REviews*/}
@@ -209,7 +210,7 @@ export default function ReviewForm({
 
                 <textarea
                     {...register("review")} 
-                    rows={5}
+                    rows={4}
                     placeholder="Write customer review..."
                     className="w-full rounded-xl border px-4 py-3 outline-none transition focus:border-green-700"
                 />
@@ -221,7 +222,7 @@ export default function ReviewForm({
             </div>
 
             {/*Setting*/}
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-6 lg:grid-cols-3">
                 <div>
                     <label className="mb-2 block text-sm font-semibold">
                         Display Order
@@ -245,7 +246,7 @@ export default function ReviewForm({
                     Featured Review
                 </label>
 
-                <label className="flex items-center gap-3">
+                <label className="flex items-center gap-3 rounded-xl border p-3">
                     <input 
                         type="checkbox"
                         {...register("approved")}
@@ -257,11 +258,11 @@ export default function ReviewForm({
             </div>
 
             {/*Button*/}
-            <div className="flex justify-end">
+            <div className="flex justify-stretch sm:justify-end">
                 <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="rounded-xl bg-green-700 px-8 py-3 font-semibold text-white transition hover:bg-green-800 disabled:cursor-not-allowed disabled:opacity-60"
+                    className="w-full rounded-xl bg-green-700 px-8 py-3 font-semibold text-white transition hover:bg-green-800 sm:w-auto disabled:cursor-not-allowed disabled:opacity-60"
                 >
                     {isSubmitting ? (
                         <span className="flex items-center gap-2">

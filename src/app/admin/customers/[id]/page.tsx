@@ -22,25 +22,25 @@ export default async function CustomerDetailsPage({
     }
 
     return (
-        <main className="space-y-8">
+        <main className="space-y-6 lg:space-y-8">
             <div>
-                <h1 className="text-4xl font-bold">
+                <h1 className="break-words text-2xl font-bold sm:text-3xl lg:text-4xl">
                     {customer.fullName}
                 </h1>
 
-                <p className="mt-2 text-gray-500">
+                <p className="mt-2 text-sm text-gray-500 sm:text-base">
                     Customer Details
                 </p>
             </div>
 
-            <div className="grid gap-8 lg:grid-cols-3">
-                <div className="space-y-8 lg:col-span-2">
+            <div className="grid gap-6 lg:grid-cols-3 lg:gap-8">
+                <div className="order-2 space-y-6 lg:order-1 lg:col-span-2 lg:space-y-8">
 
                     <CustomerOrders customer={customer} />
 
                 </div>
 
-                <div className="space-y-8">
+                <div className="order-1 space-y-6 lg:order-2 lg:space-y-8">
                     <CustomerInfo customer={customer} />
 
                     <CustomerStats customer={customer} />

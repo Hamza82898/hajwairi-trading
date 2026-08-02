@@ -25,13 +25,13 @@ export default async function EditCategoryPage({
     }
 
     return (
-        <main className="space-y-10">
+        <main className="space-y-6 lg:space-y-10">
             <div>
-                <h1 className="text-4xl font-bold">
+                <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
                     Edit Category
                 </h1>
 
-                <p className="mt-2 text-gray-500">
+                <p className="mt-2 text-sm text-gray-500 sm:text-base">
                     Update category information.
                 </p>
             </div>
@@ -41,7 +41,7 @@ export default async function EditCategoryPage({
             />
 
             <section className="space-y-6">
-                <h2 className="text-2xl font-semibold">
+                <h2 className="text-xl font-semibold sm:text-2xl">
                     Category Image
                 </h2>
 
@@ -54,7 +54,7 @@ export default async function EditCategoryPage({
                 {category.image && (
                     
                     <div className="space-y-4">
-                        <div className="max-w-xs overflow-hidden rounded-xl border bg-white shadow">
+                        <div className="w-full max-w-xs overflow-hidden rounded-xl border bg-white shadow">
                             <img 
                                 src={category.image}
                                 alt={category.name}

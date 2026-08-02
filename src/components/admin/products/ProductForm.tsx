@@ -47,7 +47,7 @@ export default function ProductForm({
 
             {state.message && (
                 <div
-                    className={`rounded-lg border p-4 text-sm ${
+                    className={`rounded-xl border p-4 text-sm ${
                         state.success
                             ? "border-green-300 bg-green-50 text-green-700"
                             : "border-red-300 bg-red-50 text-red-700" 
@@ -57,11 +57,11 @@ export default function ProductForm({
                 </div>
             )}
 
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-5 lg:grid-cols-2">
                 <input 
                     name="name"
                     placeholder="Product Name"
-                    className="rounded-lg border p-3"
+                    className="w-full rounded-lg border p-3 transition focus:border-green-700 focus:outline-none"
                     required
                     defaultValue={product?.name}
                 />
@@ -75,7 +75,7 @@ export default function ProductForm({
                 <input 
                     name="slug"
                     placeholder="Slug"
-                    className="rounded-lg border p-3"
+                    className="w-full rounded-lg border p-3 transition focus:border-green-700 focus:outline-none"
                     required
                     defaultValue={product?.slug}
                 />
@@ -89,7 +89,7 @@ export default function ProductForm({
                 <input 
                     name="sku"
                     placeholder="SKU"
-                    className="rounded-lg border p-3"
+                    className="w-full rounded-lg border p-3 transition focus:border-green-700 focus:outline-none"
                     defaultValue={product?.sku ?? ""}
                 />
 
@@ -102,7 +102,7 @@ export default function ProductForm({
                 <input 
                     name="brand"
                     placeholder="Brand"
-                    className="rounded-lg border p-3"
+                    className="w-full rounded-lg border p-3 transition focus:border-green-700 focus:outline-none"
                     required
                     defaultValue={product?.brand}
                 />
@@ -110,7 +110,7 @@ export default function ProductForm({
                 <input 
                     name="origin"
                     placeholder="Origin"
-                    className="rounded-lg border p-3"
+                    className="w-full rounded-lg border p-3 transition focus:border-green-700 focus:outline-none"
                     required
                     defaultValue={product?.origin}
                 />
@@ -118,7 +118,7 @@ export default function ProductForm({
                 <input 
                     name="unit"
                     placeholder="Unit"
-                    className="rounded-lg border p-3"
+                    className="w-full rounded-lg border p-3 transition focus:border-green-700 focus:outline-none"
                     required
                     defaultValue={product?.unit}
                 />
@@ -128,7 +128,7 @@ export default function ProductForm({
                     type="number"
                     step="0.01"
                     placeholder="Old Price"
-                    className="rounded-lg border p-3"
+                    className="w-full rounded-lg border p-3 transition focus:border-green-700 focus:outline-none"
                     required
                     defaultValue={product?.oldPrice}
                 />
@@ -144,7 +144,7 @@ export default function ProductForm({
                     type="number"
                     step="0.01"
                     placeholder="New Price"
-                    className="rounded-lg border p-3"
+                    className="w-full rounded-lg border p-3 transition focus:border-green-700 focus:outline-none"
                     required
                     defaultValue={product?.newPrice}
                 />
@@ -159,7 +159,7 @@ export default function ProductForm({
                     name="stock"
                     type="number"
                     placeholder="Stock"
-                    className="rounded-lg border p-3"
+                    className="w-full rounded-lg border p-3 transition focus:border-green-700 focus:outline-none"
                     required
                     defaultValue={product?.stock}
                 />
@@ -168,20 +168,20 @@ export default function ProductForm({
                     name="discount"
                     type="number"
                     placeholder="Discount %"
-                    className="rounded-lg border p-3"
+                    className="w-full rounded-lg border p-3 transition focus:border-green-700 focus:outline-none"
                     defaultValue={product?.discount}
                 />
 
                 <input 
                     name="badge"
                     placeholder="Badge"
-                    className="rounded-lg border p-3"
+                    className="w-full rounded-lg border p-3 transition focus:border-green-700 focus:outline-none"
                     defaultValue={product?.badge}
                 />
 
                 <select
                     name="categoryId"
-                    className="rounded-lg border p-3"
+                    className="w-full rounded-lg border p-3 transition focus:border-green-700 focus:outline-none"
                     required
                     defaultValue={product?.categoryId}
                 >
@@ -203,8 +203,8 @@ export default function ProductForm({
             <textarea 
                 name="description"
                 placeholder="Description"
-                rows={6}
-                className="w-full rounded-lg border p-3"
+                rows={5}
+                className="w-full rounded-lg border p-3 transition focus:border-green-700 focus:outline-none"
                 required
                 defaultValue={product?.description}
             />
@@ -215,8 +215,8 @@ export default function ProductForm({
                 </p>
             )}
 
-            <div className="flex gap-8">
-                <label className="flex items-center gap-2">
+            <div className="flex flex-col gap-4 sm:flex-row sm:gap-8">
+                <label className="flex items-center gap-2 rounded-lg border p-3">
                     <input 
                         type="checkbox"
                         name="featured"
@@ -225,7 +225,7 @@ export default function ProductForm({
                     Featured
                 </label>
 
-                <label className="flex items-center gap-2">
+                <label className="flex items-center gap-2 rounded-lg border p-3">
                     <input 
                         type="checkbox"
                         name="isActive"

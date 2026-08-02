@@ -66,7 +66,7 @@ export default function StatsCards({ stats }: Props) {
     ];
 
     return (
-        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
             {cards.map((card) => {
                 const Icon = card.icon;
 
@@ -78,28 +78,28 @@ export default function StatsCards({ stats }: Props) {
                         <div 
                             className={`h-2 bg-gradient-to-r ${card.gradient}`} 
                         />
-                        <div className="p-6">
-                            <div className="flex items-start justify-between">
-                                <div>
-                                    <p className="text-sm font-medium uppercase tracking-wide text-gray-500">
+                        <div className="p-5 sm:p-6">
+                            <div className="flex items-start justify-between gap-4">
+                                <div className="min-w-0 flex-1">
+                                    <p className="text-xs font-medium uppercase tracking-wider text-gray-500 sm:text-sm">
                                         {card.title}
                                     </p>
 
-                                    <h2 className="mt-3 text-4xl font-extrabold text-gray-900">
+                                    <h2 className="mt-3 break-words text-2xl font-extrabold text-gray-900 sm:text-3xl lg:text-4xl">
                                         {card.value}
                                     </h2>
                                 </div>
 
                                 <div
-                                    className={`bg-gradient-to-br ${card.gradient} rounded-2xl p-4 text-white shadow-lg transition-transform duration-300 group-hover:scale-110`}
+                                    className={`shrink-0 rounded-2xl bg-gradient-to-br ${card.gradient} p-3 text-white shadow-lg transition-transform duration-300 group-hover:scale-110 sm:p-4`}
                                 >
-                                    <Icon size={30} />
+                                    <Icon className="h-6 w-6 sm:h-8 sm:w-8" />
                                 </div>
                             </div>
 
-                            <div className="mt-8 flex items-center justify-between">
+                            <div className="mt-6 flex flex-col gap-2 sm:mt-8 sm:flex-row sm:items-center sm:justify-between">
                                 <div className="flex items-center gap-2 text-green-600">
-                                    <TrendingUp size={18} />
+                                    <TrendingUp className="h-4 w-4" />
 
                                     <span className="text-sm font-semibold">
                                         {card.badge}

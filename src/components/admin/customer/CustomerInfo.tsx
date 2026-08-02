@@ -15,9 +15,9 @@ export default function CustomerInfo({
     customer,
 }: Props) {
     return (
-        <div className="rounded-2xl bg-white p-6 shadow">
+        <div className="rounded-2xl bg-white p-4 shadow sm:p-6">
 
-            <h2 className="mb-6 text-2xl font-bold">
+            <h2 className="mb-6 text-xl font-bold sm:text-2xl">
                 Customer Information
             </h2>
 
@@ -58,12 +58,12 @@ export default function CustomerInfo({
                     </p>
 
                     {customer.user ? (
-                        <span className="rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700">
+                        <span className="inline-block rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700 sm:text-sm">
                             Registered Customer
                         </span>
                         
                     ) : (
-                        <span className="rounded-full bg-gray-100 px-3 py-1 text-sm font-semibold text-gray-700">
+                        <span className="inline-block rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 sm:text-sm">
                             Guest Customer
                         </span>
                     )}
@@ -72,7 +72,7 @@ export default function CustomerInfo({
 
             <hr className="my-6" />
 
-            <h3 className="mb-4 text-lg font-semibold">
+            <h3 className="mb-4 text-base font-semibold sm:text-lg">
                 Delivery Address
             </h3>
 

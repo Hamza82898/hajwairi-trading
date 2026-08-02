@@ -1,5 +1,6 @@
 "use client"
 
+import { useTransition } from "react";
 import { deleteProduct } from "@/actions/product";
 
 interface Props {
@@ -9,22 +10,27 @@ interface Props {
 export default function DeleteProductButton({
     id,
 }: Props) {
-    async function handleDelete() {
+    const [pending, startTransition] = useTransition();
+
+    function handleDelete() {
         const confirmed = window.confirm(
             "Are you sure you want to delete this product?"
         );
 
         if (!confirmed) return;
 
-        await deleteProduct(id);
+        startTransition(async() => {
+            await deleteProduct(id);
+        });
     }
 
     return (
         <button
             onClick={handleDelete}
-            className="rounded bg-red-600 px-3 py-2 text-white hover:bg-red-700"
+            disabled={pending}
+            className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-700 hover:shadow-md active:scale-[0.98]"
         >
-            Delete
+            {pending ? "Deleting..." : "Delete"}
         </button>
     )
 }

@@ -15,35 +15,46 @@ export default function LatestOrders({
     orders,
 }: Props) {
     return (
-        <div className="rounded-2xl border bg-white p-6 shadow-sm">
-            <div className="mb-6 flex items-center justify-between">
-                <h2 className="text-2xl font-bold">
+        <div className="rounded-2xl border bg-white p-4 sm:p-6 shadow-sm">
+            {/* Header */}
+            <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <h2 className="text-xl sm:text-2xl font-bold">
                     Latest Orders
                 </h2>
 
                 <Link
                     href="/admin/orders"
-                    className="text-sm font-medium text-green-700 hover:underline"
+                    className="w-fit text-sm font-medium text-green-700 hover:underline"
                 >
                     View All
                 </Link>
             </div>
 
-            <div className="overflow-x-auto">
-
-                <table className="min-w-full">
+            {/* Table */}
+            <div className="-mx-4 overflow-x-auto sm:mx-0">
+                <table className="min-w-[700px] w-full">
                     <thead className="border-b">
-
                         <tr className="text-left text-sm text-gray-500">
-                            <th className="pb-3">Order</th>
-                            <th className="pb-3">Customer</th>
-                            <th className="pb-3">Total</th>
-                            <th className="pb-3">Status</th>
-                            <th className="pb-3 text-right">
+                            <th className="px-4 pb-3 font-semibold">
+                                Order
+                            </th>
+
+                            <th className="px-4 pb-3 font-semibold">
+                                Customer
+                            </th>
+
+                            <th className="px-4 pb-3 font-semibold">
+                                Total
+                            </th>
+
+                            <th className="px-4 pb-3 font-semibold">
+                                Status
+                            </th>
+
+                            <th className="px-4 pb-3 text-right font-semibold">
                                 Action
                             </th>
                         </tr>
-
                     </thead>
 
                     <tbody>
@@ -51,7 +62,7 @@ export default function LatestOrders({
                             <tr>
                                 <td
                                     colSpan={5}
-                                    className="py-8 text-center text-gray-500"
+                                    className="px-4 py-8 text-center text-gray-500"
                                 >
                                     No orders found.
                                 </td>
@@ -60,30 +71,30 @@ export default function LatestOrders({
                             orders.map((order) => (
                                 <tr
                                     key={order.id}
-                                    className="border-b last:border-none"
+                                    className="border-b last:border-none hover:bg-gray-50 transition"
                                 >
-                                    <td className="py-4 font-medium">
-                                        {order.orderNumber}
+                                    <td className="px-4 py-4 font-semibold whitespace-nowrap">
+                                        #{order.orderNumber}
                                     </td>
 
-                                    <td className="py-4">
+                                    <td className="px-4 py-4 whitespace-nowrap">
                                         {order.customer.fullName}
                                     </td>
 
-                                    <td className="py-4">
+                                    <td className="px-4 py-4 whitespace-nowrap">
                                         BD {order.total.toFixed(2)}
                                     </td>
 
-                                    <td className="py-4">
-                                        <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium">
+                                    <td className="px-4 py-4 whitespace-nowrap">
+                                        <span className="inline-block rounded-full bg-gray-100 px-3 py-1 text-xs font-medium">
                                             {order.status}
                                         </span>
                                     </td>
 
-                                    <td className="py-4 text-right">
+                                    <td className="px-4 py-4 text-right whitespace-nowrap">
                                         <Link
                                             href={`/admin/orders/${order.id}`}
-                                            className="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700"
+                                            className="inline-flex rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-700"
                                         >
                                             View
                                         </Link>

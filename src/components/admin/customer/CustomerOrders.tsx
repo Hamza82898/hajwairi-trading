@@ -26,14 +26,14 @@ export default function CustomerOrders({
     customer,
 }: Props) {
     return (
-        <div className="rounded-2xl bg-white p-6 shadow">
-            <div className="mb-6 flex items-center justify-between">
+        <div className="rounded-2xl bg-white p-4 shadow sm:p-6">
+            <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
 
-                <h2 className="text-2xl font-bold">
+                <h2 className="text-xl font-bold sm:text-2xl">
                     Order History
                 </h2>
 
-                <span className="rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700">
+                <span className="inline-block rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700 sm:text-sm">
                     {customer.orders.length} Orders
                 </span>
             </div>
@@ -45,9 +45,9 @@ export default function CustomerOrders({
                     </p>
                 </div>
             ) : (
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto rounded-xl">
 
-                    <table className="min-w-full">
+                    <table className="min-w-[760px] w-full">
 
                         <thead className="border-b bg-gray-500">
                             <tr>
@@ -112,7 +112,7 @@ export default function CustomerOrders({
                                     <td className="px-4 py-4 text-center">
                                         <Link
                                             href={`/admin/orders/${order.id}`}
-                                            className="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white transition hover:bg-blue-700"
+                                            className="whitespace-nowrap rounded-lg bg-blue-600 px-3 py-2 text-sm text-white transition hover:bg-blue-700"
                                         >
                                             View
                                         </Link>
