@@ -6,7 +6,7 @@ export default function NavLinks() {
             <Link href="/">Home</Link>
             <Link href="/shop">Shop</Link>
             <Link href="/categories">Categories</Link>
-            <Link href="/offers">Offers</Link>
+            {/* <Link href="/offers">Offers</Link> */}
             <Link href="/about">About</Link>
             <Link href="/contact">Contact</Link>
 

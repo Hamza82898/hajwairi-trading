@@ -198,13 +198,13 @@ export default function NavbarClient({
                                 Categories
                             </Link>
 
-                            <Link
+                            {/* <Link
                                 href="/offers"
                                 onClick={() => setMobileOpen(false)}
                                 className="rounded-lg px-4 py-3 font-medium transition hover:bg-green-50 hover:text-green-700"
                             >
                                 Offers
-                            </Link>
+                            </Link> */}
 
                             <Link
                                 href="/about"
