@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { PackageSearch } from "lucide-react";
+import OrderStatusBadge from "@/components/admin/order/OrderStatusBadge";
 
 export default async function MyOrdersPage() {
     const session = await auth();
@@ -109,7 +110,9 @@ export default async function MyOrdersPage() {
                                             <span className="font-semibold">
                                                 Payment:
                                             </span>{" "}
-                                            {order.paymentMethod}
+                                            {order.paymentMethod
+                                                .replace("-", " ")
+                                                .replace(/\b\w/g, (c) => c.toUpperCase())}
                                         </div>
 
                                     </div>
@@ -134,13 +137,7 @@ export default async function MyOrdersPage() {
 
                                     </div>
 
-                                    <span
-                                        className={`rounded-full px-4 py-2 text-sm font-semibold ${getStatusClasses(
-                                            order.status
-                                        )}`}
-                                    >
-                                        {order.status}
-                                    </span>
+                                    <OrderStatusBadge status={order.status} />
 
                                     <Link
                                         href={`/checkout/orders/${order.id}`}
